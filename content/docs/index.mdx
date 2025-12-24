@@ -21,26 +21,27 @@ hero:
 banner:
   content: |
     <p>
-      This project is in <strong>research preview</strong> phase. Please share your <a href="https://github.com/fairspec/fairspec/issues/new">feedback and ideas</a>.
+      This project is in <strong>research preview</strong> phase. Please share your <a href="https://github.com/fairspec/fairspec/issues/new"><strong>feedback and ideas</strong></a>.
     </p>
 ---
 
 import { CardGrid, LinkCard, Card } from "@astrojs/starlight/components"
+import Credits from "../../components/Credits/Credits.astro"
 
 <h2>Features</h2>
 
 <CardGrid>
-  <Card title="Simple" icon="rocket">
-    Publish all your car listings in one simple JSON file that can easily be read by any data consumer.
+  <Card title="Lightweight" icon="rocket">
+    Fairspec defines a few simple JSON-based metadata formats for describing catalogs, datasets, and tables.
   </Card>
-  <Card title="Complete" icon="document">
-    The format supports many car features, as well, as multiple showrooms, and many other dealer details.
+  <Card title="Compatible" icon="open-book">
+    Fairspec is compatible to the widely-used, de-facto standard, Datacite and JSONSchema specifications.
   </Card>
-  <Card title="Standard" icon="open-book">
-    The format is based on the widely-used Data Package standard, making it compatible with its software ecosystem.
+  <Card title="Flexible" icon="document">
+    Fairspec is flexible enough to describe any kind of data, including tabular data, images, and geospatial data.
   </Card>
-  <Card title="Easy-to-use" icon="laptop">
-    The format comes with Python and TypeScript SDKs, simplifying the process of publishing and consuming data.
+  <Card title="Software" icon="laptop">
+    Fairspec is software-first, it comes with Python and TypeScript implementations out-of-the-box.
   </Card>
 </CardGrid>
 
@@ -54,3 +55,5 @@ import { CardGrid, LinkCard, Card } from "@astrojs/starlight/components"
   <LinkCard title="Specification" href="specification/metadata/" />
   <LinkCard title="Changelog" href="changelog/" />
 </CardGrid>
+
+<Credits />
