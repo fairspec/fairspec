@@ -1,7 +1,7 @@
 ---
-title: Examples
+title: Introduction
 sidebar:
-  order: 3
+  order: 1
 ---
 
 > [!NOTE]

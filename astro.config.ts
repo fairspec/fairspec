@@ -50,16 +50,7 @@ export default defineConfig({
       },
       sidebar: [
         { label: "Overview", autogenerate: { directory: "overview" } },
-        {
-          label: "Specification",
-          items: [
-            { label: "Metadata", slug: "specification/metadata" },
-            {
-              label: "Data",
-              autogenerate: { directory: "specification/data" },
-            },
-          ],
-        },
+        { label: "Specifications", autogenerate: { directory: "specs" } },
         {
           label: "Changelog",
           collapsed: true,
