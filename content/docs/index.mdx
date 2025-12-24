@@ -1,0 +1,51 @@
+---
+title: Cardealer DP
+template: splash
+editUrl: false
+lastUpdated: false
+hero:
+  tagline: |
+    Cardealer DP (Car Dealer Data Package) is a <strong>data exchange format</strong> that helps <strong>car dealerships</strong> share their car listings. It is developed on top of the Data Package standard.
+  image:
+    file: ../../assets/hero.png
+    alt: Illustration
+  actions:
+    - text: Get Started
+      link: overview/format/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/datisthq/cardealerdp
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard, Card } from "@astrojs/starlight/components"
+
+<h2>Features</h2>
+
+<CardGrid>
+  <Card title="Simple" icon="rocket">
+    Publish all your car listings in one simple JSON file that can easily be read by any data consumer.
+  </Card>
+  <Card title="Complete" icon="document">
+    The format supports many car features, as well, as multiple showrooms, and many other dealer details.
+  </Card>
+  <Card title="Standard" icon="open-book">
+    The format is based on the widely-used Data Package standard, making it compatible with its software ecosystem.
+  </Card>
+  <Card title="Easy-to-use" icon="laptop">
+    The format comes with Python and TypeScript SDKs, simplifying the process of publishing and consuming data.
+  </Card>
+</CardGrid>
+
+<div style="margin-bottom: 5em"></div>
+
+<h2>Documentation</h2>
+
+<CardGrid>
+  <LinkCard title="Format" href="overview/format/" />
+  <LinkCard title="Examples" href="overview/examples/" />
+  <LinkCard title="Specification" href="specification/metadata/" />
+  <LinkCard title="Changelog" href="changelog/" />
+</CardGrid>

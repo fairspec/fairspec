@@ -1,0 +1,27 @@
+---
+import Default from "@astrojs/starlight/components/SocialIcons.astro"
+import metadata from "../package.json" with { type: "json" }
+
+const { origin, hostname, pathname } = new URL(metadata.homepage)
+const basedir = import.meta.env.PROD ? pathname : ""
+
+---
+
+<a href={`${basedir}/changelog`} style="text-decoration: none">
+  <strong>v{metadata.version} (current)</strong>
+</a>
+
+<Default {...Astro.props}><slot /></Default>
+
+<!-- Add styles to mimic the default links appearance. -->
+<style>
+  a {
+    color: var(--sl-color-text-accent);
+    margin: -0.5em;
+    padding: 0.5em;
+  }
+
+  a:hover {
+    opacity: 0.66;
+  }
+</style>

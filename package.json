@@ -1,0 +1,42 @@
+{
+  "name": "fairspec",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "^24.0.0",
+    "pnpm": "^10.0.0"
+  },
+  "title": "Fairspec",
+  "description": "Fairspec is a data exchange format compatible with DataCite for metadata and JSONSchema for structured data. Describing your datasets with Fairspec make them FAIR (Findable, Accessible, Interoperable, and Reusable)",
+  "repository": "https://github.com/fairspec/fairspec",
+  "homepage": "https://fairspec.org",
+  "author": "Evgeny Karev",
+  "scripts": {
+    "build": "astro build",
+    "bump": "ncu -u",
+    "clean": "rm -rf **/node_modules",
+    "format": "biome check --write",
+    "lint": "biome check",
+    "generate": "astro sync",
+    "preview": "astro preview --port 5000",
+    "start": "astro dev --port 5000",
+    "test": "pnpm lint && pnpm type",
+    "type": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@astrojs/starlight": "0.37.1",
+    "@biomejs/biome": "1.9.4",
+    "@semantic-release/exec": "7.1.0",
+    "astro": "5.16.6",
+    "conventional-changelog-conventionalcommits": "9.1.0",
+    "npm-check-updates": "18.0.1",
+    "semantic-release": "24.2.9",
+    "sharp": "0.34.2",
+    "starlight-changelogs": "0.2.3",
+    "starlight-github-alerts": "0.1.1",
+    "starlight-scroll-to-top": "0.4.0",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+}
