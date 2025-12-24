@@ -34,7 +34,7 @@ export default defineConfig({
           href: packageJson.repository,
         },
       ],
-      favicon: "favicon.svg",
+      favicon: "fairspec-logo.png",
       editLink: {
         baseUrl: `${packageJson.repository}/edit/main`,
       },
