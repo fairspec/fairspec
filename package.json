@@ -8,7 +8,7 @@
     "pnpm": "^10.0.0"
   },
   "title": "Fairspec",
-  "description": "Fairspec is a data exchange format compatible with DataCite for metadata and JSONSchema for structured data. Describing your datasets with Fairspec make them FAIR (Findable, Accessible, Interoperable, and Reusable)",
+  "description": "Fairspec is a data exchange format compatible with DataCite for metadata and JSONSchema for structured data",
   "repository": "https://github.com/fairspec/fairspec",
   "homepage": "https://fairspec.org",
   "author": "Evgeny Karev",

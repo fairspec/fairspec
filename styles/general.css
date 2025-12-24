@@ -6,21 +6,19 @@
 
 :root[data-theme="light"] {
   --purple-hsl: 209, 85%, 65%;
-  --sl-color-text-accent: #1a71c2;
-  --sl-color-banner-bg: #1a71c2;
-  /* --sl-color-bg-inline-code: #228be6; */
+  --sl-color-text-accent: #2C7CFD;
+  --sl-color-banner-bg: #2C7CFD;
 }
 
 :root[data-theme="dark"] {
-  --sl-color-text-accent: #1a71c2;
-  --sl-color-banner-bg: #1a71c2;
-  /* --sl-color-bg-inline-code: #228be6; */
+  --sl-color-text-accent: #2C7CFD;
+  --sl-color-banner-bg: #2C7CFD;
 }
 
 /* Title */
 
 .site-title {
-  font-size: var(--sl-text-md);
+  font-size: var(--sl-text-xl);
   gap: 0.75rem;
 }
 
