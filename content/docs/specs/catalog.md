@@ -43,17 +43,21 @@ Each line of the catalog file `MUST` be a JSON object with the following propert
 
 ### `path` [required] {#path}
 
-URI path to the Fairspec Dataset descriptor. The property `MUST` be a string and its format `MUST` be [JSON Schema URI](https://json-schema.org/understanding-json-schema/reference/type#resource-identifiers).
+URI path to the Fairspec Dataset descriptor. The property `MUST` be [JSON Schema URI](https://json-schema.org/understanding-json-schema/reference/type#resource-identifiers).
 
 ### `updated` [required] {#updated}
 
-The last updated time of the dataset. The property `MUST` by a string and its format `MUST` be [JSON Schema date-time](https://json-schema.org/understanding-json-schema/reference/type#dates-and-times).
+The last updated time of the dataset. The property `MUST` be [JSON Schema date-time](https://json-schema.org/understanding-json-schema/reference/type#dates-and-times).
 
-## Implementations
+## Extensions
 
-The catalog format is designed to be used in a streaming manner. Because datasets are sorted by their last updated time in descending order, clients `SHOULD` read the catalog line-by-line and terminate reading once they encounter a dataset with an `updated` timestamp that has already been seen. This allows efficient synchronization without processing the entire catalog file.
+Fairspec Catalog does not support extensions. Additional properties are not allowed.
+
+## Streaming
+
+Fairspec Catalog is designed to be used in a streaming manner. Because datasets are sorted by their last updated time in descending order, clients `SHOULD` read the catalog line-by-line and terminate reading once they encounter a dataset with an `updated` timestamp that has already been seen. This allows efficient synchronization without processing the entire catalog file.
 
 ## Related Work
 
 > [!NOTE]
-> This document is under development.
+> This section is under development.

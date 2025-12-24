@@ -2,9 +2,9 @@ import starlight from "@astrojs/starlight"
 import { defineConfig } from "astro/config"
 import { rehypeHeadingIds } from "@astrojs/markdown-remark"
 import { remarkHeadingId } from "remark-custom-heading-id"
-// import starlightChangelogs, {
-  // makeChangelogsSidebarLinks,
-// } from "starlight-changelogs"
+import starlightChangelogs, {
+  makeChangelogsSidebarLinks,
+} from "starlight-changelogs"
 import starlightGitHubAlerts from "starlight-github-alerts"
 import starlightScrollToTop from "starlight-scroll-to-top"
 import packageJson from "./package.json" with { type: "json" }
@@ -45,7 +45,7 @@ export default defineConfig({
       plugins: [
         starlightGitHubAlerts(),
         starlightScrollToTop(),
-        // starlightChangelogs(),
+        starlightChangelogs(),
       ],
       expressiveCode: {
         themes: ["starlight-dark", "starlight-light"],
@@ -53,18 +53,17 @@ export default defineConfig({
       sidebar: [
         { label: "Overview", autogenerate: { directory: "overview" } },
         { label: "Specifications", autogenerate: { directory: "specs" } },
-        // TODO: recover
-        // {
-        //   label: "Changelog",
-        //   collapsed: true,
-        //   items: makeChangelogsSidebarLinks([
-        //     {
-        //       type: "recent",
-        //       base: "changelog",
-        //       count: 10,
-        //     },
-        //   ]),
-        // },
+        {
+          label: "Changelog",
+          collapsed: true,
+          items: makeChangelogsSidebarLinks([
+            {
+              type: "recent",
+              base: "changelog",
+              count: 10,
+            },
+          ]),
+        },
       ],
       head: [
         {
