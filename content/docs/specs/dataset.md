@@ -1,1 +1,5 @@
-../../../specs/dataset.md
+---
+title: Fairspec Dataset
+sidebar:
+  label: Dataset
+---

@@ -1,1 +1,5 @@
-../../../specs/table.md
+---
+title: Fairspec Table
+sidebar:
+  label: Table
+---
