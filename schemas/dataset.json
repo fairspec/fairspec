@@ -53,9 +53,7 @@
         "path": { "$ref": "#/$defs/Path" },
         "data": { "$ref": "#/$defs/Data" },
         "encoding": { "$ref": "#/$defs/Encoding" },
-        "mediatype": { "$ref": "#/$defs/Mediatype" },
-        "bytes": { "$ref": "#/$defs/Bytes" },
-        "hash": { "$ref": "#/$defs/Hash" },
+        "integrity": { "$ref": "#/$defs/Integrity" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -78,6 +76,33 @@
         "geoLocations": { "$ref": "#/$defs/GeoLocations" },
         "fundingReferences": { "$ref": "#/$defs/FundingReferences" },
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
+      }
+    },
+    "Path": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "array",
+          "item": { "type": "string", "format": "uri" }
+        }
+      ]
+    },
+    "Data": {},
+    "Encoding": {
+      "type": "string",
+      "enum": ["utf-8", "ascii"]
+    },
+    "Integrity": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["md5", "sha1", "sha256", "sha512"]
+        },
+        "hash": { "type": "string" }
       }
     },
     "JsonResourceIfMatch": {
@@ -118,41 +143,16 @@
           "required": ["type"],
           "properties": {
             "type": { "const": "table" },
-            "schema": { "$ref": "#/$defs/TableSchema" }
+            "schema": { "$ref": "#/$defs/TableSchema" },
+            "dialect": { "$ref": "#/$defs/TableDialect" }
           }
         }
-      ]
-    },
-    "Path": {
-      "oneOf": [
-        { "$ref": "#/$defs/PathString" },
-        { "$ref": "#/$defs/PathArray" }
       ]
     },
     "TableSchema": {
       "$ref": "{table-schema-ref}"
     },
-    "PathString": {
-      "type": "string",
-      "format": "uri"
-    },
-    "PathArray": {
-      "type": "array",
-      "item": { "$ref": "#/defs/PathString" }
-    },
-    "Data": {},
-    "Encoding": {
-      "type": "string"
-    },
-    "Mediatype": {
-      "type": "string"
-    },
-    "Bytes": {
-      "type": "integer"
-    },
-    "Hash": {
-      "type": "string"
-    },
+    "TableDialect": {},
     "Doi": {
       "type": "string",
       "pattern": "^10[.][0-9]{4,9}[/][^\\s]+$"
