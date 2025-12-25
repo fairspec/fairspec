@@ -19,7 +19,7 @@
         "contributors": { "$ref": "#/$defs/Contributors" },
         "dates": { "$ref": "#/$defs/Dates" },
         "language": { "$ref": "#/$defs/Language" },
-        "types": { "$ref": "#/$defs/Types" },
+        "types": { "$ref": "#/$defs/ContentTypes" },
         "alternateIdentifiers": { "$ref": "#/$defs/AlternateIdentifiers" },
         "relatedIdentifiers": { "$ref": "#/$defs/RelatedIdentifiers" },
         "sizes": { "$ref": "#/$defs/Sizes" },
@@ -55,7 +55,7 @@
         "contributors": { "$ref": "#/$defs/Contributors" },
         "dates": { "$ref": "#/$defs/Dates" },
         "language": { "$ref": "#/$defs/Language" },
-        "types": { "$ref": "#/$defs/Types" },
+        "types": { "$ref": "#/$defs/ContentTypes" },
         "alternateIdentifiers": { "$ref": "#/$defs/AlternateIdentifiers" },
         "relatedIdentifiers": { "$ref": "#/$defs/RelatedIdentifiers" },
         "sizes": { "$ref": "#/$defs/Sizes" },
@@ -91,28 +91,22 @@
     },
     "Creator": {
       "type": "object",
-      "required": ["name"],
-      "allOf": [{ "$ref": "#/$defs/Person" }],
-      "unevaluatedProperties": false
-    },
-    "Person": {
-      "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "nameType": { "$ref": "#/$defs/NameType" },
+        "nameType": { "$ref": "#/$defs/CreatorNameType" },
         "givenName": { "type": "string" },
         "familyName": { "type": "string" },
-        "nameIdentifiers": { "$ref": "#/$defs/NameIdentifiers" },
-        "affiliation": { "$ref": "#/$defs/Affiliation" },
+        "nameIdentifiers": { "$ref": "#/$defs/CreatorNameIdentifiers" },
+        "affiliation": { "$ref": "#/$defs/CreatorAffiliations" },
         "lang": { "type": "string" }
       },
       "required": ["name"]
     },
-    "NameType": {
+    "CreatorNameType": {
       "type": "string",
       "enum": ["Organizational", "Personal"]
     },
-    "NameIdentifiers": {
+    "CreatorNameIdentifiers": {
       "type": "array",
       "items": {
         "type": "object",
@@ -126,20 +120,21 @@
       },
       "uniqueItems": true
     },
-    "Affiliation": {
+    "CreatorAffiliations": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "name": { "type": "string" },
-          "affiliationIdentifier": { "type": "string" },
-          "affiliationIdentifierScheme": { "type": "string" },
-          "schemeUri": { "type": "string", "format": "uri" }
-        },
-        "required": ["name"]
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/CreatorAffiliation" }
+    },
+    "CreatorAffiliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "affiliationIdentifier": { "type": "string" },
+        "affiliationIdentifierScheme": { "type": "string" },
+        "schemeUri": { "type": "string", "format": "uri" }
       },
-      "uniqueItems": true
+      "required": ["name"]
     },
     "Titles": {
       "type": "array",
@@ -283,18 +278,18 @@
     "Language": {
       "type": "string"
     },
-    "Types": {
+    "ContentTypes": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "resourceType": { "type": "string" },
         "resourceTypeGeneral": {
-          "$ref": "#/$defs/ResourceTypeGeneral"
+          "$ref": "#/$defs/ContentTypeGeneral"
         }
       },
       "required": ["resourceTypeGeneral"]
     },
-    "ResourceTypeGeneral": {
+    "ContentTypeGeneral": {
       "type": "string",
       "enum": [
         "Audiovisual",
