@@ -45,6 +45,8 @@ Dataset supports all the properties defined in [DataCite Metadata Schema 4.6](ht
 
 ## Resource
 
+### `path`
+
 ### `<datacite>` {#dataset-datacite}
 
 Resource supports all the properties defined in [DataCite Metadata Schema 4.6](https://datacite-metadata-schema.readthedocs.io/en/4.6/).

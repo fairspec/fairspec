@@ -34,16 +34,28 @@
     },
     "MetaSchema": {
       "type": "string",
-      "pattern": "fairspec.dataset.json$"
+      "pattern": "fairspec-\\{version\\}.dataset.json$"
     },
     "Resources": {
       "type": "array",
       "items": { "$ref": "#/$defs/Resource" }
     },
     "Resource": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseResource" },
+        { "$ref": "#/$defs/JsonResourceIfMatch" },
+        { "$ref": "#/$defs/TableResourceIfMatch" }
+      ]
+    },
+    "BaseResource": {
       "type": "object",
       "properties": {
+        "path": { "$ref": "#/$defs/Path" },
         "data": { "$ref": "#/$defs/Data" },
+        "encoding": { "$ref": "#/$defs/Encoding" },
+        "mediatype": { "$ref": "#/$defs/Mediatype" },
+        "bytes": { "$ref": "#/$defs/Bytes" },
+        "hash": { "$ref": "#/$defs/Hash" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -68,9 +80,78 @@
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
       }
     },
-    "Data": {
+    "JsonResourceIfMatch": {
+      "if": {
+        "properties": {
+          "type": { "const": "json" }
+        }
+      },
+      "then": { "$ref": "#/$defs/JsonResource" }
+    },
+    "JsonResource": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseResource" },
+        {
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "json" },
+            "schema": { "$ref": "#/$defs/JsonSchema" }
+          }
+        }
+      ]
+    },
+    "JsonSchema": {
+      "$ref": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "TableResourceIfMatch": {
+      "if": {
+        "properties": {
+          "type": { "const": "table" }
+        }
+      },
+      "then": { "$ref": "#/$defs/TableResource" }
+    },
+    "TableResource": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseResource" },
+        {
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "table" },
+            "schema": { "$ref": "#/$defs/TableSchema" }
+          }
+        }
+      ]
+    },
+    "Path": {
+      "oneOf": [
+        { "$ref": "#/$defs/PathString" },
+        { "$ref": "#/$defs/PathArray" }
+      ]
+    },
+    "TableSchema": {
+      "$ref": "{table-schema-ref}"
+    },
+    "PathString": {
       "type": "string",
       "format": "uri"
+    },
+    "PathArray": {
+      "type": "array",
+      "item": { "$ref": "#/defs/PathString" }
+    },
+    "Data": {},
+    "Encoding": {
+      "type": "string"
+    },
+    "Mediatype": {
+      "type": "string"
+    },
+    "Bytes": {
+      "type": "integer"
+    },
+    "Hash": {
+      "type": "string"
     },
     "Doi": {
       "type": "string",
