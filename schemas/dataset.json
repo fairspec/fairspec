@@ -55,12 +55,11 @@
     },
     "BaseResource": {
       "type": "object",
-      "oneOf": [{ "required": ["data"] }, { "required": ["path"] }],
       "properties": {
         "data": { "$ref": "#/$defs/Data" },
-        "path": { "$ref": "#/$defs/Path" },
         "encoding": { "$ref": "#/$defs/Encoding" },
         "integrity": { "$ref": "#/$defs/Integrity" },
+        "format": { "$ref": "#/$defs/Format" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -85,8 +84,7 @@
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
       }
     },
-    "Data": {},
-    "Path": {
+    "Data": {
       "oneOf": [
         {
           "type": "string",
@@ -95,6 +93,13 @@
         {
           "type": "array",
           "item": { "type": "string", "format": "uri" }
+        },
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "items": { "type": "object" }
         }
       ]
     },
