@@ -43,15 +43,22 @@
     "Resource": {
       "allOf": [
         { "$ref": "#/$defs/BaseResource" },
-        { "$ref": "#/$defs/JsonResourceIfMatch" },
-        { "$ref": "#/$defs/TableResourceIfMatch" }
+        {
+          "if": { "properties": { "type": { "const": "json" } } },
+          "then": { "$ref": "#/$defs/JsonResource" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "table" } } },
+          "then": { "$ref": "#/$defs/TableResource" }
+        }
       ]
     },
     "BaseResource": {
       "type": "object",
+      "oneOf": [{ "required": ["data"] }, { "required": ["path"] }],
       "properties": {
-        "path": { "$ref": "#/$defs/Path" },
         "data": { "$ref": "#/$defs/Data" },
+        "path": { "$ref": "#/$defs/Path" },
         "encoding": { "$ref": "#/$defs/Encoding" },
         "integrity": { "$ref": "#/$defs/Integrity" },
         "doi": { "$ref": "#/$defs/Doi" },
@@ -78,6 +85,7 @@
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
       }
     },
+    "Data": {},
     "Path": {
       "oneOf": [
         {
@@ -90,7 +98,6 @@
         }
       ]
     },
-    "Data": {},
     "Encoding": {
       "type": "string",
       "enum": ["utf-8", "ascii"]
@@ -105,14 +112,6 @@
         "hash": { "type": "string" }
       }
     },
-    "JsonResourceIfMatch": {
-      "if": {
-        "properties": {
-          "type": { "const": "json" }
-        }
-      },
-      "then": { "$ref": "#/$defs/JsonResource" }
-    },
     "JsonResource": {
       "allOf": [
         { "$ref": "#/$defs/BaseResource" },
@@ -120,21 +119,17 @@
           "required": ["type"],
           "properties": {
             "type": { "const": "json" },
-            "schema": { "$ref": "#/$defs/JsonSchema" }
+            "schema": { "$ref": "#/$defs/JsonSchema" },
+            "dialect": { "$ref": "#/$defs/JsonDialect" }
           }
         }
       ]
     },
     "JsonSchema": {
-      "$ref": "https://json-schema.org/draft/2020-12/schema"
-    },
-    "TableResourceIfMatch": {
-      "if": {
-        "properties": {
-          "type": { "const": "table" }
-        }
-      },
-      "then": { "$ref": "#/$defs/TableResource" }
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
     },
     "TableResource": {
       "allOf": [
@@ -150,9 +145,69 @@
       ]
     },
     "TableSchema": {
-      "$ref": "{table-schema-ref}"
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "{table-schema-ref}" }
+      ]
     },
-    "TableDialect": {},
+    "TableDialect": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseTableDialect" },
+        {
+          "if": { "properties": { "type": { "const": "csv" } } },
+          "then": { "$ref": "#/$defs/CsvTableDialect" }
+        }
+      ]
+    },
+    "BaseTableDialect": {
+      "type": "object"
+    },
+    "CsvTableDialect": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseTableDialect" },
+        {
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "csv" },
+            "headerRows": { "$ref": "#/$defs/HeaderRows" },
+            "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+            "commentRows": { "$ref": "#/$defs/CommentRows" },
+            "commentChar": { "$ref": "#/$defs/CommentChar" },
+            "delimiter": { "$ref": "#/$defs/Delimiter" }
+          }
+        }
+      ]
+    },
+    "HeaderRows": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "HeaderJoin": {
+      "type": "string"
+    },
+    "Delimiter": {
+      "type": "string"
+    },
+    "CommentRows": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "CommentChar": {
+      "type": "string"
+    },
+    "SheetNumber": {
+      "type": "integer"
+    },
+    "SheetName": {
+      "type": "string"
+    },
+    "ItemType": {
+      "type": "string",
+      "enum": ["array", "object"]
+    },
+    "TableName": {
+      "type": "string"
+    },
     "Doi": {
       "type": "string",
       "pattern": "^10[.][0-9]{4,9}[/][^\\s]+$"
