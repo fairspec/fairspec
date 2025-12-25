@@ -36,29 +36,14 @@
       "type": "string",
       "pattern": "fairspec-\\{version\\}.dataset.json$"
     },
-    "Resources": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/Resource" }
-    },
     "Resource": {
-      "allOf": [
-        { "$ref": "#/$defs/BaseResource" },
-        {
-          "if": { "properties": { "type": { "const": "json" } } },
-          "then": { "$ref": "#/$defs/JsonResource" }
-        },
-        {
-          "if": { "properties": { "type": { "const": "table" } } },
-          "then": { "$ref": "#/$defs/TableResource" }
-        }
-      ]
-    },
-    "BaseResource": {
       "type": "object",
       "properties": {
         "data": { "$ref": "#/$defs/Data" },
         "encoding": { "$ref": "#/$defs/Encoding" },
         "integrity": { "$ref": "#/$defs/Integrity" },
+        "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
+        "tableSchema": { "$ref": "#/$defs/TableSchema" },
         "format": { "$ref": "#/$defs/Format" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
@@ -108,7 +93,7 @@
       "enum": ["utf-8", "ascii"]
     },
     "Integrity": {
-      "type": "object",
+      "type": "string",
       "properties": {
         "type": {
           "type": "string",
@@ -117,36 +102,10 @@
         "hash": { "type": "string" }
       }
     },
-    "JsonResource": {
-      "allOf": [
-        { "$ref": "#/$defs/BaseResource" },
-        {
-          "required": ["type"],
-          "properties": {
-            "type": { "const": "json" },
-            "schema": { "$ref": "#/$defs/JsonSchema" },
-            "dialect": { "$ref": "#/$defs/JsonDialect" }
-          }
-        }
-      ]
-    },
     "JsonSchema": {
       "oneOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-      ]
-    },
-    "TableResource": {
-      "allOf": [
-        { "$ref": "#/$defs/BaseResource" },
-        {
-          "required": ["type"],
-          "properties": {
-            "type": { "const": "table" },
-            "schema": { "$ref": "#/$defs/TableSchema" },
-            "dialect": { "$ref": "#/$defs/TableDialect" }
-          }
-        }
       ]
     },
     "TableSchema": {
@@ -155,42 +114,46 @@
         { "$ref": "{table-schema-ref}" }
       ]
     },
-    "TableDialect": {
+    "Format": {
       "allOf": [
-        { "$ref": "#/$defs/BaseTableDialect" },
         {
           "if": { "properties": { "type": { "const": "csv" } } },
-          "then": { "$ref": "#/$defs/CsvTableDialect" }
+          "then": { "$ref": "#/$defs/CsvFormat" }
         }
       ]
     },
-    "BaseTableDialect": {
-      "type": "object"
+    "CsvFormat": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "csv" },
+        "delimiter": { "$ref": "#/$defs/Delimiter" },
+        "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
+        "quoteChar": { "$ref": "#/$defs/QuoteChar" },
+        "nullSequence": { "$ref": "#/$defs/NullSequence" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "commentRows": { "$ref": "#/$defs/CommentRows" },
+        "commentChar": { "$ref": "#/$defs/CommentChar" }
+      }
     },
-    "CsvTableDialect": {
-      "allOf": [
-        { "$ref": "#/$defs/BaseTableDialect" },
-        {
-          "required": ["type"],
-          "properties": {
-            "type": { "const": "csv" },
-            "headerRows": { "$ref": "#/$defs/HeaderRows" },
-            "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
-            "commentRows": { "$ref": "#/$defs/CommentRows" },
-            "commentChar": { "$ref": "#/$defs/CommentChar" },
-            "delimiter": { "$ref": "#/$defs/Delimiter" }
-          }
-        }
-      ]
+    "Delimiter": {
+      "type": "string"
+    },
+    "LineTerminator": {
+      "type": "string"
+    },
+    "QuoteChar": {
+      "type": "string"
+    },
+    "NullSequence": {
+      "type": "string"
     },
     "HeaderRows": {
       "type": "array",
       "items": { "type": "integer" }
     },
     "HeaderJoin": {
-      "type": "string"
-    },
-    "Delimiter": {
       "type": "string"
     },
     "CommentRows": {
