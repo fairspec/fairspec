@@ -1,6 +1,6 @@
+import { rehypeHeadingIds } from "@astrojs/markdown-remark"
 import starlight from "@astrojs/starlight"
 import { defineConfig } from "astro/config"
-import { rehypeHeadingIds } from "@astrojs/markdown-remark"
 import { remarkHeadingId } from "remark-custom-heading-id"
 import starlightChangelogs, {
   makeChangelogsSidebarLinks,
@@ -79,8 +79,6 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [remarkHeadingId],
-    rehypePlugins: [
-      rehypeHeadingIds,
-    ],
+    rehypePlugins: [rehypeHeadingIds],
   },
 })

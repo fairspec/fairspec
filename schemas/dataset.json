@@ -155,6 +155,7 @@
         "RightsHolder",
         "Sponsor",
         "Supervisor",
+        "Translator",
         "WorkPackageLeader",
         "Other"
       ]
@@ -193,6 +194,7 @@
         "Available",
         "Copyrighted",
         "Collected",
+        "Coverage",
         "Created",
         "Issued",
         "Submitted",
@@ -206,6 +208,7 @@
       "type": "string",
       "enum": [
         "Audiovisual",
+        "Award",
         "Book",
         "BookChapter",
         "Collection",
@@ -226,6 +229,7 @@
         "PeerReview",
         "PhysicalObject",
         "Preprint",
+        "Project",
         "Report",
         "Service",
         "Software",
@@ -243,6 +247,7 @@
         "ARK",
         "arXiv",
         "bibcode",
+        "CSTR",
         "DOI",
         "EAN13",
         "EISSN",
@@ -255,6 +260,7 @@
         "LSID",
         "PMID",
         "PURL",
+        "RRID",
         "UPC",
         "URL",
         "URN",
@@ -299,7 +305,9 @@
         "IsRequiredBy",
         "Requires",
         "IsObsoletedBy",
-        "Obsoletes"
+        "Obsoletes",
+        "HasTranslation",
+        "IsTranslationOf"
       ]
     },
     "RelatedObject": {

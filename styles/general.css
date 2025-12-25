@@ -6,13 +6,13 @@
 
 :root[data-theme="light"] {
   --purple-hsl: 209, 85%, 65%;
-  --sl-color-text-accent: #2C7CFD;
-  --sl-color-banner-bg: #2C7CFD;
+  --sl-color-text-accent: #2c7cfd;
+  --sl-color-banner-bg: #2c7cfd;
 }
 
 :root[data-theme="dark"] {
-  --sl-color-text-accent: #2C7CFD;
-  --sl-color-banner-bg: #2C7CFD;
+  --sl-color-text-accent: #2c7cfd;
+  --sl-color-banner-bg: #2c7cfd;
 }
 
 /* Title */
