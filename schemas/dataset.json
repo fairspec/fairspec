@@ -137,36 +137,31 @@
         "commentChar": { "$ref": "#/$defs/CommentChar" }
       }
     },
-    "Delimiter": {
-      "type": "string"
+    "JsonFormat": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "json" },
+        "property": { "$ref": "#/$defs/JsonProperty" },
+        "itemType": { "$ref": "#/$defs/ItemType" }
+      }
     },
-    "LineTerminator": {
-      "type": "string"
-    },
-    "QuoteChar": {
-      "type": "string"
-    },
-    "NullSequence": {
-      "type": "string"
-    },
-    "HeaderRows": {
-      "type": "array",
-      "items": { "type": "integer" }
-    },
-    "HeaderJoin": {
-      "type": "string"
-    },
-    "CommentRows": {
-      "type": "array",
-      "items": { "type": "integer" }
-    },
-    "CommentChar": {
-      "type": "string"
+    "ExcelFormat": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "excel" },
+        "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
+        "sheetName": { "$ref": "#/$defs/SheetName" }
+      }
     },
     "SheetNumber": {
       "type": "integer"
     },
     "SheetName": {
+      "type": "string"
+    },
+    "JsonProperty": {
       "type": "string"
     },
     "ItemType": {
