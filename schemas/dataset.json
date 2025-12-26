@@ -70,6 +70,9 @@
       }
     },
     "Data": {
+      "oneOf": [{ "$ref": "#/$defs/PathData" }, { "$ref": "#/$defs/JsonData" }]
+    },
+    "PathData": {
       "oneOf": [
         {
           "type": "string",
@@ -78,7 +81,11 @@
         {
           "type": "array",
           "item": { "type": "string", "format": "uri" }
-        },
+        }
+      ]
+    },
+    "JsonData": {
+      "oneOf": [
         {
           "type": "object"
         },
