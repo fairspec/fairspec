@@ -1,3 +1,175 @@
 {
-  "$schema": "../schemas/dataset.json"
+  "$schema": "../schemas/dataset.json",
+  "doi": "10.1234/example.dataset.2024",
+  "creators": [
+    {
+      "name": "Jane Smith",
+      "nameType": "Personal",
+      "givenName": "Jane",
+      "familyName": "Smith"
+    },
+    {
+      "name": "Research Institute of Data Science",
+      "nameType": "Organizational"
+    }
+  ],
+  "titles": [
+    {
+      "title": "Experimental Measurements of Chemical Reactions Dataset"
+    }
+  ],
+  "publisher": {
+    "name": "Fairspec Research Repository"
+  },
+  "publicationYear": "2024",
+  "descriptions": [
+    {
+      "description": "This dataset contains experimental measurements from chemical reaction studies including spectroscopy data, reaction parameters, and analytical results.",
+      "descriptionType": "Abstract"
+    }
+  ],
+  "resources": [
+    {
+      "data": "measurements.csv",
+      "format": {
+        "name": "csv",
+        "encoding": "utf-8",
+        "delimiter": ",",
+        "lineTerminator": "\n",
+        "quoteChar": "\"",
+        "nullSequence": ["NA", "N/A", ""],
+        "headerRows": [0, 1],
+        "headerJoin": "_",
+        "commentChar": "#"
+      },
+      "integrity": {
+        "type": "sha256",
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tableSchema": {
+        "fields": [
+          {
+            "name": "experiment_id",
+            "type": "integer"
+          },
+          {
+            "name": "temperature_celsius",
+            "type": "number"
+          },
+          {
+            "name": "concentration_mol",
+            "type": "number"
+          }
+        ]
+      },
+      "titles": [
+        {
+          "title": "Primary Experimental Measurements"
+        }
+      ],
+      "descriptions": [
+        {
+          "description": "Main data file containing all experimental measurements with multi-line headers indicating units and parameters.",
+          "descriptionType": "Other"
+        }
+      ]
+    },
+    {
+      "data": "spectroscopy.json",
+      "format": {
+        "name": "json",
+        "jsonPointer": "/data/spectra",
+        "rowType": "object"
+      },
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "wavelength": {
+            "type": "number"
+          },
+          "intensity": {
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "titles": [
+        {
+          "title": "Spectroscopy Data"
+        }
+      ]
+    },
+    {
+      "data": "reactions.xlsx",
+      "format": {
+        "name": "xlsx",
+        "sheetName": "Results",
+        "headerRows": [0],
+        "commentRows": [1, 2]
+      },
+      "titles": [
+        {
+          "title": "Reaction Parameters and Results"
+        }
+      ]
+    },
+    {
+      "data": "analysis.sqlite",
+      "format": {
+        "name": "sqlite",
+        "tableName": "statistical_analysis"
+      },
+      "titles": [
+        {
+          "title": "Statistical Analysis Results"
+        }
+      ]
+    },
+    {
+      "data": [
+        "https://example.com/data/part1.csv",
+        "https://example.com/data/part2.csv"
+      ],
+      "format": {
+        "name": "csv",
+        "encoding": "utf-8",
+        "delimiter": ";",
+        "headerRows": false,
+        "columnNames": ["sample_id", "value", "uncertainty", "notes"]
+      },
+      "titles": [
+        {
+          "title": "Supplementary Measurements (Multi-part)"
+        }
+      ]
+    },
+    {
+      "data": {
+        "samples": [
+          {
+            "id": 1,
+            "name": "Control Sample",
+            "result": "positive"
+          },
+          {
+            "id": 2,
+            "name": "Test Sample A",
+            "result": "negative"
+          }
+        ]
+      },
+      "format": {
+        "name": "json",
+        "rowType": "object"
+      },
+      "titles": [
+        {
+          "title": "Inline Control Samples Data"
+        }
+      ]
+    }
+  ]
 }
