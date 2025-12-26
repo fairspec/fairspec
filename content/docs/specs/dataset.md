@@ -109,22 +109,24 @@ A resource within a dataset. It `MUST` have the following properties (all option
 
 ### `data` [required] {#data}
 
-Data or content of the resource. It `MUST` be in one of the following formats:
+Data or content of the resource. It `MUST` be in one of the following:
 
-- `URI` to a file
-- Array of `URI` to files
+- [Path](#path) to a file
+- Array of [Paths](#path) to files
 - Inline JSON object
 - Inline JSON array of objects
 
-For example, for a single file:
+When multiple files are provided, they `MUST` all follow the same [Format](#format) and their contents `MUST` be physically concatenable in case of binary formats and logically concatenable in case of textual formats (i.e., combining them should produce a valid single file of that format).
+
+For example, for a single internal file:
 
 ```json
 {
-  "data": "https://example.com/file.csv"
+  "data": "file.csv"
 }
 ```
 
-For multiple files:
+For multiple external files:
 
 ```json
 {
@@ -208,7 +210,7 @@ For example for a file with SHA-256 hash:
 
 ### `tableSchema`
 
-The schema of the table. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
+The schema of the table. It `MUST` be a [Path](#path) to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
 
 For example as a URI:
 
@@ -238,7 +240,7 @@ For example as an object:
 
 ### `documentSchema`
 
-The schema of the document. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
+The schema of the document. It `MUST` be a [Path](#path) to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
 
 For example as a URI:
 
@@ -736,6 +738,69 @@ For example:
 }
 ```
 
+## Common
+
+Common properties shared by multiple entities in the dataset descriptor.
+
+### Path
+
+It `MUST` be is a string representing a file location. It `MUST` be one of the following:
+
+- [Internal Path](#internal-path)
+- [External Path](#external-path)
+
+### Internal Path
+
+It `MUST` be a string representing a relative path, using Unix-style forward slashes (`/`) as path separators. The path is resolved relative to the location of the dataset descriptor file. Unix-style paths `MUST` be converted to the appropriate platform-specific format when accessing files (e.g., converting `/` to `\` on Windows).
+
+Internal path `MUST` point to a file in the same directory as the descriptor file or in a subdirectory of it. Files outside of the descriptor directory are not supported.
+
+The path `MUST NOT` contain any of the following:
+
+- Absolute path indicators (starting with `/` or `~`)
+- Directory traversal sequences (`..`)
+- Windows-style backslashes (`\`) - only forward slashes (`/`) are allowed as separators
+- Windows drive letters (`C:`, `D:`, etc.)
+- URI schemes (`://`)
+
+The path `MAY` contain unicode characters, spaces, and special characters in file and directory names.
+
+For example:
+
+```json
+{
+  "data": "measurements.csv"
+}
+```
+
+For example with subdirectories:
+
+```json
+{
+  "data": "data/experiments/results-2024.json"
+}
+```
+
+For example with unicode and special characters:
+
+```json
+{
+  "data": "données/résultats (final).csv"
+}
+```
+
+### External Path
+
+It `MUST` be a string representing an HTTP or HTTPS URL to a remote file.
+
+For example:
+
+```json
+{
+  "data": "https://example.com/datasets/measurements.csv"
+}
+```
+
 ## Extension
 
 > [!TIP]
@@ -743,7 +808,9 @@ For example:
 
 Fairspec Dataset has a simple yet powerful extension mechanism based on the JSONSchema standard. An extension is a domain-specific Fairspec Dataset flavour that enriches the standard with additional metadata properties and validation rules.
 
-A custom JSONSchema can be provided as a `$schema` property in the dataset descriptor. The profile instructs implementations to validate the descriptor using JSON Schema rules defined by the extension. The extension's schema `MUST` include base Fairspec Dataset schema in the root `allOf` property.
+### Creation
+
+A custom JSONSchema can be provided as a `$schema` property in the dataset descriptor. The profile instructs to validate the descriptor using JSON Schema rules defined by the extension. The extension's schema `MUST` include base Fairspec Dataset schema in the root `allOf` property.
 
 Using JSON Schema features with custom profiles allows you to:
 
@@ -751,6 +818,8 @@ Using JSON Schema features with custom profiles allows you to:
 - Require existing properties to meet specific requirements
 - Define expected resource types and their schemas
 - Combine existing profiles as part of a high-level extension
+
+### Example
 
 For example, a Spectroscopy Fairspec extension that requires spectral metadata:
 
