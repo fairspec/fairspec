@@ -1,3 +1,3 @@
-{"dataset": "https://example.com/dataset1.json", "updated": "2023-10-01T00:00:00Z"}
-{"dataset": "https://example.com/dataset3.json", "updated": "2023-09-01T00:00:00Z"}
-{"dataset": "https://example.com/dataset2.json", "updated": "2023-08-01T00:00:00Z"}
+{"loc": "https://example.com/dataset1.json", "upd": "2023-10-01T00:00:00Z"}
+{"loc": "https://example.com/dataset3.json", "upd": "2023-09-01T00:00:00Z"}
+{"loc": "https://example.com/dataset2.json", "upd": "2023-08-01T00:00:00Z"}

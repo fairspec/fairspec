@@ -3,17 +3,17 @@
   "type": "array",
   "items": {
     "type": "object",
+    "required": ["loc", "upd"],
+    "additionalProperties": false,
     "properties": {
-      "dataset": {
+      "loc": {
         "type": "string",
         "format": "uri"
       },
-      "updated": {
+      "upd": {
         "type": "string",
         "format": "date-time"
       }
-    },
-    "required": ["path", "updated"],
-    "additionalProperties": false
+    }
   }
 }
