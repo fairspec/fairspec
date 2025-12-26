@@ -29,39 +29,716 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 ## Dataset
 
-A top-level descriptor object describing an individual dataset.
+A top-level descriptor object describing an individual dataset. It `MUST` have the following properties (all optional unless otherwise stated)::
 
 ### `$schema` [required] {#metaSchema}
 
-URI to one of the officially published Fairspec Dataset schemas. It `MUST` ends with the `fairspec.dataset.json` prefix. For example, `https://fairspec.org/schemas/1.0.0/fairspec.dataset.json`.
+URI to one of the officially published Fairspec Dataset schemas. It `MUST` ends with the `fairspec.dataset.json` prefix.
+
+For example for version X.Y.Z of the schema:
+
+```json
+{
+  "$schema": "https://fairspec.org/schemas/X.Y.Z/fairspec.dataset.json"
+}
+```
 
 ### `resources`
 
 A list of resources. It `MUST` be an array with search item `MUST` be a [Resource](#resource).
 
+For example for a single resource:
+
+```json
+{
+  "resources": [
+    {
+      "data": "https://example.com/file.csv"
+    }
+  ]
+}
+```
+
+For multiple resources with more properties:
+
+```json
+{
+  "resources": [
+    {
+      "data": "https://example.com/file1.csv",
+      "format": {
+        "name": "csv",
+        "delimiter": ";"
+      },
+      "integrity": {
+        "type": "sha256",
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "tableSchema": "https://example.com/table-schema.json"
+    },
+    {
+      "data": "https://example.com/file2.json",
+      "jsonSchema": "https://example.com/json-schema.json"
+    }
+  ]
+}
+```
+
 ### `<datacite>` {#dataset-datacite}
 
 Dataset supports all the properties defined in [DataCite Metadata Schema 4.6](https://datacite-metadata-schema.readthedocs.io/en/4.6/).
 
+For example for a dataset with DOI and some other properties:
+
+```json
+{
+  "doi": "10.1234/5678",
+  "title": "My Dataset",
+  "creators": [
+    {
+      "name": "John Doe",
+      "nameType": "Personal"
+    }
+  ]
+}
+```
+
 ## Resource
 
-### `path`
+A resource within a dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `<datacite>` {#dataset-datacite}
+### `data`
+
+Data or content of the resource. It `MUST` be in one of the following formats:
+
+- `URI` to a file
+- Array of `URI` to files
+- Inline JSON object
+- Inline JSON array of objects
+
+For example, for a single file:
+
+```json
+{
+  "data": "https://example.com/file.csv"
+}
+```
+
+For multiple files:
+
+```json
+{
+  "data": [
+    "https://example.com/file1.csv",
+    "https://example.com/file2.csv"
+  ]
+}
+```
+
+For a JSON object:
+
+```json
+{
+  "data": {
+    "name": "John Doe",
+    "age": 30
+  }
+}
+```
+
+For a JSON array of objects:
+
+```json
+{
+  "data": [
+    {
+      "name": "John Doe",
+      "age": 30
+    },
+    {
+      "name": "Jane Doe",
+      "age": 25
+    }
+  ]
+}
+```
+
+### `format`
+
+The format definition of the file. It `MUST` be a [Format](#format). For multiple files the `format` property defines the format for all the files.
+
+For example, for a file with CSV format:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "delimiter": ";"
+  }
+}
+```
+
+### `integrity`
+
+The integrity check of the file. It `MUST` be a JSON object with the following properties:
+
+**`type`**
+
+The type of the integrity check. It `MUST` be one of the following values:
+
+- `md5`
+- `sha1`
+- `sha256`
+- `sha512`
+
+**`hash`**
+
+The hash of the file. It `MUST` be a string.
+
+For example for a file with SHA-256 hash:
+
+```json
+{
+  "integrity": {
+    "type": "sha256",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
+```
+
+### `jsonSchema`
+
+The JSON Schema of the data. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
+
+For example as a URI:
+
+```json
+{
+  "jsonSchema": "https://example.com/json-schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "jsonSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    },
+    "required": ["name", "age"]
+  }
+}
+```
+
+### `tableSchema`
+
+The Table Schema of the data. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
+
+For example as a URI:
+
+```json
+{
+  "tableSchema": "https://example.com/table-schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "tableSchema": {
+    "required": ["name", "age"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    }
+  }
+}
+```
+
+### `<datacite>` {#resource-datacite}
 
 Resource supports all the properties defined in [DataCite Metadata Schema 4.6](https://datacite-metadata-schema.readthedocs.io/en/4.6/).
+
+For example for a resource with geolocation:
+
+```json
+{
+  "geoLocations": [
+    {
+      "geoLocationPoint": {
+        "pointLongitude": 12.34,
+        "pointLatitude": 56.78
+      },
+      "geoLocationBox": {
+        "westBoundLongitude": 12.34,
+        "eastBoundLongitude": 56.78,
+        "southBoundLatitude": 12.34,
+        "northBoundLatitude": 56.78
+      }
+    }
+  ]
+}
+```
+
+## Format
+
+Format specifies the features of all the data files in the resource. Format `MUST` be a JSON object with the following properties (all optional unless otherwise stated)::
+
+### `name` [required] {#format-name}
+
+The name of the format. It `MUST` be one of the following values:
+
+- `csv`
+- `tsv`
+- `json`
+- `jsonl`
+- `xlsx`
+- `ods`
+- `sqlite`
+- `parquet`
+- `arrow`
+
+For example for a CSV file:
+
+```json
+{
+  "format": {
+    "name": "csv"
+  }
+}
+```
+
+### `encoding`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**
+
+It `MUST` be one of the following values: `utf-8`, `ascii`. This property specifies the character encoding used in the file.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "encoding": "utf-8"
+  }
+}
+```
+
+### `delimiter`
+
+> [!NOTE]
+> Supported formats: **csv**
+
+It `MUST` be a string of one character length with default value `,` (comma). This property specifies the character sequence which separates fields in the data file.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "delimiter": ";"
+  }
+}
+```
+
+For a file like:
+```
+id;name;price
+1;apple;1.50
+2;orange;2.00
+```
+
+### `lineTerminator`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**
+
+It `MUST` be a string. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "lineTerminator": "\r\n"
+  }
+}
+```
+
+### `quoteChar`
+
+> [!NOTE]
+> Supported formats: **csv**
+
+It `MUST` be a string of one character length with default value `"` (double quote). This property specifies a character to use for quoting in case the delimiter needs to be used inside a data cell.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "quoteChar": "'"
+  }
+}
+```
+
+For a file like:
+```
+id,name
+1,'apple,red'
+2,'orange,citrus'
+```
+
+### `nullSequence`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**
+
+It `MUST` be a string or an array of strings. This property specifies the null sequence representing missing values in the data.
+
+For example with a single sequence:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "nullSequence": "NA"
+  }
+}
+```
+
+For example with multiple sequences:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "nullSequence": ["NA", "N/A", "null", ""]
+  }
+}
+```
+
+For a file like:
+```
+id,name,notes
+1,apple,fresh
+2,orange,NA
+3,banana,N/A
+```
+
+### `headerRows`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
+
+It `MUST` be `false` or an array of positive integers starting from `1`. This property specifies the row numbers for the header. It `SHOULD` to be used for multiline-header files.
+
+For example with a single header row:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "headerRows": [1]
+  }
+}
+```
+
+For example with multi-line headers:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "headerRows": [1, 2]
+  }
+}
+```
+
+For a file like:
+```
+fruit
+id,name,price
+1,apple,1.50
+2,orange,2.00
+```
+
+This would produce headers: "fruit id", "fruit name", "fruit price"
+
+For example with no headers:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "headerRows": false
+  }
+}
+```
+
+### `headerJoin`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
+
+It `MUST` be a string with default value `" "` (space). This property specifies how multiline-header files have to join the resulting header rows.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "headerRows": [0, 1],
+    "headerJoin": "_"
+  }
+}
+```
+
+For a file like:
+```
+fruit
+id,name,price
+1,apple,1.50
+```
+
+This would produce headers: "fruit_id", "fruit_name", "fruit_price"
+
+### `commentRows`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**, **xlsx**, **ods**
+
+It `MUST` be an array of positive integers starting from `1`. This property specifies what rows have to be omitted from the data.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "commentRows": [1, 5, 10]
+  }
+}
+```
+
+For a file like:
+```
+id,name
+# This is a comment row
+1,apple
+2,orange
+```
+
+With `"commentRows": [2]`, the second row would be skipped.
+
+### `commentChar`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**, **xlsx**, **ods**
+
+It `MUST` be a string of one character length with default value `#`. This property specifies what rows have to be omitted from the data based on the row's first characters.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "commentChar": "#"
+  }
+}
+```
+
+For a file like:
+```
+id,name
+# This row is ignored
+1,apple
+# Another comment
+2,orange
+```
+
+Rows starting with `#` will be skipped.
+
+### `columnNames`
+
+> [!NOTE]
+> Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
+
+It `MUST` be an array of strings. This property specifies explicit column names to use instead of deriving them from the file.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv",
+    "headerRows": false,
+    "columnNames": ["id", "name", "price"]
+  }
+}
+```
+
+For a file without headers:
+```
+1,apple,1.50
+2,orange,2.00
+```
+
+### `jsonPointer`
+
+> [!NOTE]
+> Supported formats: **json**
+
+It `MUST` be a string in [JSON Pointer format (RFC 6901)](https://datatracker.ietf.org/doc/html/rfc6901). This property specifies where a data is located in the document.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "json",
+    "jsonPointer": "/data/items"
+  }
+}
+```
+
+For a JSON file like:
+```json
+{
+  "metadata": { "version": "1.0" },
+  "data": {
+    "items": [
+      { "id": 1, "name": "apple" },
+      { "id": 2, "name": "orange" }
+    ]
+  }
+}
+```
+
+### `rowType`
+
+> [!NOTE]
+> Supported formats: **json**, **jsonl**
+
+It `MUST` be one of the following values: `array`, `object`. This property specifies whether the data items are arrays or objects.
+
+For example with array of objects:
+
+```json
+{
+  "format": {
+    "name": "json",
+    "rowType": "object"
+  }
+}
+```
+
+For data like:
+```json
+[
+  { "id": 1, "name": "apple" },
+  { "id": 2, "name": "orange" }
+]
+```
+
+For example with array of arrays:
+
+```json
+{
+  "format": {
+    "name": "json",
+    "rowType": "array",
+    "columnNames": ["id", "name"]
+  }
+}
+```
+
+For data like:
+```json
+[
+  [1, "apple"],
+  [2, "orange"]
+]
+```
+
+### `sheetName`
+
+> [!NOTE]
+> Supported formats: **xlsx**, **ods**
+
+It `MUST` be a string. This property specifies a sheet name of a table in the spreadsheet file.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "xlsx",
+    "sheetName": "Data Sheet"
+  }
+}
+```
+
+### `sheetNumber`
+
+> [!NOTE]
+> Supported formats: **xlsx**, **ods**
+
+It `MUST` be an integer with default value `1`. This property specifies a sheet number of a table in the spreadsheet file.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "xlsx",
+    "sheetNumber": 2
+  }
+}
+```
+
+This reads the second sheet from the spreadsheet.
+
+### `tableName`
+
+> [!NOTE]
+> Supported formats: **sqlite**
+
+It `MUST` be a string. This property specifies a name of the table in the database.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "sqlite",
+    "tableName": "measurements"
+  }
+}
+```
 
 ## Extensions
 
 Fairspec Catalog does not support extensions. Additional properties are not allowed.
-
-## Examples
-
-An example of a Fairspec Catalog:
-
-```json
-{}
-```
 
 ## Related Work
 

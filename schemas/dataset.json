@@ -40,11 +40,10 @@
       "type": "object",
       "properties": {
         "data": { "$ref": "#/$defs/Data" },
-        "encoding": { "$ref": "#/$defs/Encoding" },
+        "format": { "$ref": "#/$defs/Format" },
         "integrity": { "$ref": "#/$defs/Integrity" },
         "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" },
-        "format": { "$ref": "#/$defs/Format" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -94,9 +93,6 @@
           "items": { "type": "object" }
         }
       ]
-    },
-    "Encoding": {
-      "enum": ["utf-8", "ascii"]
     },
     "Integrity": {
       "type": "string",
@@ -164,6 +160,7 @@
       "required": ["name"],
       "properties": {
         "name": { "const": "csv" },
+        "encoding": { "$ref": "#/$defs/Encoding" },
         "delimiter": { "$ref": "#/$defs/Delimiter" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "quoteChar": { "$ref": "#/$defs/QuoteChar" },
@@ -180,6 +177,7 @@
       "required": ["name"],
       "properties": {
         "name": { "const": "tsv" },
+        "encoding": { "$ref": "#/$defs/Encoding" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "nullSequence": { "$ref": "#/$defs/NullSequence" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -262,6 +260,9 @@
         "name": { "const": "arrow" }
       }
     },
+    "Encoding": {
+      "enum": ["utf-8", "ascii"]
+    },
     "Delimiter": {
       "type": "string",
       "maxLength": 1
@@ -283,7 +284,7 @@
         { "const": false },
         {
           "type": "array",
-          "items": { "type": "integer", "minimum": 0 }
+          "items": { "type": "integer", "minimum": 1 }
         }
       ]
     },
@@ -292,7 +293,7 @@
     },
     "CommentRows": {
       "type": "array",
-      "items": { "type": "integer", "minimum": 0 }
+      "items": { "type": "integer", "minimum": 1 }
     },
     "CommentChar": {
       "type": "string"
