@@ -1,1 +1,34 @@
-{}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [{ "$ref": "#/$defs/Table" }],
+  "$defs": {
+    "Table": {
+      "type": "object",
+      "properties": {
+        "required": { "$ref": "#/$defs/Required" },
+        "properties": { "$ref": "#/$defs/Properties" }
+      }
+    },
+    "Required": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "Properties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Property"
+      }
+    },
+    "Property": {
+      "type": "object",
+      "properties": {
+        "type": { "$ref": "#/$defs/Type" },
+        "format": { "$ref": "#/$defs/Format" },
+        "items": { "$ref": "#/$defs/Items" },
+        "enum": { "$ref": "#/$defs/Enum" },
+        "default": { "$ref": "#/$defs/Default" },
+        "description": { "$ref": "#/$defs/Description" }
+      }
+    }
+  }
+}
