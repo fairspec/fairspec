@@ -42,8 +42,8 @@
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
         "integrity": { "$ref": "#/$defs/Integrity" },
-        "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" },
+        "documentSchema": { "$ref": "#/$defs/DocumentSchema" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -103,16 +103,16 @@
         "hash": { "type": "string" }
       }
     },
-    "JsonSchema": {
-      "oneOf": [
-        { "type": "string", "format": "uri" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-      ]
-    },
     "TableSchema": {
       "oneOf": [
         { "type": "string", "format": "uri" },
         { "$ref": "{table-schema-ref}" }
+      ]
+    },
+    "DocumentSchema": {
+      "oneOf": [
+        { "type": "string", "format": "uri" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
       ]
     },
     "Format": {

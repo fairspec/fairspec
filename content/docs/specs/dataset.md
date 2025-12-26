@@ -78,7 +78,7 @@ For multiple resources with more properties:
     },
     {
       "data": "https://example.com/file2.json",
-      "jsonSchema": "https://example.com/json-schema.json"
+      "documentSchema": "https://example.com/document-schema.json"
     }
   ]
 }
@@ -206,40 +206,9 @@ For example for a file with SHA-256 hash:
 }
 ```
 
-### `jsonSchema`
-
-The JSON Schema of the data. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
-
-For example as a URI:
-
-```json
-{
-  "jsonSchema": "https://example.com/json-schema.json"
-}
-```
-
-For example as an object:
-
-```json
-{
-  "jsonSchema": {
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "age": {
-        "type": "integer"
-      }
-    },
-    "required": ["name", "age"]
-  }
-}
-```
-
 ### `tableSchema`
 
-The Table Schema of the data. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
+The schema of the table. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
 
 For example as a URI:
 
@@ -263,6 +232,37 @@ For example as an object:
         "type": "integer"
       }
     }
+  }
+}
+```
+
+### `documentSchema`
+
+The schema of the document. It `MUST` be a URI to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
+
+For example as a URI:
+
+```json
+{
+  "documentSchema": "https://example.com/document-schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "documentSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    },
+    "required": ["name", "age"]
   }
 }
 ```
