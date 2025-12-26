@@ -107,7 +107,7 @@ For example for a dataset with DOI and some other properties:
 
 A resource within a dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `data`
+### `data` [required] {#data}
 
 Data or content of the resource. It `MUST` be in one of the following formats:
 
@@ -736,11 +736,77 @@ For example:
 }
 ```
 
-## Extensions
+## Extension
 
-Fairspec Catalog does not support extensions. Additional properties are not allowed.
+> [!TIP]
+> Additional properties are allowed.
 
-## Related Work
+Fairspec Dataset has a simple yet powerful extension mechanism based on the JSONSchema standard. An extension is a domain-specific Fairspec Dataset flavour that enriches the standard with additional metadata properties and validation rules.
+
+A custom JSONSchema can be provided as a `$schema` property in the dataset descriptor. The profile instructs implementations to validate the descriptor using JSON Schema rules defined by the extension. The extension's schema `MUST` include base Fairspec Dataset schema in the root `allOf` property.
+
+Using JSON Schema features with custom profiles allows you to:
+
+- Add new domain-specific properties
+- Require existing properties to meet specific requirements
+- Define expected resource types and their schemas
+- Combine existing profiles as part of a high-level extension
+
+For example, a Spectroscopy Fairspec extension that requires spectral metadata:
+
+```json
+{
+  "$schema": "https://fairspec.org/schemas/1.0.0/spectroscopy.dataset.json",
+  "resources": [
+    {
+      "data": "spectrum.csv",
+      "spectralRange": {
+        "min": 400,
+        "max": 4000,
+        "unit": "cm-1"
+      }
+    }
+  ]
+}
+```
+
+The extension profile would include the base Fairspec Dataset schema and add domain-specific requirements:
+
+```json
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "title": "Spectroscopy Faispec",
+  "allOf": [
+    { "$ref": "https://fairspec.org/schemas/1.0.0/fairspec.dataset.json" },
+    { "$ref": "#/$defs/spectroscopyMixin" }
+  ],
+  "$defs": {
+    "spectroscopyMixin": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "spectralRange": {
+                "type": "object",
+                "required": ["min", "max", "unit"],
+                "properties": {
+                  "min": { "type": "number" },
+                  "max": { "type": "number" },
+                  "unit": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## Comparison
 
 > [!NOTE]
 > This section is under development.

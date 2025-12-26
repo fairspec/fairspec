@@ -67,15 +67,18 @@ For example:
 }
 ```
 
-## Implementations
+## Extension
+
+> [!WARNING]
+> Additional properties are NOT allowed.
+
+Fairspec Catalog does not support extension.
+
+## Streaming
 
 Fairspec Catalog is designed to be used in a streaming manner. Because datasets are sorted by their last updated time in descending order, clients `SHOULD` read the catalog line-by-line and terminate reading once they encounter a dataset with an timestamp that has already been seen. This allows efficient synchronization without processing the entire catalog file.
 
-## Extensions
-
-Fairspec Catalog does not support extensions. Additional properties are not allowed.
-
-## Related Work
+## Comparison
 
 > [!NOTE]
 > This section is under development.

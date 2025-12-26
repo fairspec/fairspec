@@ -53,6 +53,7 @@ export default defineConfig({
       sidebar: [
         { label: "Overview", autogenerate: { directory: "overview" } },
         { label: "Specifications", autogenerate: { directory: "specs" } },
+        { label: "Extensions", autogenerate: { directory: "extensions" } },
         {
           label: "Changelog",
           collapsed: true,

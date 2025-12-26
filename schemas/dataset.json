@@ -38,6 +38,7 @@
     },
     "Resource": {
       "type": "object",
+      "required": ["data"],
       "properties": {
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
