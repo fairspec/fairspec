@@ -96,14 +96,12 @@
       ]
     },
     "Encoding": {
-      "type": "string",
       "enum": ["utf-8", "ascii"]
     },
     "Integrity": {
       "type": "string",
       "properties": {
         "type": {
-          "type": "string",
           "enum": ["md5", "sha1", "sha256", "sha512"]
         },
         "hash": { "type": "string" }
@@ -124,16 +122,48 @@
     "Format": {
       "allOf": [
         {
-          "if": { "properties": { "type": { "const": "csv" } } },
+          "if": { "properties": { "name": { "const": "csv" } } },
           "then": { "$ref": "#/$defs/CsvFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "tsv" } } },
+          "then": { "$ref": "#/$defs/TsvFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "json" } } },
+          "then": { "$ref": "#/$defs/JsonFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "jsonl" } } },
+          "then": { "$ref": "#/$defs/JsonlFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "xlsx" } } },
+          "then": { "$ref": "#/$defs/XlsxFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "ods" } } },
+          "then": { "$ref": "#/$defs/OdsFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "sqlite" } } },
+          "then": { "$ref": "#/$defs/SqliteFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "parquet" } } },
+          "then": { "$ref": "#/$defs/ParquetFormat" }
+        },
+        {
+          "if": { "properties": { "name": { "const": "arrow" } } },
+          "then": { "$ref": "#/$defs/ArrowFormat" }
         }
       ]
     },
     "CsvFormat": {
       "type": "object",
-      "required": ["type"],
+      "required": ["name"],
       "properties": {
-        "type": { "const": "csv" },
+        "name": { "const": "csv" },
         "delimiter": { "$ref": "#/$defs/Delimiter" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "quoteChar": { "$ref": "#/$defs/QuoteChar" },
@@ -141,39 +171,148 @@
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
         "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
         "commentRows": { "$ref": "#/$defs/CommentRows" },
-        "commentChar": { "$ref": "#/$defs/CommentChar" }
+        "commentChar": { "$ref": "#/$defs/CommentChar" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
+      }
+    },
+    "TsvFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "tsv" },
+        "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
+        "nullSequence": { "$ref": "#/$defs/NullSequence" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "commentRows": { "$ref": "#/$defs/CommentRows" },
+        "commentChar": { "$ref": "#/$defs/CommentChar" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
       }
     },
     "JsonFormat": {
       "type": "object",
-      "required": ["type"],
+      "required": ["name"],
       "properties": {
-        "type": { "const": "json" },
-        "property": { "$ref": "#/$defs/JsonProperty" },
-        "itemType": { "$ref": "#/$defs/ItemType" }
+        "name": { "const": "json" },
+        "jsonPointer": { "$ref": "#/$defs/JsonPointer" },
+        "rowType": { "$ref": "#/$defs/RowType" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
       }
     },
-    "ExcelFormat": {
+    "JsonlFormat": {
       "type": "object",
-      "required": ["type"],
+      "required": ["name"],
       "properties": {
-        "type": { "const": "excel" },
-        "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
-        "sheetName": { "$ref": "#/$defs/SheetName" }
+        "name": { "const": "jsonl" },
+        "rowType": { "$ref": "#/$defs/RowType" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
       }
+    },
+    "XlsxFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "xlxs" },
+        "sheetName": { "$ref": "#/$defs/SheetName" },
+        "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "commentRows": { "$ref": "#/$defs/CommentRows" },
+        "commentChar": { "$ref": "#/$defs/CommentChar" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
+      }
+    },
+    "OdsFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "ods" },
+        "sheetName": { "$ref": "#/$defs/SheetName" },
+        "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
+        "headerRows": { "$ref": "#/$defs/HeaderRows" },
+        "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
+        "commentRows": { "$ref": "#/$defs/CommentRows" },
+        "commentChar": { "$ref": "#/$defs/CommentChar" },
+        "columnNames": { "$ref": "#/$defs/ColumnNames" }
+      }
+    },
+    "SqliteFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "sqlite" },
+        "tableName": { "$ref": "#/$defs/TableName" }
+      }
+    },
+    "ParquetFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "parquet" }
+      }
+    },
+    "ArrowFormat": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "const": "arrow" }
+      }
+    },
+    "Delimiter": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "LineTerminator": {
+      "type": "string"
+    },
+    "QuoteChar": {
+      "type": "string"
+    },
+    "NullSequence": {
+      "type": "string"
+    },
+    "Header": {
+      "type": "boolean"
+    },
+    "HeaderRows": {
+      "oneOf": [
+        { "const": false },
+        {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 }
+        }
+      ]
+    },
+    "HeaderJoin": {
+      "type": "string"
+    },
+    "CommentRows": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "CommentChar": {
+      "type": "string"
+    },
+    "ColumnNames": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "JsonPointer": {
+      "type": "string",
+      "format": "json-pointer"
+    },
+    "RowType": {
+      "enum": ["array", "object"]
     },
     "SheetNumber": {
       "type": "integer"
     },
     "SheetName": {
       "type": "string"
-    },
-    "JsonProperty": {
-      "type": "string"
-    },
-    "ItemType": {
-      "type": "string",
-      "enum": ["array", "object"]
     },
     "TableName": {
       "type": "string"
@@ -209,7 +348,6 @@
       "required": ["name"]
     },
     "CreatorNameType": {
-      "type": "string",
       "enum": ["Organizational", "Personal"]
     },
     "CreatorNameIdentifiers": {
@@ -259,7 +397,6 @@
       "required": ["title"]
     },
     "TitleType": {
-      "type": "string",
       "enum": ["AlternativeTitle", "Subtitle", "TranslatedTitle", "Other"]
     },
     "Publisher": {
@@ -310,7 +447,6 @@
       "required": ["name", "contributorType"]
     },
     "ContributorType": {
-      "type": "string",
       "enum": [
         "ContactPerson",
         "DataCollector",
@@ -365,7 +501,6 @@
       ]
     },
     "DateType": {
-      "type": "string",
       "enum": [
         "Accepted",
         "Available",
@@ -396,7 +531,6 @@
       "required": ["resourceTypeGeneral"]
     },
     "ContentTypeGeneral": {
-      "type": "string",
       "enum": [
         "Audiovisual",
         "Award",
@@ -480,7 +614,6 @@
       "required": ["relationType"]
     },
     "RelationType": {
-      "type": "string",
       "enum": [
         "IsCitedBy",
         "Cites",
@@ -523,7 +656,6 @@
       ]
     },
     "RelatedIdentifierType": {
-      "type": "string",
       "enum": [
         "ARK",
         "arXiv",
@@ -610,7 +742,6 @@
       "required": ["description", "descriptionType"]
     },
     "DescriptionType": {
-      "type": "string",
       "enum": [
         "Abstract",
         "Methods",
@@ -706,7 +837,6 @@
       "required": ["funderName"]
     },
     "FunderIdentifierType": {
-      "type": "string",
       "enum": ["ISNI", "GRID", "Crossref Funder ID", "ROR", "Other"]
     },
     "RelatedItems": {
@@ -752,7 +882,6 @@
       "required": ["relatedItemIdentifier", "relatedItemIdentifierType"]
     },
     "NumberType": {
-      "type": "string",
       "enum": ["Article", "Chapter", "Report", "Other"]
     }
   }
