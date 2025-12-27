@@ -34,7 +34,7 @@
     },
     "MetaSchema": {
       "type": "string",
-      "pattern": "fairspec-\\{version\\}.dataset.json$"
+      "pattern": "fairspec.dataset.json$"
     },
     "Resource": {
       "type": "object",
@@ -43,8 +43,8 @@
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
         "integrity": { "$ref": "#/$defs/Integrity" },
-        "tableSchema": { "$ref": "#/$defs/TableSchema" },
-        "documentSchema": { "$ref": "#/$defs/DocumentSchema" },
+        "document": { "$ref": "#/$defs/Document" },
+        "table": { "$ref": "#/$defs/Table" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -71,55 +71,6 @@
     },
     "Data": {
       "oneOf": [{ "$ref": "#/$defs/PathData" }, { "$ref": "#/$defs/JsonData" }]
-    },
-    "PathData": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "type": "array", "item": { "$ref": "#/$defs/Path" } }
-      ]
-    },
-    "Path": {
-      "oneOf": [
-        { "$ref": "#/$defs/InternalPath" },
-        { "$ref": "#/$defs/ExternalPath" }
-      ]
-    },
-    "InternalPath": {
-      "type": "string",
-      "pattern": "^(?![./~])(?!.*://)(?!.*\\.\\.)(?!.*\\\\)(?!.*:)[^/\\\\]+(/[^/\\\\]+)*$"
-    },
-    "ExternalPath": {
-      "type": "string",
-      "pattern": "^https?://"
-    },
-    "JsonData": {
-      "oneOf": [
-        {
-          "type": "object"
-        },
-        {
-          "type": "array",
-          "items": { "type": "object" }
-        }
-      ]
-    },
-    "Integrity": {
-      "type": "string",
-      "properties": {
-        "type": {
-          "enum": ["md5", "sha1", "sha256", "sha512"]
-        },
-        "hash": { "type": "string" }
-      }
-    },
-    "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{table-schema-ref}" }]
-    },
-    "DocumentSchema": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-      ]
     },
     "Format": {
       "allOf": [
@@ -265,6 +216,55 @@
       "properties": {
         "name": { "const": "arrow" }
       }
+    },
+    "Integrity": {
+      "type": "string",
+      "properties": {
+        "type": {
+          "enum": ["md5", "sha1", "sha256", "sha512"]
+        },
+        "hash": { "type": "string" }
+      }
+    },
+    "Document": {
+      "oneOf": [
+        { "$ref": "#/$defs/Path" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "Table": {
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{table-ref}" }]
+    },
+    "PathData": {
+      "oneOf": [
+        { "$ref": "#/$defs/Path" },
+        { "type": "array", "item": { "$ref": "#/$defs/Path" } }
+      ]
+    },
+    "JsonData": {
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      ]
+    },
+    "Path": {
+      "oneOf": [
+        { "$ref": "#/$defs/InternalPath" },
+        { "$ref": "#/$defs/ExternalPath" }
+      ]
+    },
+    "InternalPath": {
+      "type": "string",
+      "pattern": "^(?![./~])(?!.*://)(?!.*\\.\\.)(?!.*\\\\)(?!.*:)[^/\\\\]+(/[^/\\\\]+)*$"
+    },
+    "ExternalPath": {
+      "type": "string",
+      "pattern": "^https?://"
     },
     "Encoding": {
       "enum": ["utf-8", "ascii"]

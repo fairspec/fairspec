@@ -208,15 +208,15 @@ For example for a file with SHA-256 hash:
 }
 ```
 
-### `tableSchema`
+### `document`
 
-The schema of the table. It `MUST` be a [Path](#path) to a schema or an object with the schema. It `MUST` be compatible with the [Fairspec Table](../table) specification.
+It `MUST` be a [Path](#path) to a document schema or an object with the document schema. The document schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
 
-For example as a URI:
+For example as an external path:
 
 ```json
 {
-  "tableSchema": "https://example.com/table-schema.json"
+  "document": "https://example.com/document-schema.json"
 }
 ```
 
@@ -224,37 +224,7 @@ For example as an object:
 
 ```json
 {
-  "tableSchema": {
-    "required": ["name", "age"],
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "age": {
-        "type": "integer"
-      }
-    }
-  }
-}
-```
-
-### `documentSchema`
-
-The schema of the document. It `MUST` be a [Path](#path) to a schema or an object with the schema. It `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification.
-
-For example as a URI:
-
-```json
-{
-  "documentSchema": "https://example.com/document-schema.json"
-}
-```
-
-For example as an object:
-
-```json
-{
-  "documentSchema": {
+  "document": {
     "type": "object",
     "properties": {
       "name": {
@@ -265,6 +235,36 @@ For example as an object:
       }
     },
     "required": ["name", "age"]
+  }
+}
+```
+
+### `table`
+
+It `MUST` be a [Path](#path) to a table schema or an object with the table schema. The table schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
+
+For example as an external path:
+
+```json
+{
+  "table": "https://example.com/table-schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "table": {
+    "required": ["name", "age"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    }
   }
 }
 ```
