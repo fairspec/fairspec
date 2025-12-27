@@ -16,19 +16,394 @@
     "Properties": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/$defs/Property"
+        "$ref": "#/$defs/Column"
       }
     },
-    "Property": {
+    "Column": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "integer" } } },
+          "then": { "$ref": "#/$defs/IntegerColumnGroup" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "number" } } },
+          "then": { "$ref": "#/$defs/NumberColumnGroup" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "boolean" } } },
+          "then": { "$ref": "#/$defs/BooleanColumnGroup" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "string" } } },
+          "then": { "$ref": "#/$defs/StringColumnGroup" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "array" } } },
+          "then": { "$ref": "#/$defs/ArrayColumnGroup" }
+        },
+        {
+          "if": { "properties": { "type": { "const": "object" } } },
+          "then": { "$ref": "#/$defs/ObjectColumnGroup" }
+        }
+      ]
+    },
+    "BaseColumn": {
       "type": "object",
       "properties": {
-        "type": { "$ref": "#/$defs/Type" },
-        "format": { "$ref": "#/$defs/Format" },
-        "items": { "$ref": "#/$defs/Items" },
-        "enum": { "$ref": "#/$defs/Enum" },
-        "default": { "$ref": "#/$defs/Default" },
-        "description": { "$ref": "#/$defs/Description" }
+        "title": { "$ref": "#/$defs/Title" },
+        "description": { "$ref": "#/$defs/Description" },
+        "missingValues": { "$ref": "#/$defs/MissingValues" },
+        "missingLabels": { "$ref": "#/$defs/MissingLabels" }
       }
+    },
+    "IntegerColumnGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/IntegerColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "year" } } },
+          "then": { "$ref": "#/$defs/YearColumn" }
+        }
+      ]
+    },
+    "IntegerColumn": {
+      "additionalProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "integer" },
+            "minimum": { "$ref": "#/$defs/IntegerMinimum" },
+            "maximum": { "$ref": "#/$defs/IntegerMaximum" },
+            "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },
+            "exclusiveMaximum": { "$ref": "#/$defs/IntegerExclusiveMaximum" },
+            "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" },
+            "groupChar": { "$ref": "#/$defs/GroupChar" },
+            "withText": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "YearColumn": {
+      "additionalProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "integer" },
+            "format": { "const": "year" },
+            "minimum": { "$ref": "#/$defs/IntegerMinimum" },
+            "maximum": { "$ref": "#/$defs/IntegerMaximum" },
+            "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },
+            "exclusiveMaximum": { "$ref": "#/$defs/IntegerExclusiveMaximum" },
+            "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" }
+          }
+        }
+      ]
+    },
+    "NumberColumnGroup": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/NumberColumn" }
+        }
+      ]
+    },
+    "NumberColumn": {
+      "additionalProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "number" },
+            "minimum": { "$ref": "#/$defs/NumberMinimum" },
+            "maximum": { "$ref": "#/$defs/NumberMaximum" },
+            "exclusiveMinimum": { "$ref": "#/$defs/NumberExclusiveMinimum" },
+            "exclusiveMaximum": { "$ref": "#/$defs/NumberExclusiveMaximum" },
+            "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" },
+            "decimalChar": { "$ref": "#/$defs/DecimalChar" },
+            "groupChar": { "$ref": "#/$defs/GroupChar" },
+            "withText": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "BooleanColumnGroup": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/BooleanColumn" }
+        }
+      ]
+    },
+    "BooleanColumn": {
+      "additionalProperties": false,
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "boolean" },
+            "trueValues": { "$ref": "#/$defs/TrueValues" },
+            "falseValues": { "$ref": "#/$defs/FalseValues" }
+          }
+        }
+      ]
+    },
+    "StringColumnGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/StringColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "binary" } } },
+          "then": { "$ref": "#/$defs/BinaryColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "email" } } },
+          "then": { "$ref": "#/$defs/EmailColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "uuid" } } },
+          "then": { "$ref": "#/$defs/UuidColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "url" } } },
+          "then": { "$ref": "#/$defs/UrlColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "date-time" } } },
+          "then": { "$ref": "#/$defs/DateTimeColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "date" } } },
+          "then": { "$ref": "#/$defs/DateColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "time" } } },
+          "then": { "$ref": "#/$defs/TimeColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "duration" } } },
+          "then": { "$ref": "#/$defs/DurationColumn" }
+        }
+      ]
+    },
+    "StringColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "pattern": { "$ref": "#/$defs/Pattern" },
+            "minLength": { "$ref": "#/$defs/MinLength" },
+            "maxLength": { "$ref": "#/$defs/MaxLength" }
+          }
+        }
+      ]
+    },
+    "BinaryColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "binary" }
+          }
+        }
+      ]
+    },
+    "EmailColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "email" }
+          }
+        }
+      ]
+    },
+    "UuidColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "uuid" }
+          }
+        }
+      ]
+    },
+    "UrlColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "url" }
+          }
+        }
+      ]
+    },
+    "DateTimeColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "date-time" },
+            "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
+          }
+        }
+      ]
+    },
+    "DateColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "date" },
+            "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
+          }
+        }
+      ]
+    },
+    "TimeColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "time" },
+            "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
+          }
+        }
+      ]
+    },
+    "DurationColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "duration" }
+          }
+        }
+      ]
+    },
+    "ArrayColumnGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/ArrayColumn" }
+        }
+      ]
+    },
+    "ArrayColumn": {
+      "allOf": [
+        { "type": "array" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "ObjectColumnGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/ObjectColumn" }
+        }
+      ]
+    },
+    "ObjectColumn": {
+      "allOf": [
+        { "type": "object" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "MissingValues": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "MissingLabels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Pattern": {
+      "type": "string",
+      "format": "regex"
+    },
+    "MinLength": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "MaxLength": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "TrueValues": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "FalseValues": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "IntegerMinimum": {
+      "type": "integer"
+    },
+    "IntegerMaximum": {
+      "type": "integer"
+    },
+    "IntegerExclusiveMinimum": {
+      "type": "integer"
+    },
+    "IntegerExclusiveMaximum": {
+      "type": "integer"
+    },
+    "IntegerMultipleOf": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "NumberMinimum": {
+      "type": "number"
+    },
+    "NumberMaximum": {
+      "type": "number"
+    },
+    "NumberExclusiveMinimum": {
+      "type": "number"
+    },
+    "NumberExclusiveMaximum": {
+      "type": "number"
+    },
+    "NumberMultipleOf": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "DecimalChar": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "GroupChar": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "TemporalFormat": {
+      "type": "string"
     }
   }
 }
