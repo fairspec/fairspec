@@ -267,47 +267,13 @@ For example, with labeled values:
 
 ## Column
 
-A column definition that specifies the data type, constraints, and metadata for a table column. It `MUST` have the following properties (all optional unless otherwise stated):
+A column definition that specifies the data type, constraints, and metadata for a table column. The schema is routed based on the [`type`](#type) property and optionally the [`format`](#format) property to determine which specific column type applies.
 
-### `title`
+### Column Types
 
-An optional human-readable title for the column. It `MUST` be a string.
+#### String
 
-For example:
-
-```json
-{
-  "properties": {
-    "temp_c": {
-      "title": "Temperature (Celsius)"
-    }
-  }
-}
-```
-
-### `description`
-
-An optional detailed description of the column. It `MUST` be a string.
-
-For example:
-
-```json
-{
-  "properties": {
-    "pressure": {
-      "description": "Atmospheric pressure measured in hectopascals (hPa) at the time of observation."
-    }
-  }
-}
-```
-
-## String Column
-
-A column for text values. It `MUST` have `type` set to `"string"` and `MUST NOT` have a `format` property.
-
-### `type` [required]
-
-It `MUST` be set to `"string"`.
+A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
 
 For example:
 
@@ -321,11 +287,443 @@ For example:
 }
 ```
 
-### `enum`
+#### Integer
 
-An optional array of allowed string values for the column.
+A column for whole number values. It `MUST` have [`type`](#type) set to `"integer"` and `MUST NOT` have a [`format`](#format) property.
 
 For example:
+
+```json
+{
+  "properties": {
+    "age": {
+      "type": "integer"
+    }
+  }
+}
+```
+
+#### Number
+
+A column for numeric values including decimals. It `MUST` have [`type`](#type) set to `"number"` and `MUST NOT` have a [`format`](#format) property.
+
+For example:
+
+```json
+{
+  "properties": {
+    "temperature": {
+      "type": "number"
+    }
+  }
+}
+```
+
+#### Boolean
+
+A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
+
+For example:
+
+```json
+{
+  "properties": {
+    "is_active": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
+#### Array
+
+A column for array/list values. It `MUST` have [`type`](#type) set to `"array"` and `MUST NOT` have a [`format`](#format) property.
+
+For example:
+
+```json
+{
+  "properties": {
+    "coordinates": {
+      "type": "array"
+    }
+  }
+}
+```
+
+#### Object
+
+A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
+
+For example:
+
+```json
+{
+  "properties": {
+    "metadata": {
+      "type": "object"
+    }
+  }
+}
+```
+
+#### List
+
+A column for delimited list values stored as strings. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"list"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "tags": {
+      "type": "string",
+      "format": "list"
+    }
+  }
+}
+```
+
+#### Base64
+
+A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "thumbnail": {
+      "type": "string",
+      "format": "base64"
+    }
+  }
+}
+```
+
+#### Hex
+
+A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "color": {
+      "type": "string",
+      "format": "hex"
+    }
+  }
+}
+```
+
+#### Email
+
+A column for email addresses. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"email"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "contact_email": {
+      "type": "string",
+      "format": "email"
+    }
+  }
+}
+```
+
+#### UUID
+
+A column for UUID identifiers. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"uuid"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}
+```
+
+#### URL
+
+A column for URLs/URIs. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "homepage": {
+      "type": "string",
+      "format": "url"
+    }
+  }
+}
+```
+
+#### Datetime
+
+A column for ISO 8601 datetime values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
+```
+
+#### Date
+
+A column for ISO 8601 date values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "birth_date": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}
+```
+
+#### Time
+
+A column for ISO 8601 time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"time"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "start_time": {
+      "type": "string",
+      "format": "time"
+    }
+  }
+}
+```
+
+#### Duration
+
+A column for ISO 8601 duration values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"duration"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "elapsed_time": {
+      "type": "string",
+      "format": "duration"
+    }
+  }
+}
+```
+
+#### WKT
+
+A column for Well-Known Text (WKT) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkt"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "geometry": {
+      "type": "string",
+      "format": "wkt"
+    }
+  }
+}
+```
+
+#### WKB
+
+A column for Well-Known Binary (WKB) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkb"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "geometry": {
+      "type": "string",
+      "format": "wkb"
+    }
+  }
+}
+```
+
+#### Year
+
+A column for year values. It `MUST` have [`type`](#type) set to `"integer"` and [`format`](#format) set to `"year"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "publication_year": {
+      "type": "integer",
+      "format": "year"
+    }
+  }
+}
+```
+
+#### GeoJSON
+
+A column for GeoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"geojson"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "location": {
+      "type": "object",
+      "format": "geojson"
+    }
+  }
+}
+```
+
+#### TopoJSON
+
+A column for TopoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"topojson"`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "topology": {
+      "type": "object",
+      "format": "topojson"
+    }
+  }
+}
+```
+
+### Column Properties
+
+#### `type` [required]
+
+> [!NOTE]
+> Applicable to: **all column types**
+
+The data type of the column. It `MUST` be one of the following values:
+
+- `string` - Text values
+- `integer` - Whole numbers
+- `number` - Numeric values including decimals
+- `boolean` - True/false values
+- `array` - Array/list values
+- `object` - Object/dictionary values
+
+For example:
+
+```json
+{
+  "properties": {
+    "age": {
+      "type": "integer"
+    }
+  }
+}
+```
+
+#### `format`
+
+> [!NOTE]
+> Applicable to: **string**, **integer**, **object**
+
+An optional format qualifier that specifies a more specific subtype of the base type.
+
+**String formats:** `list`, `email`, `uuid`, `url`, `date-time`, `date`, `time`, `duration`, `base64`, `hex`, `wkt`, `wkb`
+
+**Integer formats:** `year`
+
+**Object formats:** `geojson`, `topojson`
+
+For example:
+
+```json
+{
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    }
+  }
+}
+```
+
+#### `title`
+
+> [!NOTE]
+> Applicable to: **all column types**
+
+An optional human-readable title for the column. It `MUST` be a string.
+
+For example:
+
+```json
+{
+  "properties": {
+    "temp_c": {
+      "type": "number",
+      "title": "Temperature (Celsius)"
+    }
+  }
+}
+```
+
+#### `description`
+
+> [!NOTE]
+> Applicable to: **all column types**
+
+An optional detailed description of the column. It `MUST` be a string.
+
+For example:
+
+```json
+{
+  "properties": {
+    "pressure": {
+      "type": "number",
+      "description": "Atmospheric pressure measured in hectopascals (hPa) at the time of observation."
+    }
+  }
+}
+```
+
+#### `enum`
+
+> [!NOTE]
+> Applicable to: **string**, **integer**, **number**, **boolean**
+
+An optional array of allowed values for the column. The values `MUST` match the column's type.
+
+For example, with string values:
 
 ```json
 {
@@ -338,7 +736,23 @@ For example:
 }
 ```
 
-### `pattern`
+For example, with integer values:
+
+```json
+{
+  "properties": {
+    "priority": {
+      "type": "integer",
+      "enum": [1, 2, 3, 4, 5]
+    }
+  }
+}
+```
+
+#### `pattern`
+
+> [!NOTE]
+> Applicable to: **string**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -349,70 +763,16 @@ For example:
   "properties": {
     "product_code": {
       "type": "string",
-      "pattern": "^[A-Z]{3}-[0-9]{4}$",
-      "description": "Product code in format XXX-1234"
+      "pattern": "^[A-Z]{3}-[0-9]{4}$"
     }
   }
 }
 ```
 
-### `categories`
+#### `minLength`
 
-An optional array of categorical values with optional labels. Each item can be either a simple string or an object with `value` and `label` properties.
-
-For example, with simple values:
-
-```json
-{
-  "properties": {
-    "grade": {
-      "type": "string",
-      "categories": ["A", "B", "C", "D", "F"]
-    }
-  }
-}
-```
-
-For example, with labeled values:
-
-```json
-{
-  "properties": {
-    "size": {
-      "type": "string",
-      "categories": [
-        { "value": "S", "label": "Small" },
-        { "value": "M", "label": "Medium" },
-        { "value": "L", "label": "Large" },
-        { "value": "XL", "label": "Extra Large" }
-      ]
-    }
-  }
-}
-```
-
-### `missingValues`
-
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a simple string or an object with string `value` and optional `label` properties.
-
-For example:
-
-```json
-{
-  "properties": {
-    "notes": {
-      "type": "string",
-      "missingValues": [
-        { "value": "NA", "label": "Not Available" },
-        { "value": "N/A", "label": "Not Applicable" },
-        ""
-      ]
-    }
-  }
-}
-```
-
-### `minLength`
+> [!NOTE]
+> Applicable to: **string**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -429,7 +789,10 @@ For example:
 }
 ```
 
-### `maxLength`
+#### `maxLength`
+
+> [!NOTE]
+> Applicable to: **string**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -440,254 +803,18 @@ For example:
   "properties": {
     "username": {
       "type": "string",
-      "minLength": 3,
       "maxLength": 20
     }
   }
 }
 ```
 
-## Integer Column
+#### `minimum`
 
-A column for whole number values. It `MUST` have `type` set to `"integer"` and `MUST NOT` have a `format` property.
+> [!NOTE]
+> Applicable to: **integer**, **number**
 
-### `type` [required]
-
-It `MUST` be set to `"integer"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "age": {
-      "type": "integer"
-    }
-  }
-}
-```
-
-### `enum`
-
-An optional array of allowed integer values for the column.
-
-For example:
-
-```json
-{
-  "properties": {
-    "priority": {
-      "type": "integer",
-      "enum": [1, 2, 3, 4, 5]
-    }
-  }
-}
-```
-
-### `minimum`
-
-An optional minimum value constraint (inclusive). It `MUST` be an integer.
-
-For example:
-
-```json
-{
-  "properties": {
-    "quantity": {
-      "type": "integer",
-      "minimum": 0
-    }
-  }
-}
-```
-
-### `maximum`
-
-An optional maximum value constraint (inclusive). It `MUST` be an integer.
-
-For example:
-
-```json
-{
-  "properties": {
-    "quantity": {
-      "type": "integer",
-      "maximum": 1000
-    }
-  }
-}
-```
-
-### `exclusiveMinimum`
-
-An optional minimum value constraint (exclusive). It `MUST` be an integer.
-
-For example:
-
-```json
-{
-  "properties": {
-    "level": {
-      "type": "integer",
-      "exclusiveMinimum": 0
-    }
-  }
-}
-```
-
-### `exclusiveMaximum`
-
-An optional maximum value constraint (exclusive). It `MUST` be an integer.
-
-For example:
-
-```json
-{
-  "properties": {
-    "level": {
-      "type": "integer",
-      "exclusiveMaximum": 100
-    }
-  }
-}
-```
-
-### `multipleOf`
-
-An optional constraint that values `MUST` be a multiple of this number. It `MUST` be a positive integer.
-
-For example:
-
-```json
-{
-  "properties": {
-    "package_size": {
-      "type": "integer",
-      "multipleOf": 12,
-      "description": "Must be sold in dozens"
-    }
-  }
-}
-```
-
-### `categories`
-
-An optional array of categorical values with optional labels. Each item can be either a simple integer or an object with `value` and `label` properties.
-
-For example:
-
-```json
-{
-  "properties": {
-    "severity": {
-      "type": "integer",
-      "categories": [
-        { "value": 1, "label": "Low" },
-        { "value": 2, "label": "Medium" },
-        { "value": 3, "label": "High" },
-        { "value": 4, "label": "Critical" }
-      ]
-    }
-  }
-}
-```
-
-### `missingValues`
-
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a string, an integer, or an object with string/integer `value` and optional `label` properties.
-
-For example:
-
-```json
-{
-  "properties": {
-    "count": {
-      "type": "integer",
-      "missingValues": [
-        { "value": -1, "label": "Not counted" },
-        { "value": "NA", "label": "Not available" }
-      ]
-    }
-  }
-}
-```
-
-### `groupChar`
-
-An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
-
-For example:
-
-```json
-{
-  "properties": {
-    "population": {
-      "type": "integer",
-      "groupChar": ","
-    }
-  }
-}
-```
-
-This would parse `1,234,567` as the integer `1234567`.
-
-### `withText`
-
-An optional boolean indicating whether integer values may include non-numeric text that should be stripped during parsing.
-
-For example:
-
-```json
-{
-  "properties": {
-    "quantity": {
-      "type": "integer",
-      "withText": true
-    }
-  }
-}
-```
-
-## Number Column
-
-A column for numeric values including decimals. It `MUST` have `type` set to `"number"` and `MUST NOT` have a `format` property.
-
-### `type` [required]
-
-It `MUST` be set to `"number"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "temperature": {
-      "type": "number"
-    }
-  }
-}
-```
-
-### `enum`
-
-An optional array of allowed numeric values for the column.
-
-For example:
-
-```json
-{
-  "properties": {
-    "threshold": {
-      "type": "number",
-      "enum": [0.1, 0.5, 1.0, 2.5, 5.0]
-    }
-  }
-}
-```
-
-### `minimum`
-
-An optional minimum value constraint (inclusive). It `MUST` be a number.
+An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
 For example:
 
@@ -702,9 +829,12 @@ For example:
 }
 ```
 
-### `maximum`
+#### `maximum`
 
-An optional maximum value constraint (inclusive). It `MUST` be a number.
+> [!NOTE]
+> Applicable to: **integer**, **number**
+
+An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
 For example:
 
@@ -719,9 +849,12 @@ For example:
 }
 ```
 
-### `exclusiveMinimum`
+#### `exclusiveMinimum`
 
-An optional minimum value constraint (exclusive). It `MUST` be a number.
+> [!NOTE]
+> Applicable to: **integer**, **number**
+
+An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
 For example:
 
@@ -736,9 +869,12 @@ For example:
 }
 ```
 
-### `exclusiveMaximum`
+#### `exclusiveMaximum`
 
-An optional maximum value constraint (exclusive). It `MUST` be a number.
+> [!NOTE]
+> Applicable to: **integer**, **number**
+
+An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
 For example:
 
@@ -753,9 +889,12 @@ For example:
 }
 ```
 
-### `multipleOf`
+#### `multipleOf`
 
-An optional constraint that values `MUST` be a multiple of this number. It `MUST` be a positive number.
+> [!NOTE]
+> Applicable to: **integer**, **number**
+
+An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
 For example:
 
@@ -764,16 +903,42 @@ For example:
   "properties": {
     "price": {
       "type": "number",
-      "multipleOf": 0.01,
-      "description": "Price in dollars, rounded to nearest cent"
+      "multipleOf": 0.01
     }
   }
 }
 ```
 
-### `missingValues`
+#### `categories`
 
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a string, a number, or an object with string/number `value` and optional `label` properties.
+> [!NOTE]
+> Applicable to: **string**, **integer**
+
+An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
+
+For example:
+
+```json
+{
+  "properties": {
+    "severity": {
+      "type": "integer",
+      "categories": [
+        { "value": 1, "label": "Low" },
+        { "value": 2, "label": "Medium" },
+        { "value": 3, "label": "High" }
+      ]
+    }
+  }
+}
+```
+
+#### `missingValues`
+
+> [!NOTE]
+> Applicable to: **all column types**
+
+An optional column-specific list of values that represent missing or null data for this column. The type of missing values depends on the column type.
 
 For example:
 
@@ -791,100 +956,10 @@ For example:
 }
 ```
 
-### `decimalChar`
+#### `trueValues`
 
-An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
-
-For example:
-
-```json
-{
-  "properties": {
-    "price": {
-      "type": "number",
-      "decimalChar": ",",
-      "groupChar": "."
-    }
-  }
-}
-```
-
-This would parse `1.234,56` as the number `1234.56`.
-
-### `groupChar`
-
-An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
-
-For example:
-
-```json
-{
-  "properties": {
-    "revenue": {
-      "type": "number",
-      "groupChar": ","
-    }
-  }
-}
-```
-
-### `withText`
-
-An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing (e.g., currency symbols, units).
-
-For example:
-
-```json
-{
-  "properties": {
-    "price": {
-      "type": "number",
-      "withText": true
-    }
-  }
-}
-```
-
-This would parse `$1,234.56 USD` as the number `1234.56`.
-
-## Boolean Column
-
-A column for true/false values. It `MUST` have `type` set to `"boolean"` and `MUST NOT` have a `format` property.
-
-### `type` [required]
-
-It `MUST` be set to `"boolean"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "is_active": {
-      "type": "boolean"
-    }
-  }
-}
-```
-
-### `enum`
-
-An optional array of allowed boolean values for the column.
-
-For example:
-
-```json
-{
-  "properties": {
-    "verified": {
-      "type": "boolean",
-      "enum": [true]
-    }
-  }
-}
-```
-
-### `trueValues`
+> [!NOTE]
+> Applicable to: **boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
@@ -901,7 +976,10 @@ For example:
 }
 ```
 
-### `falseValues`
+#### `falseValues`
+
+> [!NOTE]
+> Applicable to: **boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
@@ -918,51 +996,137 @@ For example:
 }
 ```
 
-### `missingValues`
+#### `decimalChar`
 
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a string, a boolean, or an object with string/boolean `value` and optional `label` properties.
+> [!NOTE]
+> Applicable to: **number**
 
-For example:
-
-```json
-{
-  "properties": {
-    "consent": {
-      "type": "boolean",
-      "missingValues": [
-        { "value": "NA", "label": "Not asked" },
-        { "value": "", "label": "No response" }
-      ]
-    }
-  }
-}
-```
-
-## Array Column
-
-A column for array/list values. It `MUST` have `type` set to `"array"` and `MUST NOT` have a `format` property.
-
-### `type` [required]
-
-It `MUST` be set to `"array"`.
+An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
 For example:
 
 ```json
 {
   "properties": {
-    "coordinates": {
-      "type": "array"
+    "price": {
+      "type": "number",
+      "decimalChar": ","
     }
   }
 }
 ```
 
-### JSON Schema Properties
+#### `groupChar`
 
-Array Column supports all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) to define the structure and validation rules for array values.
+> [!NOTE]
+> Applicable to: **integer**, **number**
 
-For example, with typed items:
+An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
+
+For example:
+
+```json
+{
+  "properties": {
+    "population": {
+      "type": "integer",
+      "groupChar": ","
+    }
+  }
+}
+```
+
+#### `withText`
+
+> [!NOTE]
+> Applicable to: **integer**, **number**
+
+An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
+
+For example:
+
+```json
+{
+  "properties": {
+    "price": {
+      "type": "number",
+      "withText": true
+    }
+  }
+}
+```
+
+#### `temporalFormat`
+
+> [!NOTE]
+> Applicable to: **datetime**, **date**, **time** (string with format)
+
+An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
+
+For example:
+
+```json
+{
+  "properties": {
+    "collection_date": {
+      "type": "string",
+      "format": "date",
+      "temporalFormat": "%m/%d/%Y"
+    }
+  }
+}
+```
+
+#### `delimiter`
+
+> [!NOTE]
+> Applicable to: **list** (string with format="list")
+
+An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
+
+For example:
+
+```json
+{
+  "properties": {
+    "tags": {
+      "type": "string",
+      "format": "list",
+      "delimiter": ";"
+    }
+  }
+}
+```
+
+#### `itemType`
+
+> [!NOTE]
+> Applicable to: **list** (string with format="list")
+
+An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
+
+For example:
+
+```json
+{
+  "properties": {
+    "measurements": {
+      "type": "string",
+      "format": "list",
+      "itemType": "number"
+    }
+  }
+}
+```
+
+#### `<jsonschema>`
+
+> [!NOTE]
+> Applicable to: **array**, **object**
+
+For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
+
+For example, with an array column:
 
 ```json
 {
@@ -979,71 +1143,7 @@ For example, with typed items:
 }
 ```
 
-For example, with tuple validation:
-
-```json
-{
-  "properties": {
-    "rgb_color": {
-      "type": "array",
-      "prefixItems": [
-        { "type": "integer", "minimum": 0, "maximum": 255 },
-        { "type": "integer", "minimum": 0, "maximum": 255 },
-        { "type": "integer", "minimum": 0, "maximum": 255 }
-      ],
-      "items": false,
-      "minItems": 3,
-      "maxItems": 3
-    }
-  }
-}
-```
-
-### `missingValues`
-
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a string, an array, or an object with string/array `value` and optional `label` properties.
-
-For example:
-
-```json
-{
-  "properties": {
-    "tags": {
-      "type": "array",
-      "missingValues": [
-        { "value": [], "label": "No tags" },
-        { "value": "NA", "label": "Not available" }
-      ]
-    }
-  }
-}
-```
-
-## Object Column
-
-A column for object/dictionary values. It `MUST` have `type` set to `"object"` and `MUST NOT` have a `format` property.
-
-### `type` [required]
-
-It `MUST` be set to `"object"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "metadata": {
-      "type": "object"
-    }
-  }
-}
-```
-
-### JSON Schema Properties
-
-Object Column supports all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) to define the structure and validation rules for object values.
-
-For example, with defined properties:
+For example, with an object column:
 
 ```json
 {
@@ -1052,571 +1152,13 @@ For example, with defined properties:
       "type": "object",
       "properties": {
         "author": { "type": "string" },
-        "version": { "type": "integer" },
-        "created": { "type": "string", "format": "date-time" }
+        "version": { "type": "integer" }
       },
-      "required": ["author", "version"]
+      "required": ["author"]
     }
   }
 }
 ```
-
-For example, with additional properties:
-
-```json
-{
-  "properties": {
-    "settings": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      }
-    }
-  }
-}
-```
-
-### `missingValues`
-
-An optional column-specific list of values that represent missing or null data for this column. Each item can be either a string, an object, or an object with string/object `value` and optional `label` properties.
-
-For example:
-
-```json
-{
-  "properties": {
-    "metadata": {
-      "type": "object",
-      "missingValues": [
-        { "value": {}, "label": "Empty metadata" },
-        { "value": "NA", "label": "Not available" }
-      ]
-    }
-  }
-}
-```
-
-## List Column
-
-A column for delimited list values stored as strings. It `MUST` have `type` set to `"string"` and `format` set to `"list"`.
-
-### `<string>`
-
-List Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"list"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "tags": {
-      "type": "string",
-      "format": "list"
-    }
-  }
-}
-```
-
-### `delimiter`
-
-An optional single character used to delimit items in the list. It `MUST` be a string of length 1. Default is `,` (comma).
-
-For example:
-
-```json
-{
-  "properties": {
-    "tags": {
-      "type": "string",
-      "format": "list",
-      "delimiter": ";"
-    }
-  }
-}
-```
-
-This would parse `"red;green;blue"` as a list of three items.
-
-### `itemType`
-
-An optional type for items in the list. It `MUST` be one of the following values:
-
-- `string`
-- `integer`
-- `number`
-- `boolean`
-- `datetime`
-- `date`
-- `time`
-
-For example, with numeric items:
-
-```json
-{
-  "properties": {
-    "measurements": {
-      "type": "string",
-      "format": "list",
-      "itemType": "number",
-      "delimiter": ","
-    }
-  }
-}
-```
-
-This would parse `"1.5,2.3,4.7"` as a list of numbers.
-
-For example, with date items:
-
-```json
-{
-  "properties": {
-    "important_dates": {
-      "type": "string",
-      "format": "list",
-      "itemType": "date",
-      "delimiter": "|"
-    }
-  }
-}
-```
-
-## Base64 Column
-
-A column for Base64 encoded binary data. It `MUST` have `type` set to `"string"` and `format` set to `"base64"`.
-
-### `<string>`
-
-Base64 Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"base64"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "thumbnail": {
-      "type": "string",
-      "format": "base64"
-    }
-  }
-}
-```
-
-## Hex Column
-
-A column for hexadecimal encoded data. It `MUST` have `type` set to `"string"` and `format` set to `"hex"`.
-
-### `<string>`
-
-Hex Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"hex"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "color": {
-      "type": "string",
-      "format": "hex"
-    }
-  }
-}
-```
-
-## Email Column
-
-A column for email addresses. It `MUST` have `type` set to `"string"` and `format` set to `"email"`.
-
-### `<string>`
-
-Email Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"email"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "contact_email": {
-      "type": "string",
-      "format": "email"
-    }
-  }
-}
-```
-
-## UUID Column
-
-A column for UUID identifiers. It `MUST` have `type` set to `"string"` and `format` set to `"uuid"`.
-
-### `<string>`
-
-UUID Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"uuid"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid"
-    }
-  }
-}
-```
-
-## URL Column
-
-A column for URLs/URIs. It `MUST` have `type` set to `"string"` and `format` set to `"url"`.
-
-### `<string>`
-
-URL Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"url"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "homepage": {
-      "type": "string",
-      "format": "url"
-    }
-  }
-}
-```
-
-## Datetime Column
-
-A column for ISO 8601 datetime values. It `MUST` have `type` set to `"string"` and `format` set to `"date-time"`.
-
-### `<string>`
-
-Datetime Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"date-time"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    }
-  }
-}
-```
-
-### `temporalFormat`
-
-An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
-
-For example, for a custom datetime format:
-
-```json
-{
-  "properties": {
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "temporalFormat": "%Y-%m-%d %H:%M:%S"
-    }
-  }
-}
-```
-
-## Date Column
-
-A column for ISO 8601 date values. It `MUST` have `type` set to `"string"` and `format` set to `"date"`.
-
-### `<string>`
-
-Date Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"date"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "birth_date": {
-      "type": "string",
-      "format": "date"
-    }
-  }
-}
-```
-
-### `temporalFormat`
-
-An optional string specifying the date format pattern. If not provided, ISO 8601 format is assumed.
-
-For example, for a custom date format:
-
-```json
-{
-  "properties": {
-    "collection_date": {
-      "type": "string",
-      "format": "date",
-      "temporalFormat": "%m/%d/%Y"
-    }
-  }
-}
-```
-
-## Time Column
-
-A column for ISO 8601 time values. It `MUST` have `type` set to `"string"` and `format` set to `"time"`.
-
-### `<string>`
-
-Time Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"time"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "start_time": {
-      "type": "string",
-      "format": "time"
-    }
-  }
-}
-```
-
-### `temporalFormat`
-
-An optional string specifying the time format pattern. If not provided, ISO 8601 format is assumed.
-
-For example, for a custom time format:
-
-```json
-{
-  "properties": {
-    "opening_time": {
-      "type": "string",
-      "format": "time",
-      "temporalFormat": "%I:%M %p"
-    }
-  }
-}
-```
-
-## Duration Column
-
-A column for ISO 8601 duration values. It `MUST` have `type` set to `"string"` and `format` set to `"duration"`.
-
-### `<string>`
-
-Duration Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"duration"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "elapsed_time": {
-      "type": "string",
-      "format": "duration"
-    }
-  }
-}
-```
-
-## WKT Column
-
-A column for Well-Known Text (WKT) geometry data. It `MUST` have `type` set to `"string"` and `format` set to `"wkt"`.
-
-### `<string>`
-
-WKT Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"wkt"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "geometry": {
-      "type": "string",
-      "format": "wkt"
-    }
-  }
-}
-```
-
-## WKB Column
-
-A column for Well-Known Binary (WKB) geometry data. It `MUST` have `type` set to `"string"` and `format` set to `"wkb"`.
-
-### `<string>`
-
-WKB Column inherits all the [String Column](#string-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"wkb"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "geometry": {
-      "type": "string",
-      "format": "wkb"
-    }
-  }
-}
-```
-
-## Year Column
-
-A column for year values. It `MUST` have `type` set to `"integer"` and `format` set to `"year"`.
-
-### `<integer>`
-
-Year Column inherits all the [Integer Column](#integer-column) properties.
-
-### `format` [required]
-
-It `MUST` be set to `"year"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "publication_year": {
-      "type": "integer",
-      "format": "year"
-    }
-  }
-}
-```
-
-## GeoJSON Column
-
-A column for GeoJSON geometry objects. It `MUST` have `type` set to `"object"` and `format` set to `"geojson"`.
-
-### `<object>`
-
-GeoJSON Column inherits all the [Object Column](#object-column) properties, including all JSON Schema properties.
-
-### `format` [required]
-
-It `MUST` be set to `"geojson"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "location": {
-      "type": "object",
-      "format": "geojson"
-    }
-  }
-}
-```
-
-For example, with GeoJSON Point geometry:
-
-```json
-{
-  "properties": {
-    "location": {
-      "type": "object",
-      "format": "geojson",
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": ["Point"]
-        },
-        "coordinates": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2,
-          "maxItems": 3
-        }
-      },
-      "required": ["type", "coordinates"]
-    }
-  }
-}
-```
-
-## TopoJSON Column
-
-A column for TopoJSON geometry objects. It `MUST` have `type` set to `"object"` and `format` set to `"topojson"`.
-
-### `<object>`
-
-TopoJSON Column inherits all the [Object Column](#object-column) properties, including all JSON Schema properties.
-
-### `format` [required]
-
-It `MUST` be set to `"topojson"`.
-
-For example:
-
-```json
-{
-  "properties": {
-    "topology": {
-      "type": "object",
-      "format": "topojson"
-    }
-  }
-}
-```
-
 ## Extension
 
 > [!WARNING]

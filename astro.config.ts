@@ -41,7 +41,7 @@ export default defineConfig({
         baseUrl: `${packageJson.repository}/edit/main`,
       },
       lastUpdated: true,
-      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
+      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
       plugins: [
         starlightGitHubAlerts(),
         starlightScrollToTop(),
