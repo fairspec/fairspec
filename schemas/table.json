@@ -161,8 +161,12 @@
           "then": { "$ref": "#/$defs/StringColumn" }
         },
         {
-          "if": { "properties": { "format": { "const": "binary" } } },
-          "then": { "$ref": "#/$defs/BinaryColumn" }
+          "if": { "properties": { "format": { "const": "base64" } } },
+          "then": { "$ref": "#/$defs/Base64Column" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "hex" } } },
+          "then": { "$ref": "#/$defs/HexColumn" }
         },
         {
           "if": { "properties": { "format": { "const": "email" } } },
@@ -207,13 +211,24 @@
         }
       ]
     },
-    "BinaryColumn": {
+    "HexColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "binary" }
+            "format": { "const": "hex" }
+          }
+        }
+      ]
+    },
+    "Base64Column": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "base64" }
           }
         }
       ]
@@ -251,7 +266,7 @@
         }
       ]
     },
-    "DateTimeColumn": {
+    "DatetimeColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
@@ -317,12 +332,34 @@
         {
           "if": { "not": { "required": ["format"] } },
           "then": { "$ref": "#/$defs/ObjectColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "geojson" } } },
+          "then": { "$ref": "#/$defs/GeojsonColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "topojson" } } },
+          "then": { "$ref": "#/$defs/TopojsonColumn" }
         }
       ]
     },
     "ObjectColumn": {
       "allOf": [
         { "type": "object" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "GeojsonColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        { "type": "object", "format": "geojson" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "TopojsonColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        { "type": "object", "format": "topojson" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" }
       ]
     },
