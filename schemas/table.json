@@ -161,6 +161,10 @@
           "then": { "$ref": "#/$defs/StringColumn" }
         },
         {
+          "if": { "properties": { "format": { "const": "list" } } },
+          "then": { "$ref": "#/$defs/ListColumn" }
+        },
+        {
           "if": { "properties": { "format": { "const": "base64" } } },
           "then": { "$ref": "#/$defs/Base64Column" }
         },
@@ -195,6 +199,14 @@
         {
           "if": { "properties": { "format": { "const": "duration" } } },
           "then": { "$ref": "#/$defs/DurationColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "wkt" } } },
+          "then": { "$ref": "#/$defs/WktColumn" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "wkb" } } },
+          "then": { "$ref": "#/$defs/WkbColumn" }
         }
       ]
     },
@@ -211,13 +223,15 @@
         }
       ]
     },
-    "HexColumn": {
+    "ListColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "hex" }
+            "format": { "const": "base64" },
+            "itemType": { "$ref": "#/$defs/ListItemType" },
+            "delimiter": { "$ref": "#/$defs/ListDelimiter" }
           }
         }
       ]
@@ -229,6 +243,17 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "base64" }
+          }
+        }
+      ]
+    },
+    "HexColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "hex" }
           }
         }
       ]
@@ -309,6 +334,28 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "duration" }
+          }
+        }
+      ]
+    },
+    "WktColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "wkt" }
+          }
+        }
+      ]
+    },
+    "WkbColumn": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseColumn" },
+        {
+          "properties": {
+            "type": { "const": "string" },
+            "format": { "const": "wkb" }
           }
         }
       ]
@@ -441,6 +488,21 @@
     },
     "TemporalFormat": {
       "type": "string"
+    },
+    "ListDelimiter": {
+      "type": "string",
+      "maxLength": 1
+    },
+    "ListItemType": {
+      "enum": [
+        "string",
+        "integer",
+        "number",
+        "boolean",
+        "datetime",
+        "date",
+        "time"
+      ]
     }
   }
 }
