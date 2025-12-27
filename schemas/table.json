@@ -8,7 +8,6 @@
         "required": { "$ref": "#/$defs/Required" },
         "properties": { "$ref": "#/$defs/Properties" },
         "missingValues": { "$ref": "#/$defs/MissingValues" },
-        "missingLabels": { "$ref": "#/$defs/MissingLabels" },
         "primaryKey": { "$ref": "#/$defs/PrimaryKey" },
         "uniqueKeys": { "$ref": "#/$defs/UniqueKeys" },
         "foreignKeys": { "$ref": "#/$defs/ForeignKeys" }
@@ -178,7 +177,9 @@
           "properties": {
             "type": { "const": "string" },
             "enum": { "$ref": "#/$defs/StringEnum" },
-            "pattern": { "$ref": "#/$defs/Pattern" }
+            "pattern": { "$ref": "#/$defs/Pattern" },
+            "categories": { "$ref": "#/$defs/StringCategories" },
+            "missingValues": { "$ref": "#/$defs/StringMissingValues" }
           }
         }
       ]
@@ -194,7 +195,9 @@
             "maximum": { "$ref": "#/$defs/IntegerMaximum" },
             "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },
             "exclusiveMaximum": { "$ref": "#/$defs/IntegerExclusiveMaximum" },
-            "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" }
+            "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" },
+            "categories": { "$ref": "#/$defs/IntegerCategories" },
+            "missingValues": { "$ref": "#/$defs/IntegerMissingValues" }
           }
         }
       ]
@@ -210,7 +213,8 @@
             "maximum": { "$ref": "#/$defs/NumberMaximum" },
             "exclusiveMinimum": { "$ref": "#/$defs/NumberExclusiveMinimum" },
             "exclusiveMaximum": { "$ref": "#/$defs/NumberExclusiveMaximum" },
-            "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" }
+            "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" },
+            "missingValues": { "$ref": "#/$defs/NumberMissingValues" }
           }
         }
       ]
@@ -223,7 +227,8 @@
             "type": { "const": "boolean" },
             "enum": { "$ref": "#/$defs/BooleanEnum" },
             "trueValues": { "$ref": "#/$defs/TrueValues" },
-            "falseValues": { "$ref": "#/$defs/FalseValues" }
+            "falseValues": { "$ref": "#/$defs/FalseValues" },
+            "missingValues": { "$ref": "#/$defs/BooleanMissingValues" }
           }
         }
       ]
@@ -231,15 +236,15 @@
     "BaseObjectColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
-        { "type": "object" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+        { "type": "object", "missingValues": { "$ref": "#/$defs/ObjectMissingValues" } }
       ]
     },
     "BaseArrayColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
-        { "type": "array" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" },
+        { "type": "array", "missingValues": { "$ref": "#/$defs/ArrayMissingValues" } }
       ]
     },
     "StringColumn": {
@@ -450,16 +455,6 @@
     "Description": {
       "type": "string"
     },
-    "MissingValues": {
-      "type": "array",
-      "items": { "type": "string" }
-    },
-    "MissingLabels": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string"
-      }
-    },
     "Pattern": {
       "type": "string",
       "format": "regex"
@@ -594,17 +589,140 @@
       "type": "array",
       "items": { "type": "string" }
     },
-    "IntegerCategoricalValues": {
+    "MissingValues": {
       "type": "array",
-      "items": { "type": "integer" }
+      "items": {
+        "oneOf": [
+          { "type": ["string", "integer", "number", "boolean"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "integer", "number", "boolean"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
     },
-    "StringCategoricalValues": {
+    "StringMissingValues": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
     },
-    "CategoricalLabels": {
+    "IntegerMissingValues": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "oneOf": [
+          { "type": ["string", "integer"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "integer"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "NumberMissingValues": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": ["string", "number"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "number"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "BooleanMissingValues": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": ["string", "boolean"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "boolean"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "ArrayMissingValues": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": ["string", "array"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "array"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "ObjectMissingValues": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": ["string", "object"] },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": ["string", "object"] },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "StringCategories": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
+    },
+    "IntegerCategories": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "integer" },
+          {
+            "type": "object",
+            "properties": {
+              "value": { "type": "integer" },
+              "label": { "type": "string" }
+            }
+          }
+        ]
+      }
     }
   }
 }
