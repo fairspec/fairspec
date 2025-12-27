@@ -6,7 +6,9 @@
       "type": "object",
       "properties": {
         "required": { "$ref": "#/$defs/Required" },
-        "properties": { "$ref": "#/$defs/Properties" }
+        "properties": { "$ref": "#/$defs/Properties" },
+        "missingValues": { "$ref": "#/$defs/MissingValues" },
+        "missingLabels": { "$ref": "#/$defs/MissingLabels" }
       }
     },
     "Required": {
@@ -76,6 +78,7 @@
         {
           "properties": {
             "type": { "const": "integer" },
+            "enum": { "$ref": "#/$defs/IntegerEnum" },
             "minimum": { "$ref": "#/$defs/IntegerMinimum" },
             "maximum": { "$ref": "#/$defs/IntegerMaximum" },
             "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },
@@ -95,6 +98,7 @@
           "properties": {
             "type": { "const": "integer" },
             "format": { "const": "year" },
+            "enum": { "$ref": "#/$defs/IntegerEnum" },
             "minimum": { "$ref": "#/$defs/IntegerMinimum" },
             "maximum": { "$ref": "#/$defs/IntegerMaximum" },
             "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },
@@ -120,6 +124,7 @@
         {
           "properties": {
             "type": { "const": "number" },
+            "enum": { "$ref": "#/$defs/NumberEnum" },
             "minimum": { "$ref": "#/$defs/NumberMinimum" },
             "maximum": { "$ref": "#/$defs/NumberMaximum" },
             "exclusiveMinimum": { "$ref": "#/$defs/NumberExclusiveMinimum" },
@@ -148,6 +153,7 @@
         {
           "properties": {
             "type": { "const": "boolean" },
+            "enum": { "$ref": "#/$defs/BooleanEnum" },
             "trueValues": { "$ref": "#/$defs/TrueValues" },
             "falseValues": { "$ref": "#/$defs/FalseValues" }
           }
@@ -216,6 +222,7 @@
         {
           "properties": {
             "type": { "const": "string" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
             "pattern": { "$ref": "#/$defs/Pattern" },
             "minLength": { "$ref": "#/$defs/MinLength" },
             "maxLength": { "$ref": "#/$defs/MaxLength" }
@@ -230,6 +237,8 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "base64" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" },
             "itemType": { "$ref": "#/$defs/ListItemType" },
             "delimiter": { "$ref": "#/$defs/ListDelimiter" }
           }
@@ -242,7 +251,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "base64" }
+            "format": { "const": "base64" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -253,7 +264,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "hex" }
+            "format": { "const": "hex" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -264,7 +277,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "email" }
+            "format": { "const": "email" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -275,7 +290,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "uuid" }
+            "format": { "const": "uuid" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -286,7 +303,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "url" }
+            "format": { "const": "url" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -298,6 +317,8 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "date-time" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" },
             "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
           }
         }
@@ -310,6 +331,8 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "date" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" },
             "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
           }
         }
@@ -322,6 +345,8 @@
           "properties": {
             "type": { "const": "string" },
             "format": { "const": "time" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" },
             "temporalFormat": { "$ref": "#/$defs/TemporalFormat" }
           }
         }
@@ -333,7 +358,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "duration" }
+            "format": { "const": "duration" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -344,7 +371,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "wkt" }
+            "format": { "const": "wkt" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -355,7 +384,9 @@
         {
           "properties": {
             "type": { "const": "string" },
-            "format": { "const": "wkb" }
+            "format": { "const": "wkb" },
+            "enum": { "$ref": "#/$defs/StringEnum" },
+            "pattern": { "$ref": "#/$defs/Pattern" }
           }
         }
       ]
@@ -503,6 +534,22 @@
         "date",
         "time"
       ]
+    },
+    "IntegerEnum": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "NumberEnum": {
+      "type": "array",
+      "items": { "type": "number" }
+    },
+    "BooleanEnum": {
+      "type": "array",
+      "items": { "type": "boolean" }
+    },
+    "StringEnum": {
+      "type": "array",
+      "items": { "type": "string" }
     }
   }
 }
