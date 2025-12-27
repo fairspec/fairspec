@@ -300,9 +300,142 @@ For example for a resource with geolocation:
 
 ## Format
 
-Format specifies the features of all the data files in the resource. Format `MUST` be a JSON object with the following properties (all optional unless otherwise stated)::
+Format specifies the features of all the data files in the resource. The schema is routed based on the [`name`](#name) property to determine which specific format applies.
 
-### `name` [required] {#format-name}
+### Format Types
+
+#### CSV
+
+A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "csv"
+  }
+}
+```
+
+#### TSV
+
+A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "tsv"
+  }
+}
+```
+
+#### JSON
+
+A format for JSON array files. It `MUST` have [`name`](#name) set to `"json"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "json"
+  }
+}
+```
+
+#### JSONL
+
+A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`name`](#name) set to `"jsonl"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "jsonl"
+  }
+}
+```
+
+#### XLSX
+
+A format for Microsoft Excel files. It `MUST` have [`name`](#name) set to `"xlsx"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "xlsx"
+  }
+}
+```
+
+#### ODS
+
+A format for OpenDocument Spreadsheet files. It `MUST` have [`name`](#name) set to `"ods"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "ods"
+  }
+}
+```
+
+#### SQLite
+
+A format for SQLite database files. It `MUST` have [`name`](#name) set to `"sqlite"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "sqlite"
+  }
+}
+```
+
+#### Parquet
+
+A format for Apache Parquet files. It `MUST` have [`name`](#name) set to `"parquet"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "parquet"
+  }
+}
+```
+
+#### Arrow
+
+A format for Apache Arrow files. It `MUST` have [`name`](#name) set to `"arrow"`.
+
+For example:
+
+```json
+{
+  "format": {
+    "name": "arrow"
+  }
+}
+```
+
+### Format Properties
+
+#### `name` [required] {#format-name}
+
+> [!NOTE]
+> Supported formats: **all format types**
 
 The name of the format. It `MUST` be one of the following values:
 
@@ -326,7 +459,7 @@ For example for a CSV file:
 }
 ```
 
-### `encoding`
+#### `encoding`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
@@ -344,7 +477,7 @@ For example:
 }
 ```
 
-### `delimiter`
+#### `delimiter`
 
 > [!NOTE]
 > Supported formats: **csv**
@@ -369,7 +502,7 @@ id;name;price
 2;orange;2.00
 ```
 
-### `lineTerminator`
+#### `lineTerminator`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
@@ -387,7 +520,7 @@ For example:
 }
 ```
 
-### `quoteChar`
+#### `quoteChar`
 
 > [!NOTE]
 > Supported formats: **csv**
@@ -412,7 +545,7 @@ id,name
 2,'orange,citrus'
 ```
 
-### `nullSequence`
+#### `nullSequence`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
@@ -449,7 +582,7 @@ id,name,notes
 3,banana,N/A
 ```
 
-### `headerRows`
+#### `headerRows`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
@@ -499,7 +632,7 @@ For example with no headers:
 }
 ```
 
-### `headerJoin`
+#### `headerJoin`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
@@ -527,7 +660,7 @@ id,name,price
 
 This would produce headers: "fruit_id", "fruit_name", "fruit_price"
 
-### `commentRows`
+#### `commentRows`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **xlsx**, **ods**
@@ -555,7 +688,7 @@ id,name
 
 With `"commentRows": [2]`, the second row would be skipped.
 
-### `commentChar`
+#### `commentChar`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **xlsx**, **ods**
@@ -584,7 +717,7 @@ id,name
 
 Rows starting with `#` will be skipped.
 
-### `columnNames`
+#### `columnNames`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
@@ -609,7 +742,7 @@ For a file without headers:
 2,orange,2.00
 ```
 
-### `jsonPointer`
+#### `jsonPointer`
 
 > [!NOTE]
 > Supported formats: **json**
@@ -640,7 +773,7 @@ For a JSON file like:
 }
 ```
 
-### `rowType`
+#### `rowType`
 
 > [!NOTE]
 > Supported formats: **json**, **jsonl**
@@ -686,7 +819,7 @@ For data like:
 ]
 ```
 
-### `sheetName`
+#### `sheetName`
 
 > [!NOTE]
 > Supported formats: **xlsx**, **ods**
@@ -704,7 +837,7 @@ For example:
 }
 ```
 
-### `sheetNumber`
+#### `sheetNumber`
 
 > [!NOTE]
 > Supported formats: **xlsx**, **ods**
@@ -724,7 +857,7 @@ For example:
 
 This reads the second sheet from the spreadsheet.
 
-### `tableName`
+#### `tableName`
 
 > [!NOTE]
 > Supported formats: **sqlite**
@@ -741,7 +874,6 @@ For example:
   }
 }
 ```
-
 ## Common
 
 Common properties shared by multiple entities in the dataset descriptor.

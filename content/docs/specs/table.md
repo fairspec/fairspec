@@ -627,7 +627,7 @@ For example:
 #### `type` [required]
 
 > [!NOTE]
-> Applicable to: **all column types**
+> Supported columns: **all column types**
 
 The data type of the column. It `MUST` be one of the following values:
 
@@ -653,7 +653,7 @@ For example:
 #### `format`
 
 > [!NOTE]
-> Applicable to: **string**, **integer**, **object**
+> Supported columns: **string**, **integer**, **object**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
@@ -679,7 +679,7 @@ For example:
 #### `title`
 
 > [!NOTE]
-> Applicable to: **all column types**
+> Supported columns: **all column types**
 
 An optional human-readable title for the column. It `MUST` be a string.
 
@@ -699,7 +699,7 @@ For example:
 #### `description`
 
 > [!NOTE]
-> Applicable to: **all column types**
+> Supported columns: **all column types**
 
 An optional detailed description of the column. It `MUST` be a string.
 
@@ -719,7 +719,7 @@ For example:
 #### `enum`
 
 > [!NOTE]
-> Applicable to: **string**, **integer**, **number**, **boolean**
+> Supported columns: **string**, **integer**, **number**, **boolean**
 
 An optional array of allowed values for the column. The values `MUST` match the column's type.
 
@@ -752,7 +752,7 @@ For example, with integer values:
 #### `pattern`
 
 > [!NOTE]
-> Applicable to: **string**
+> Supported columns: **string**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -772,7 +772,7 @@ For example:
 #### `minLength`
 
 > [!NOTE]
-> Applicable to: **string**
+> Supported columns: **string**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -792,7 +792,7 @@ For example:
 #### `maxLength`
 
 > [!NOTE]
-> Applicable to: **string**
+> Supported columns: **string**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -812,7 +812,7 @@ For example:
 #### `minimum`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -832,7 +832,7 @@ For example:
 #### `maximum`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -852,7 +852,7 @@ For example:
 #### `exclusiveMinimum`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -872,7 +872,7 @@ For example:
 #### `exclusiveMaximum`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -892,7 +892,7 @@ For example:
 #### `multipleOf`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
@@ -912,7 +912,7 @@ For example:
 #### `categories`
 
 > [!NOTE]
-> Applicable to: **string**, **integer**
+> Supported columns: **string**, **integer**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
@@ -936,7 +936,7 @@ For example:
 #### `missingValues`
 
 > [!NOTE]
-> Applicable to: **all column types**
+> Supported columns: **all column types**
 
 An optional column-specific list of values that represent missing or null data for this column. The type of missing values depends on the column type.
 
@@ -959,7 +959,7 @@ For example:
 #### `trueValues`
 
 > [!NOTE]
-> Applicable to: **boolean**
+> Supported columns: **boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
@@ -979,7 +979,7 @@ For example:
 #### `falseValues`
 
 > [!NOTE]
-> Applicable to: **boolean**
+> Supported columns: **boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
@@ -999,7 +999,7 @@ For example:
 #### `decimalChar`
 
 > [!NOTE]
-> Applicable to: **number**
+> Supported columns: **number**
 
 An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
@@ -1019,7 +1019,7 @@ For example:
 #### `groupChar`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
@@ -1039,7 +1039,7 @@ For example:
 #### `withText`
 
 > [!NOTE]
-> Applicable to: **integer**, **number**
+> Supported columns: **integer**, **number**
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
@@ -1059,7 +1059,7 @@ For example:
 #### `temporalFormat`
 
 > [!NOTE]
-> Applicable to: **datetime**, **date**, **time** (string with format)
+> Supported columns: **datetime**, **date**, **time**
 
 An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
 
@@ -1080,7 +1080,7 @@ For example:
 #### `delimiter`
 
 > [!NOTE]
-> Applicable to: **list** (string with format="list")
+> Supported columns: **list**
 
 An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
 
@@ -1101,7 +1101,7 @@ For example:
 #### `itemType`
 
 > [!NOTE]
-> Applicable to: **list** (string with format="list")
+> Supported columns: **list**
 
 An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
 
@@ -1122,7 +1122,7 @@ For example:
 #### `<jsonschema>`
 
 > [!NOTE]
-> Applicable to: **array**, **object**
+> Supported columns: **array**, **object**
 
 For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
 
