@@ -5,6 +5,7 @@
     "Table": {
       "type": "object",
       "properties": {
+        "$schema": { "$ref": "#/$defs/MetaSchema" },
         "required": { "$ref": "#/$defs/Required" },
         "properties": { "$ref": "#/$defs/Properties" },
         "missingValues": { "$ref": "#/$defs/MissingValues" },
@@ -12,6 +13,10 @@
         "uniqueKeys": { "$ref": "#/$defs/UniqueKeys" },
         "foreignKeys": { "$ref": "#/$defs/ForeignKeys" }
       }
+    },
+    "MetaSchema": {
+      "type": "string",
+      "pattern": "fairspec.table.json$"
     },
     "Required": {
       "type": "array",

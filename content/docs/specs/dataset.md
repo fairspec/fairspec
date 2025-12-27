@@ -29,7 +29,7 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 ## Dataset
 
-A top-level descriptor object describing an individual dataset. It `MUST` have the following properties (all optional unless otherwise stated)::
+A top-level descriptor object describing an individual dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
 ### `$schema` [required] {#metaSchema}
 
