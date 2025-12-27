@@ -107,6 +107,10 @@ For example for a dataset with DOI and some other properties:
 
 A resource within a dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
+### `name`
+
+An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Table](../table).
+
 ### `data` [required] {#data}
 
 Data or content of the resource. It `MUST` be in one of the following:

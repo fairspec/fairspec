@@ -165,9 +165,7 @@
       "type": "object",
       "properties": {
         "title": { "$ref": "#/$defs/Title" },
-        "description": { "$ref": "#/$defs/Description" },
-        "missingValues": { "$ref": "#/$defs/MissingValues" },
-        "missingLabels": { "$ref": "#/$defs/MissingLabels" }
+        "description": { "$ref": "#/$defs/Description" }
       }
     },
     "BaseStringColumn": {

@@ -40,6 +40,7 @@
       "type": "object",
       "required": ["data"],
       "properties": {
+        "name": { "$ref": "#/$defs/Name" },
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
         "integrity": { "$ref": "#/$defs/Integrity" },
@@ -68,6 +69,10 @@
         "fundingReferences": { "$ref": "#/$defs/FundingReferences" },
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
       }
+    },
+    "Name": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_]+$"
     },
     "Data": {
       "oneOf": [{ "$ref": "#/$defs/PathData" }, { "$ref": "#/$defs/JsonData" }]
