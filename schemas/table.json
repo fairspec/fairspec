@@ -8,7 +8,10 @@
         "required": { "$ref": "#/$defs/Required" },
         "properties": { "$ref": "#/$defs/Properties" },
         "missingValues": { "$ref": "#/$defs/MissingValues" },
-        "missingLabels": { "$ref": "#/$defs/MissingLabels" }
+        "missingLabels": { "$ref": "#/$defs/MissingLabels" },
+        "primaryKey": { "$ref": "#/$defs/PrimaryKey" },
+        "uniqueKeys": { "$ref": "#/$defs/UniqueKeys" },
+        "foreignKeys": { "$ref": "#/$defs/ForeignKeys" }
       }
     },
     "Required": {
@@ -548,6 +551,46 @@
       "items": { "type": "boolean" }
     },
     "StringEnum": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "PrimaryKey": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "UniqueKeys": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/UniqueKey" },
+      "minItems": 1
+    },
+    "UniqueKey": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "ForeignKeys": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ForeignKey" },
+      "minItems": 1
+    },
+    "ForeignKey": {
+      "type": "object",
+      "required": ["columns", "reference"],
+      "properties": {
+        "columns": { "$ref": "#/$defs/ForeignKeyColumns" },
+        "reference": { "$ref": "#/$defs/ForeignKeyReference" }
+      }
+    },
+    "ForeignKeyReference": {
+      "type": "object",
+      "required": ["columns"],
+      "properties": {
+        "resource": { "type": "string" },
+        "columns": { "$ref": "#/$defs/ForeignKeyColumns" }
+      }
+    },
+    "ForeignKeyColumns": {
       "type": "array",
       "items": { "type": "string" }
     }
