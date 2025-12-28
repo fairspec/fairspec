@@ -17,7 +17,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Table is a simple JSON based format that allows to describe a class of tabular data resources.
+Fairspec Table is a simple JSON based format that defines a table schema to describe a class of tabular data resources.
 
 ## Language
 
@@ -25,11 +25,11 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
-A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Table](#table) structure outlined below.
+A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Table Schema](#table-schema) structure outlined below.
 
-## Table
+## Table Schema
 
-A top-level descriptor object describing a class of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
+A top-level descriptor object defining a schema of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
 
 ### `$schema` [required] {#metaSchema}
 

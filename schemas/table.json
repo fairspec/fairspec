@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "allOf": [{ "$ref": "#/$defs/Table" }],
+  "allOf": [{ "$ref": "#/$defs/TableSchema" }],
   "$defs": {
-    "Table": {
+    "TableSchema": {
       "type": "object",
       "properties": {
         "$schema": { "$ref": "#/$defs/MetaSchema" },
@@ -239,15 +239,21 @@
     "BaseObjectColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-        { "type": "object", "missingValues": { "$ref": "#/$defs/ObjectMissingValues" } }
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" },
+        {
+          "type": "object",
+          "missingValues": { "$ref": "#/$defs/ObjectMissingValues" }
+        }
       ]
     },
     "BaseArrayColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" },
-        { "type": "array", "missingValues": { "$ref": "#/$defs/ArrayMissingValues" } }
+        {
+          "type": "array",
+          "missingValues": { "$ref": "#/$defs/ArrayMissingValues" }
+        }
       ]
     },
     "StringColumn": {
