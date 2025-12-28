@@ -212,15 +212,15 @@ For example for a file with SHA-256 hash:
 }
 ```
 
-### `document`
+### `tableSchema`
 
-It `MUST` be a [Path](#path) to a document schema or an object with the document schema. The document schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to a table schema or an object with the table schema. The table schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
 
 For example as an external path:
 
 ```json
 {
-  "document": "https://example.com/document-schema.json"
+  "tableSchema": "https://example.com/schema.json"
 }
 ```
 
@@ -228,7 +228,37 @@ For example as an object:
 
 ```json
 {
-  "document": {
+  "tableSchema": {
+    "required": ["name", "age"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    }
+  }
+}
+```
+
+### `documentSchema`
+
+It `MUST` be a [Path](#path) to a document schema or an object with the document schema. The document schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
+
+For example as an external path:
+
+```json
+{
+  "documentSchema": "https://example.com/schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "documentSchema": {
     "type": "object",
     "properties": {
       "name": {
@@ -239,36 +269,6 @@ For example as an object:
       }
     },
     "required": ["name", "age"]
-  }
-}
-```
-
-### `table`
-
-It `MUST` be a [Path](#path) to a table schema or an object with the table schema. The table schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
-
-For example as an external path:
-
-```json
-{
-  "table": "https://example.com/table-schema.json"
-}
-```
-
-For example as an object:
-
-```json
-{
-  "table": {
-    "required": ["name", "age"],
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "age": {
-        "type": "integer"
-      }
-    }
   }
 }
 ```
