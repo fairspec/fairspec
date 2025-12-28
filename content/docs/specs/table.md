@@ -287,6 +287,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+name
+Alice
+Bob
+Charlie
+```
+
 #### Integer
 
 A column for whole number values. It `MUST` have [`type`](#type) set to `"integer"` and `MUST NOT` have a [`format`](#format) property.
@@ -301,6 +309,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+age
+25
+32
+18
 ```
 
 #### Number
@@ -319,6 +335,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+temperature
+23.5
+-10.2
+98.6
+```
+
 #### Boolean
 
 A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
@@ -333,6 +357,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+is_active
+true
+false
+true
 ```
 
 #### Array
@@ -351,6 +383,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+coordinates
+"[1.5, 2.3]"
+"[10, 20, 30]"
+"[-5.2, 8.9, 12.1]"
+```
+
 #### Object
 
 A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
@@ -365,6 +405,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+metadata
+"{""author"": ""John"", ""version"": 1}"
+"{""author"": ""Jane"", ""version"": 2}"
+"{""author"": ""Bob"", ""version"": 1}"
 ```
 
 #### List
@@ -384,6 +432,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+tags
+"red,blue,green"
+"small,compact"
+"new,sale,featured"
+```
+
 #### Base64
 
 A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
@@ -399,6 +455,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+thumbnail
+iVBORw0KGgoAAAANSUhEUgAAAAUA
+R0lGODlhAQABAIAAAAAAAP///yH5
+aGVsbG8gd29ybGQ=
 ```
 
 #### Hex
@@ -418,6 +482,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+color
+FF5733
+00BFFF
+32CD32
+```
+
 #### Email
 
 A column for email addresses. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"email"`.
@@ -433,6 +505,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+contact_email
+alice@example.com
+bob@company.org
+charlie@domain.net
 ```
 
 #### UUID
@@ -452,6 +532,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+id
+550e8400-e29b-41d4-a716-446655440000
+6ba7b810-9dad-11d1-80b4-00c04fd430c8
+f47ac10b-58cc-4372-a567-0e02b2c3d479
+```
+
 #### URL
 
 A column for URLs/URIs. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
@@ -467,6 +555,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+homepage
+https://example.com
+https://example.org/page
+https://domain.net/path/to/resource
 ```
 
 #### Datetime
@@ -486,6 +582,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+created_at
+2023-12-01T14:30:00Z
+2024-01-15T09:45:30+00:00
+2024-03-20T18:00:00-05:00
+```
+
 #### Date
 
 A column for ISO 8601 date values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date"`.
@@ -501,6 +605,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+birth_date
+2023-12-01
+1990-06-15
+2005-03-20
 ```
 
 #### Time
@@ -520,6 +632,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+start_time
+14:30:00
+09:45:30
+18:00:00
+```
+
 #### Duration
 
 A column for ISO 8601 duration values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"duration"`.
@@ -535,6 +655,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+elapsed_time
+PT1H30M
+P1DT12H
+PT45M30S
 ```
 
 #### WKT
@@ -554,6 +682,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+geometry
+"POINT (30 10)"
+"LINESTRING (30 10, 10 30, 40 40)"
+"POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
+```
+
 #### WKB
 
 A column for Well-Known Binary (WKB) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkb"`.
@@ -569,6 +705,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+geometry
+0101000000000000000000000000000000000024400000000000003E40
+0102000000030000000000000000003E400000000000002440
+0103000000010000000500000000000000000024400000000000003E40
 ```
 
 #### Year
@@ -588,6 +732,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+publication_year
+2023
+2024
+1999
+```
+
 #### GeoJSON
 
 A column for GeoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"geojson"`.
@@ -605,6 +757,14 @@ For example:
 }
 ```
 
+For CSV data like:
+```
+location
+"{""type"": ""Point"", ""coordinates"": [30, 10]}"
+"{""type"": ""LineString"", ""coordinates"": [[30, 10], [10, 30], [40, 40]]}"
+"{""type"": ""Polygon"", ""coordinates"": [[[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]]}"
+```
+
 #### TopoJSON
 
 A column for TopoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"topojson"`.
@@ -620,6 +780,14 @@ For example:
     }
   }
 }
+```
+
+For CSV data like:
+```
+topology
+"{""type"": ""Topology"", ""objects"": {""example"": {""type"": ""Point"", ""coordinates"": [0, 0]}}}"
+"{""type"": ""Topology"", ""arcs"": [[[0, 0], [1, 1]]], ""objects"": {""line"": {""type"": ""LineString"", ""arcs"": [0]}}}"
+"{""type"": ""Topology"", ""objects"": {""polygon"": {""type"": ""Polygon"", ""arcs"": [[0]]}}}"
 ```
 
 ### Column Properties
