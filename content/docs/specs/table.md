@@ -275,7 +275,7 @@ A column definition that specifies the data type, constraints, and metadata for 
 
 A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -287,19 +287,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 name
 Alice
 Bob
 Charlie
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### Integer
 
 A column for whole number values. It `MUST` have [`type`](#type) set to `"integer"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -311,19 +321,33 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 age
 25
 32
 18
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`minimum`](#minimum)
+- [`maximum`](#maximum)
+- [`exclusiveMinimum`](#exclusiveminimum)
+- [`exclusiveMaximum`](#exclusivemaximum)
+- [`multipleOf`](#multipleof)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
+
 #### Number
 
 A column for numeric values including decimals. It `MUST` have [`type`](#type) set to `"number"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -335,19 +359,33 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 temperature
 23.5
 -10.2
 98.6
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`minimum`](#minimum)
+- [`maximum`](#maximum)
+- [`exclusiveMinimum`](#exclusiveminimum)
+- [`exclusiveMaximum`](#exclusivemaximum)
+- [`multipleOf`](#multipleof)
+- [`missingValues`](#missingvalues)
+- [`decimalChar`](#decimalchar)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
+
 #### Boolean
 
 A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -359,19 +397,27 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 is_active
 true
 false
 true
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`missingValues`](#missingvalues)
+- [`trueValues`](#truevalues)
+- [`falseValues`](#falsevalues)
+
 #### Array
 
 A column for array/list values. It `MUST` have [`type`](#type) set to `"array"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -383,19 +429,25 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 coordinates
 "[1.5, 2.3]"
 "[10, 20, 30]"
 "[-5.2, 8.9, 12.1]"
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`missingValues`](#missingvalues)
+- [`<jsonSchema>`](#jsonSchema)
+
 #### Object
 
 A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -407,19 +459,37 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 metadata
 "{""author"": ""John"", ""version"": 1}"
 "{""author"": ""Jane"", ""version"": 2}"
 "{""author"": ""Bob"", ""version"": 1}"
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`missingValues`](#missingvalues)
+- [`<jsonSchema>`](#jsonSchema)
+
 #### List
 
 A column for delimited list values stored as strings. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"list"`.
 
-For example:
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`delimiter`](#delimiter)
+- [`itemType`](#itemtype)
+
+Schema example:
 
 ```json
 {
@@ -432,8 +502,8 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 tags
 "red,blue,green"
 "small,compact"
@@ -444,7 +514,17 @@ tags
 
 A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
 
-For example:
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
+Schema example:
 
 ```json
 {
@@ -457,8 +537,8 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 thumbnail
 iVBORw0KGgoAAAANSUhEUgAAAAUA
 R0lGODlhAQABAIAAAAAAAP///yH5
@@ -469,7 +549,17 @@ aGVsbG8gd29ybGQ=
 
 A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
 
-For example:
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
+Schema example:
 
 ```json
 {
@@ -482,8 +572,8 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 color
 FF5733
 00BFFF
@@ -494,7 +584,7 @@ FF5733
 
 A column for email addresses. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"email"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -507,19 +597,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 contact_email
 alice@example.com
 bob@company.org
 charlie@domain.net
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### UUID
 
 A column for UUID identifiers. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"uuid"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -532,19 +632,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 id
 550e8400-e29b-41d4-a716-446655440000
 6ba7b810-9dad-11d1-80b4-00c04fd430c8
 f47ac10b-58cc-4372-a567-0e02b2c3d479
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### URL
 
 A column for URLs/URIs. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -557,19 +667,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 homepage
 https://example.com
 https://example.org/page
 https://domain.net/path/to/resource
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### Datetime
 
 A column for ISO 8601 datetime values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -582,19 +702,30 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 created_at
 2023-12-01T14:30:00Z
 2024-01-15T09:45:30+00:00
 2024-03-20T18:00:00-05:00
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`temporalFormat`](#temporalformat)
+
 #### Date
 
 A column for ISO 8601 date values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -607,19 +738,30 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 birth_date
 2023-12-01
 1990-06-15
 2005-03-20
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`temporalFormat`](#temporalformat)
+
 #### Time
 
 A column for ISO 8601 time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"time"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -632,19 +774,30 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 start_time
 14:30:00
 09:45:30
 18:00:00
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`temporalFormat`](#temporalformat)
+
 #### Duration
 
 A column for ISO 8601 duration values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"duration"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -657,19 +810,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 elapsed_time
 PT1H30M
 P1DT12H
 PT45M30S
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### WKT
 
 A column for Well-Known Text (WKT) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkt"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -682,19 +845,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 geometry
 "POINT (30 10)"
 "LINESTRING (30 10, 10 30, 40 40)"
 "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### WKB
 
 A column for Well-Known Binary (WKB) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkb"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -707,19 +880,29 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 geometry
 0101000000000000000000000000000000000024400000000000003E40
 0102000000030000000000000000003E400000000000002440
 0103000000010000000500000000000000000024400000000000003E40
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`pattern`](#pattern)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+
 #### Year
 
 A column for year values. It `MUST` have [`type`](#type) set to `"integer"` and [`format`](#format) set to `"year"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -732,19 +915,33 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 publication_year
 2023
 2024
 1999
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`enum`](#enum)
+- [`minimum`](#minimum)
+- [`maximum`](#maximum)
+- [`exclusiveMinimum`](#exclusiveminimum)
+- [`exclusiveMaximum`](#exclusivemaximum)
+- [`multipleOf`](#multipleof)
+- [`categories`](#categories)
+- [`missingValues`](#missingvalues)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
+
 #### GeoJSON
 
 A column for GeoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"geojson"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -757,19 +954,25 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 location
 "{""type"": ""Point"", ""coordinates"": [30, 10]}"
 "{""type"": ""LineString"", ""coordinates"": [[30, 10], [10, 30], [40, 40]]}"
 "{""type"": ""Polygon"", ""coordinates"": [[[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]]}"
 ```
 
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`missingValues`](#missingvalues)
+- [`<jsonSchema>`](#jsonSchema)
+
 #### TopoJSON
 
 A column for TopoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"topojson"`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -782,13 +985,19 @@ For example:
 }
 ```
 
-For CSV data like:
-```
+Data example:
+```csv
 topology
 "{""type"": ""Topology"", ""objects"": {""example"": {""type"": ""Point"", ""coordinates"": [0, 0]}}}"
 "{""type"": ""Topology"", ""arcs"": [[[0, 0], [1, 1]]], ""objects"": {""line"": {""type"": ""LineString"", ""arcs"": [0]}}}"
 "{""type"": ""Topology"", ""objects"": {""polygon"": {""type"": ""Polygon"", ""arcs"": [[0]]}}}"
 ```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`missingValues`](#missingvalues)
+- [`<jsonSchema>`](#jsonSchema)
 
 ### Column Properties
 
@@ -806,7 +1015,7 @@ The data type of the column. It `MUST` be one of the following values:
 - `array` - Array/list values
 - `object` - Object/dictionary values
 
-For example:
+Schema example:
 
 ```json
 {
@@ -831,7 +1040,7 @@ An optional format qualifier that specifies a more specific subtype of the base 
 
 **Object formats:** `geojson`, `topojson`
 
-For example:
+Schema example:
 
 ```json
 {
@@ -851,7 +1060,7 @@ For example:
 
 An optional human-readable title for the column. It `MUST` be a string.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -871,7 +1080,7 @@ For example:
 
 An optional detailed description of the column. It `MUST` be a string.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -924,7 +1133,7 @@ For example, with integer values:
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -944,7 +1153,7 @@ For example:
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -964,7 +1173,7 @@ For example:
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -984,7 +1193,7 @@ For example:
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1004,7 +1213,7 @@ For example:
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1024,7 +1233,7 @@ For example:
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1044,7 +1253,7 @@ For example:
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1064,7 +1273,7 @@ For example:
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1084,7 +1293,7 @@ For example:
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1108,7 +1317,7 @@ For example:
 
 An optional column-specific list of values that represent missing or null data for this column. The type of missing values depends on the column type.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1131,7 +1340,7 @@ For example:
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1151,7 +1360,7 @@ For example:
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1171,7 +1380,7 @@ For example:
 
 An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1191,7 +1400,7 @@ For example:
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1211,7 +1420,7 @@ For example:
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1231,7 +1440,7 @@ For example:
 
 An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1252,7 +1461,7 @@ For example:
 
 An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1273,7 +1482,7 @@ For example:
 
 An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
 
-For example:
+Schema example:
 
 ```json
 {
@@ -1287,7 +1496,7 @@ For example:
 }
 ```
 
-#### `<jsonschema>`
+#### `<jsonSchema>`
 
 > [!NOTE]
 > Supported columns: **array**, **object**
