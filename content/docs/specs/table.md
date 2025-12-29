@@ -1030,15 +1030,9 @@ Schema example:
 #### `format`
 
 > [!NOTE]
-> Supported columns: **string**, **integer**, **object**
+> Supported columns: **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**, **GeoJSON**, **TopoJSON**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
-
-**String formats:** `list`, `email`, `uuid`, `url`, `date-time`, `date`, `time`, `duration`, `base64`, `hex`, `wkt`, `wkb`
-
-**Integer formats:** `year`
-
-**Object formats:** `geojson`, `topojson`
 
 Schema example:
 
@@ -1096,7 +1090,7 @@ Schema example:
 #### `enum`
 
 > [!NOTE]
-> Supported columns: **string**, **integer**, **number**, **boolean**
+> Supported columns: **String**, **Integer**, **Number**, **Boolean**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**
 
 An optional array of allowed values for the column. The values `MUST` match the column's type.
 
@@ -1129,7 +1123,7 @@ For example, with integer values:
 #### `pattern`
 
 > [!NOTE]
-> Supported columns: **string**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -1149,7 +1143,7 @@ Schema example:
 #### `minLength`
 
 > [!NOTE]
-> Supported columns: **string**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1169,7 +1163,7 @@ Schema example:
 #### `maxLength`
 
 > [!NOTE]
-> Supported columns: **string**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1189,7 +1183,7 @@ Schema example:
 #### `minimum`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1209,7 +1203,7 @@ Schema example:
 #### `maximum`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1229,7 +1223,7 @@ Schema example:
 #### `exclusiveMinimum`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1249,7 +1243,7 @@ Schema example:
 #### `exclusiveMaximum`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1269,7 +1263,7 @@ Schema example:
 #### `multipleOf`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
@@ -1289,7 +1283,7 @@ Schema example:
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **string**, **integer**
+> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
@@ -1336,7 +1330,7 @@ Schema example:
 #### `trueValues`
 
 > [!NOTE]
-> Supported columns: **boolean**
+> Supported columns: **Boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
@@ -1356,7 +1350,7 @@ Schema example:
 #### `falseValues`
 
 > [!NOTE]
-> Supported columns: **boolean**
+> Supported columns: **Boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
@@ -1376,7 +1370,7 @@ Schema example:
 #### `decimalChar`
 
 > [!NOTE]
-> Supported columns: **number**
+> Supported columns: **Number**
 
 An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
@@ -1396,7 +1390,7 @@ Schema example:
 #### `groupChar`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
@@ -1416,7 +1410,7 @@ Schema example:
 #### `withText`
 
 > [!NOTE]
-> Supported columns: **integer**, **number**
+> Supported columns: **Integer**, **Number**, **Year**
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
@@ -1436,7 +1430,7 @@ Schema example:
 #### `temporalFormat`
 
 > [!NOTE]
-> Supported columns: **datetime**, **date**, **time**
+> Supported columns: **Datetime**, **Date**, **Time**
 
 An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
 
@@ -1457,7 +1451,7 @@ Schema example:
 #### `delimiter`
 
 > [!NOTE]
-> Supported columns: **list**
+> Supported columns: **List**
 
 An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
 
@@ -1478,7 +1472,7 @@ Schema example:
 #### `itemType`
 
 > [!NOTE]
-> Supported columns: **list**
+> Supported columns: **List**
 
 An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
 
@@ -1499,7 +1493,7 @@ Schema example:
 #### `<jsonSchema>`
 
 > [!NOTE]
-> Supported columns: **array**, **object**
+> Supported columns: **Array**, **Object**, **GeoJSON**, **TopoJSON**
 
 For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
 
