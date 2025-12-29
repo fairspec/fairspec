@@ -275,7 +275,7 @@ A column definition that specifies the data type, constraints, and metadata for 
 
 A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -309,7 +309,7 @@ Supported properties:
 
 A column for whole number values. It `MUST` have [`type`](#type) set to `"integer"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -347,7 +347,7 @@ Supported properties:
 
 A column for numeric values including decimals. It `MUST` have [`type`](#type) set to `"number"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -385,7 +385,7 @@ Supported properties:
 
 A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -417,7 +417,7 @@ Supported properties:
 
 A column for array/list values. It `MUST` have [`type`](#type) set to `"array"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -447,7 +447,7 @@ Supported properties:
 
 A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -489,7 +489,7 @@ Supported properties:
 - [`delimiter`](#delimiter)
 - [`itemType`](#itemtype)
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -524,7 +524,7 @@ Supported properties:
 - [`categories`](#categories)
 - [`missingValues`](#missingvalues)
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -559,7 +559,7 @@ Supported properties:
 - [`categories`](#categories)
 - [`missingValues`](#missingvalues)
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -584,7 +584,7 @@ FF5733
 
 A column for email addresses. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"email"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -619,7 +619,7 @@ Supported properties:
 
 A column for UUID identifiers. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"uuid"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -654,7 +654,7 @@ Supported properties:
 
 A column for URLs/URIs. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -689,7 +689,7 @@ Supported properties:
 
 A column for ISO 8601 datetime values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -725,7 +725,7 @@ Supported properties:
 
 A column for ISO 8601 date values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -761,7 +761,7 @@ Supported properties:
 
 A column for ISO 8601 time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"time"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -797,7 +797,7 @@ Supported properties:
 
 A column for ISO 8601 duration values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"duration"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -832,7 +832,7 @@ Supported properties:
 
 A column for Well-Known Text (WKT) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkt"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -867,7 +867,7 @@ Supported properties:
 
 A column for Well-Known Binary (WKB) geometry data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"wkb"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -902,7 +902,7 @@ Supported properties:
 
 A column for year values. It `MUST` have [`type`](#type) set to `"integer"` and [`format`](#format) set to `"year"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -941,7 +941,7 @@ Supported properties:
 
 A column for GeoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"geojson"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -972,7 +972,7 @@ Supported properties:
 
 A column for TopoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"topojson"`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1015,7 +1015,7 @@ The data type of the column. It `MUST` be one of the following values:
 - `array` - Array/list values
 - `object` - Object/dictionary values
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1027,6 +1027,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+age
+25
+32
+18
+```
+
 #### `format`
 
 > [!NOTE]
@@ -1034,7 +1042,7 @@ Schema example:
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1047,6 +1055,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+email
+alice@example.com
+bob@company.org
+charlie@domain.net
+```
+
 #### `title`
 
 > [!NOTE]
@@ -1054,7 +1070,7 @@ Schema example:
 
 An optional human-readable title for the column. It `MUST` be a string.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1067,6 +1083,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+temp_c
+23.5
+-10.2
+98.6
+```
+
 #### `description`
 
 > [!NOTE]
@@ -1074,7 +1098,7 @@ Schema example:
 
 An optional detailed description of the column. It `MUST` be a string.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1085,6 +1109,14 @@ Schema example:
     }
   }
 }
+```
+
+Data example:
+```csv
+pressure
+1013.25
+1020.50
+995.30
 ```
 
 #### `enum`
@@ -1120,6 +1152,15 @@ For example, with integer values:
 }
 ```
 
+Data example:
+```csv
+status
+pending
+active
+completed
+cancelled
+```
+
 #### `pattern`
 
 > [!NOTE]
@@ -1127,7 +1168,7 @@ For example, with integer values:
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1140,6 +1181,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+product_code
+ABC-1234
+XYZ-5678
+DEF-9012
+```
+
 #### `minLength`
 
 > [!NOTE]
@@ -1147,7 +1196,7 @@ Schema example:
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1160,6 +1209,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+username
+alice
+bob123
+charlie
+```
+
 #### `maxLength`
 
 > [!NOTE]
@@ -1167,7 +1224,7 @@ Schema example:
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1180,6 +1237,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+username
+alice
+bob
+charlie
+```
+
 #### `minimum`
 
 > [!NOTE]
@@ -1187,7 +1252,7 @@ Schema example:
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1200,6 +1265,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+temperature
+-200.5
+25.3
+100.0
+```
+
 #### `maximum`
 
 > [!NOTE]
@@ -1207,7 +1280,7 @@ Schema example:
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1220,6 +1293,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+temperature
+25.5
+100.0
+999.9
+```
+
 #### `exclusiveMinimum`
 
 > [!NOTE]
@@ -1227,7 +1308,7 @@ Schema example:
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1240,6 +1321,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+probability
+0.1
+0.5
+0.999
+```
+
 #### `exclusiveMaximum`
 
 > [!NOTE]
@@ -1247,7 +1336,7 @@ Schema example:
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1260,6 +1349,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+probability
+0.001
+0.5
+0.999
+```
+
 #### `multipleOf`
 
 > [!NOTE]
@@ -1267,7 +1364,7 @@ Schema example:
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1280,6 +1377,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+price
+10.00
+25.50
+99.99
+```
+
 #### `categories`
 
 > [!NOTE]
@@ -1287,7 +1392,7 @@ Schema example:
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1304,6 +1409,15 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+severity
+1
+2
+3
+1
+```
+
 #### `missingValues`
 
 > [!NOTE]
@@ -1311,7 +1425,7 @@ Schema example:
 
 An optional column-specific list of values that represent missing or null data for this column. The type of missing values depends on the column type.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1327,6 +1441,15 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+measurement
+25.3
+-999
+NA
+42.1
+```
+
 #### `trueValues`
 
 > [!NOTE]
@@ -1334,7 +1457,7 @@ Schema example:
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1347,6 +1470,15 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+is_active
+yes
+true
+1
+Y
+```
+
 #### `falseValues`
 
 > [!NOTE]
@@ -1354,7 +1486,7 @@ Schema example:
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1367,6 +1499,15 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+is_active
+no
+false
+0
+N
+```
+
 #### `decimalChar`
 
 > [!NOTE]
@@ -1374,7 +1515,7 @@ Schema example:
 
 An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1387,6 +1528,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+price
+19,99
+5,50
+123,45
+```
+
 #### `groupChar`
 
 > [!NOTE]
@@ -1394,7 +1543,7 @@ Schema example:
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1407,6 +1556,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+population
+1,234,567
+890,123
+45,678
+```
+
 #### `withText`
 
 > [!NOTE]
@@ -1414,7 +1571,7 @@ Schema example:
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1427,14 +1584,22 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+price
+$19.99
+€25.50
+£12.34
+```
+
 #### `temporalFormat`
 
 > [!NOTE]
 > Supported columns: **Datetime**, **Date**, **Time**
 
-An optional string specifying the datetime format pattern. If not provided, ISO 8601 format is assumed.
+An optional string specifying the datetime format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1448,6 +1613,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+collection_date
+01/15/2024
+03/22/2024
+12/31/2023
+```
+
 #### `delimiter`
 
 > [!NOTE]
@@ -1455,7 +1628,7 @@ Schema example:
 
 An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1469,6 +1642,14 @@ Schema example:
 }
 ```
 
+Data example:
+```csv
+tags
+red;green;blue
+alpha;beta
+gamma;delta;epsilon
+```
+
 #### `itemType`
 
 > [!NOTE]
@@ -1476,7 +1657,7 @@ Schema example:
 
 An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
 
-Schema example:
+Metadata example:
 
 ```json
 {
@@ -1488,6 +1669,14 @@ Schema example:
     }
   }
 }
+```
+
+Data example:
+```csv
+measurements
+"1.5,2.3,4.7"
+"10.2,15.8"
+"3.14,2.71,1.41"
 ```
 
 #### `<jsonSchema>`
@@ -1514,6 +1703,14 @@ For example, with an array column:
 }
 ```
 
+Data example:
+```csv
+coordinates
+"[1.5, 2.3]"
+"[10.2, 15.8, 20.5]"
+"[3.14, 2.71]"
+```
+
 For example, with an object column:
 
 ```json
@@ -1530,6 +1727,15 @@ For example, with an object column:
   }
 }
 ```
+
+Data example:
+```csv
+metadata
+"{""author"": ""Alice"", ""version"": 1}"
+"{""author"": ""Bob"", ""version"": 2}"
+"{""author"": ""Charlie""}"
+```
+
 ## Extension
 
 > [!WARNING]
