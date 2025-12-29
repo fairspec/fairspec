@@ -308,7 +308,7 @@ Format specifies the features of all the data files in the resource. The schema 
 
 A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -318,11 +318,31 @@ For example:
 }
 ```
 
+Data example:
+```csv
+name,age,city
+Alice,30,New York
+Bob,25,London
+Charlie,35,Tokyo
+```
+
+Supported properties:
+- [`encoding`](#encoding)
+- [`delimiter`](#delimiter)
+- [`lineTerminator`](#lineterminator)
+- [`quoteChar`](#quotechar)
+- [`nullSequence`](#nullsequence)
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
+- [`columnNames`](#columnnames)
+
 #### TSV
 
 A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -332,11 +352,29 @@ For example:
 }
 ```
 
+Data example:
+```tsv
+name	age	city
+Alice	30	New York
+Bob	25	London
+Charlie	35	Tokyo
+```
+
+Supported properties:
+- [`encoding`](#encoding)
+- [`lineTerminator`](#lineterminator)
+- [`nullSequence`](#nullsequence)
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
+- [`columnNames`](#columnnames)
+
 #### JSON
 
 A format for JSON array files. It `MUST` have [`name`](#name) set to `"json"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -346,11 +384,27 @@ For example:
 }
 ```
 
+Data example:
+```json
+[
+  {"name": "Alice", "age": 30, "city": "New York"},
+  {"name": "Bob", "age": 25, "city": "London"},
+  {"name": "Charlie", "age": 35, "city": "Tokyo"}
+]
+```
+
+Supported properties:
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`columnNames`](#columnnames)
+- [`jsonPointer`](#jsonpointer)
+- [`rowType`](#rowtype)
+
 #### JSONL
 
 A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`name`](#name) set to `"jsonl"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -360,11 +414,24 @@ For example:
 }
 ```
 
+Data example:
+```jsonl
+{"name": "Alice", "age": 30, "city": "New York"}
+{"name": "Bob", "age": 25, "city": "London"}
+{"name": "Charlie", "age": 35, "city": "Tokyo"}
+```
+
+Supported properties:
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`columnNames`](#columnnames)
+- [`rowType`](#rowtype)
+
 #### XLSX
 
 A format for Microsoft Excel files. It `MUST` have [`name`](#name) set to `"xlsx"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -374,11 +441,26 @@ For example:
 }
 ```
 
+Data example:
+
+```
+<binary data>
+```
+
+Supported properties:
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
+- [`columnNames`](#columnnames)
+- [`sheetName`](#sheetname)
+- [`sheetNumber`](#sheetnumber)
+
 #### ODS
 
 A format for OpenDocument Spreadsheet files. It `MUST` have [`name`](#name) set to `"ods"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -388,11 +470,26 @@ For example:
 }
 ```
 
+Data example:
+
+```
+<binary data>
+```
+
+Supported properties:
+- [`headerRows`](#headerrows)
+- [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
+- [`columnNames`](#columnnames)
+- [`sheetName`](#sheetname)
+- [`sheetNumber`](#sheetnumber)
+
 #### SQLite
 
 A format for SQLite database files. It `MUST` have [`name`](#name) set to `"sqlite"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -402,11 +499,20 @@ For example:
 }
 ```
 
+Data example:
+
+```
+<binary data>
+```
+
+Supported properties:
+- [`tableName`](#tablename)
+
 #### Parquet
 
 A format for Apache Parquet files. It `MUST` have [`name`](#name) set to `"parquet"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -416,11 +522,19 @@ For example:
 }
 ```
 
+Data example:
+
+```
+<binary data>
+```
+
+There are no supported properties.
+
 #### Arrow
 
 A format for Apache Arrow files. It `MUST` have [`name`](#name) set to `"arrow"`.
 
-For example:
+Metadata example:
 
 ```json
 {
@@ -429,6 +543,14 @@ For example:
   }
 }
 ```
+
+Data example:
+
+```
+<binary data>
+```
+
+There are no supported properties.
 
 ### Format Properties
 

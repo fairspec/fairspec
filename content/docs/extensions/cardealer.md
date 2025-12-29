@@ -1,5 +1,5 @@
 ---
-title: Cardealer Fairspec
+title: Fairspec for Car Dealers
 sidebar:
   label: Cardealer
 ---
