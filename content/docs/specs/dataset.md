@@ -78,7 +78,7 @@ For multiple resources with more properties:
     },
     {
       "data": "https://example.com/file2.json",
-      "documentSchema": "https://example.com/document-schema.json"
+      "jsonSchema": "https://example.com/document-schema.json"
     }
   ]
 }
@@ -212,9 +212,40 @@ For example for a file with SHA-256 hash:
 }
 ```
 
+### `jsonSchema`
+
+It `MUST` be a [Path](#path) to a JSON Schema or an object with the JSON Schema. The JSON Schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
+
+For example as an external path:
+
+```json
+{
+  "jsonSchema": "https://example.com/schema.json"
+}
+```
+
+For example as an object:
+
+```json
+{
+  "jsonSchema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer"
+      }
+    },
+    "required": ["name", "age"]
+  }
+}
+```
+
 ### `tableSchema`
 
-It `MUST` be a [Path](#path) to a table schema or an object with the table schema. The table schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to a Table Schema or an object with the Table Schema. The Table Schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
 
 For example as an external path:
 
@@ -238,37 +269,6 @@ For example as an object:
         "type": "integer"
       }
     }
-  }
-}
-```
-
-### `documentSchema`
-
-It `MUST` be a [Path](#path) to a document schema or an object with the document schema. The document schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
-
-For example as an external path:
-
-```json
-{
-  "documentSchema": "https://example.com/schema.json"
-}
-```
-
-For example as an object:
-
-```json
-{
-  "documentSchema": {
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "age": {
-        "type": "integer"
-      }
-    },
-    "required": ["name", "age"]
   }
 }
 ```

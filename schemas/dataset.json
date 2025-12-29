@@ -44,8 +44,8 @@
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
         "integrity": { "$ref": "#/$defs/Integrity" },
+        "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" },
-        "documentSchema": { "$ref": "#/$defs/DocumentSchema" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
         "suffix": { "$ref": "#/$defs/DoiSuffix" },
@@ -76,6 +76,58 @@
     },
     "Data": {
       "oneOf": [{ "$ref": "#/$defs/PathData" }, { "$ref": "#/$defs/JsonData" }]
+    },
+    "Integrity": {
+      "type": "string",
+      "properties": {
+        "type": {
+          "enum": ["md5", "sha1", "sha256", "sha512"]
+        },
+        "hash": { "type": "string" }
+      }
+    },
+    "JsonSchema": {
+      "oneOf": [
+        { "$ref": "#/$defs/Path" },
+        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
+      ]
+    },
+    "TableSchema": {
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{table-ref}" }]
+    },
+    "PathData": {
+      "oneOf": [
+        { "$ref": "#/$defs/Path" },
+        { "type": "array", "item": { "$ref": "#/$defs/Path" } }
+      ]
+    },
+    "JsonData": {
+      "oneOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      ]
+    },
+    "Path": {
+      "oneOf": [
+        { "$ref": "#/$defs/InternalPath" },
+        { "$ref": "#/$defs/ExternalPath" }
+      ]
+    },
+    "InternalPath": {
+      "type": "string",
+      "pattern": "^(?![./~])(?!.*://)(?!.*\\.\\.)(?!.*\\\\)(?!.*:)[^/\\\\]+(/[^/\\\\]+)*$"
+    },
+    "ExternalPath": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "Encoding": {
+      "enum": ["utf-8", "ascii"]
     },
     "Format": {
       "allOf": [
@@ -221,58 +273,6 @@
       "properties": {
         "name": { "const": "arrow" }
       }
-    },
-    "Integrity": {
-      "type": "string",
-      "properties": {
-        "type": {
-          "enum": ["md5", "sha1", "sha256", "sha512"]
-        },
-        "hash": { "type": "string" }
-      }
-    },
-    "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{table-ref}" }]
-    },
-    "DocumentSchema": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-      ]
-    },
-    "PathData": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "type": "array", "item": { "$ref": "#/$defs/Path" } }
-      ]
-    },
-    "JsonData": {
-      "oneOf": [
-        {
-          "type": "object"
-        },
-        {
-          "type": "array",
-          "items": { "type": "object" }
-        }
-      ]
-    },
-    "Path": {
-      "oneOf": [
-        { "$ref": "#/$defs/InternalPath" },
-        { "$ref": "#/$defs/ExternalPath" }
-      ]
-    },
-    "InternalPath": {
-      "type": "string",
-      "pattern": "^(?![./~])(?!.*://)(?!.*\\.\\.)(?!.*\\\\)(?!.*:)[^/\\\\]+(/[^/\\\\]+)*$"
-    },
-    "ExternalPath": {
-      "type": "string",
-      "pattern": "^https?://"
-    },
-    "Encoding": {
-      "enum": ["utf-8", "ascii"]
     },
     "Delimiter": {
       "type": "string",
