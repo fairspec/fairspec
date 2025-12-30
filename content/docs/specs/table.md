@@ -12,7 +12,7 @@ sidebar:
   <tr>
     <th>Schema</th>
     <td>
-      <a href="https://fairspec.org/schemas/{version}/fairspec.table.json">https://fairspec.org/schemas/{version}/fairspec.table.json</a>
+      <a href="https://fairspec.org/profiles/{version}/fairspec.table.json">https://fairspec.org/profiles/{version}/fairspec.table.json</a>
     </td>
   </tr>
 </table>
@@ -31,15 +31,15 @@ A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an objec
 
 A top-level descriptor object defining a schema of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `$schema` [required] {#metaSchema}
+### `$schema` [required] {#profile}
 
-URI to one of the officially published Fairspec Table schemas. It `MUST` ends with the `fairspec.table.json` prefix.
+URI to one of the officially published Fairspec Table profiles. It `MUST` ends with the `fairspec.table.json` prefix.
 
 For example for version X.Y.Z of the schema:
 
 ```json
 {
-  "$schema": "https://fairspec.org/schemas/X.Y.Z/fairspec.table.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json"
 }
 ```
 

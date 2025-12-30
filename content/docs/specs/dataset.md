@@ -12,7 +12,7 @@ sidebar:
   <tr>
     <th>Schema</th>
     <td>
-      <a href="https://fairspec.org/schemas/{version}/fairspec.dataset.json">https://fairspec.org/schemas/{version}/fairspec.dataset.json</a>
+      <a href="https://fairspec.org/profiles/{version}/fairspec.dataset.json">https://fairspec.org/profiles/{version}/fairspec.dataset.json</a>
     </td>
   </tr>
 </table>
@@ -31,15 +31,15 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 A top-level descriptor object describing an individual dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `$schema` [required] {#metaSchema}
+### `$schema` [required] {#profile}
 
-URI to one of the officially published Fairspec Dataset schemas. It `MUST` ends with the `fairspec.dataset.json` prefix.
+URI to one of the officially published Fairspec Dataset profiles. It `MUST` ends with the `fairspec.dataset.json` prefix.
 
 For example for version X.Y.Z of the schema:
 
 ```json
 {
-  "$schema": "https://fairspec.org/schemas/X.Y.Z/fairspec.dataset.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.dataset.json"
 }
 ```
 
