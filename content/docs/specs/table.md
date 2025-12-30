@@ -298,6 +298,8 @@ Charlie
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -332,6 +334,8 @@ age
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
@@ -370,6 +374,8 @@ temperature
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
@@ -408,6 +414,8 @@ true
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`missingValues`](#missingvalues)
 - [`trueValues`](#truevalues)
@@ -440,6 +448,8 @@ coordinates
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
 
@@ -470,6 +480,8 @@ metadata
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
 
@@ -480,6 +492,8 @@ A column for delimited list values stored as strings. It `MUST` have [`type`](#t
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -517,6 +531,8 @@ A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -552,6 +568,8 @@ A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"s
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -608,6 +626,8 @@ charlie@domain.net
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -643,6 +663,8 @@ f47ac10b-58cc-4372-a567-0e02b2c3d479
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -678,6 +700,8 @@ https://domain.net/path/to/resource
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -713,6 +737,8 @@ created_at
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -749,6 +775,8 @@ birth_date
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -785,6 +813,8 @@ start_time
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -821,6 +851,8 @@ PT45M30S
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -856,6 +888,8 @@ geometry
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -891,6 +925,8 @@ geometry
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`pattern`](#pattern)
 - [`minLength`](#minlength)
@@ -926,6 +962,8 @@ publication_year
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`enum`](#enum)
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
@@ -965,6 +1003,8 @@ location
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
 
@@ -996,6 +1036,8 @@ topology
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
 
@@ -1146,6 +1188,34 @@ US
 UK
 DE
 FR
+```
+
+#### `examples`
+
+> [!NOTE]
+> Supported columns: **all column types**
+
+An optional array of example values for the column. The values `MUST` match the column's type and can be used for documentation, testing, or generating sample data.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "temperature": {
+      "type": "number",
+      "examples": [20.5, 25.3, 18.7]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+temperature
+20.5
+25.3
+18.7
 ```
 
 #### `enum`

@@ -183,7 +183,8 @@
             "enum": { "$ref": "#/$defs/StringEnum" },
             "pattern": { "$ref": "#/$defs/Pattern" },
             "categories": { "$ref": "#/$defs/StringCategories" },
-            "missingValues": { "$ref": "#/$defs/StringMissingValues" }
+            "missingValues": { "$ref": "#/$defs/StringMissingValues" },
+            "examples": { "$ref": "#/$defs/StringExamples" }
           }
         }
       ]
@@ -201,7 +202,8 @@
             "exclusiveMaximum": { "$ref": "#/$defs/IntegerExclusiveMaximum" },
             "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" },
             "categories": { "$ref": "#/$defs/IntegerCategories" },
-            "missingValues": { "$ref": "#/$defs/IntegerMissingValues" }
+            "missingValues": { "$ref": "#/$defs/IntegerMissingValues" },
+            "examples": { "$ref": "#/$defs/IntegerExamples" }
           }
         }
       ]
@@ -218,7 +220,8 @@
             "exclusiveMinimum": { "$ref": "#/$defs/NumberExclusiveMinimum" },
             "exclusiveMaximum": { "$ref": "#/$defs/NumberExclusiveMaximum" },
             "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" },
-            "missingValues": { "$ref": "#/$defs/NumberMissingValues" }
+            "missingValues": { "$ref": "#/$defs/NumberMissingValues" },
+            "examples": { "$ref": "#/$defs/NumberExamples" }
           }
         }
       ]
@@ -232,7 +235,8 @@
             "enum": { "$ref": "#/$defs/BooleanEnum" },
             "trueValues": { "$ref": "#/$defs/TrueValues" },
             "falseValues": { "$ref": "#/$defs/FalseValues" },
-            "missingValues": { "$ref": "#/$defs/BooleanMissingValues" }
+            "missingValues": { "$ref": "#/$defs/BooleanMissingValues" },
+            "examples": { "$ref": "#/$defs/BooleanExamples" }
           }
         }
       ]
@@ -243,7 +247,8 @@
         { "$ref": "https://json-schema.org/draft/2020-12/schema" },
         {
           "type": "object",
-          "missingValues": { "$ref": "#/$defs/ObjectMissingValues" }
+          "missingValues": { "$ref": "#/$defs/ObjectMissingValues" },
+          "examples": { "$ref": "#/$defs/ObjectExamples" }
         }
       ]
     },
@@ -253,7 +258,8 @@
         { "$ref": "https://json-schema.org/draft/2020-12/schema" },
         {
           "type": "array",
-          "missingValues": { "$ref": "#/$defs/ArrayMissingValues" }
+          "missingValues": { "$ref": "#/$defs/ArrayMissingValues" },
+          "examples": { "$ref": "#/$defs/ArrayExamples" }
         }
       ]
     },
@@ -737,6 +743,30 @@
           }
         ]
       }
+    },
+    "StringExamples": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "IntegerExamples": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "NumberExamples": {
+      "type": "array",
+      "items": { "type": "number" }
+    },
+    "BooleanExamples": {
+      "type": "array",
+      "items": { "type": "boolean" }
+    },
+    "ArrayExamples": {
+      "type": "array",
+      "items": { "type": "array" }
+    },
+    "ObjectExamples": {
+      "type": "array",
+      "items": { "type": "object" }
     }
   }
 }
