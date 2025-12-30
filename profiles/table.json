@@ -170,7 +170,8 @@
       "type": "object",
       "properties": {
         "title": { "$ref": "#/$defs/Title" },
-        "description": { "$ref": "#/$defs/Description" }
+        "description": { "$ref": "#/$defs/Description" },
+        "rdfType": { "$ref": "#/$defs/RdfType" }
       }
     },
     "BaseStringColumn": {
@@ -463,6 +464,10 @@
     },
     "Description": {
       "type": "string"
+    },
+    "RdfType": {
+      "type": "string",
+      "format": "uri"
     },
     "Pattern": {
       "type": "string",

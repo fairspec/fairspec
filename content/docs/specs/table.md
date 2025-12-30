@@ -1119,6 +1119,35 @@ pressure
 995.30
 ```
 
+#### `rdfType`
+
+> [!NOTE]
+> Supported columns: **all column types**
+
+An optional property that provides a richer, "semantic" description of the type of data in a column. The value `MUST` be the URI of a RDF Class, that is an instance or subclass of [RDF Schema Class object](https://www.w3.org/TR/rdf-schema/#ch_class).
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "country": {
+      "type": "string",
+      "rdfType": "http://schema.org/Country"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+country
+US
+UK
+DE
+FR
+```
+
 #### `enum`
 
 > [!NOTE]
