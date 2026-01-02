@@ -174,7 +174,7 @@
         "rdfType": { "$ref": "#/$defs/RdfType" }
       }
     },
-    "BaseStringColumn": {
+    "StringColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
@@ -184,12 +184,14 @@
             "pattern": { "$ref": "#/$defs/Pattern" },
             "categories": { "$ref": "#/$defs/StringCategories" },
             "missingValues": { "$ref": "#/$defs/StringMissingValues" },
-            "examples": { "$ref": "#/$defs/StringExamples" }
+            "examples": { "$ref": "#/$defs/StringExamples" },
+            "minLength": { "$ref": "#/$defs/MinLength" },
+            "maxLength": { "$ref": "#/$defs/MaxLength" }
           }
         }
       ]
     },
-    "BaseIntegerColumn": {
+    "IntegerColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
@@ -203,12 +205,14 @@
             "multipleOf": { "$ref": "#/$defs/IntegerMultipleOf" },
             "categories": { "$ref": "#/$defs/IntegerCategories" },
             "missingValues": { "$ref": "#/$defs/IntegerMissingValues" },
-            "examples": { "$ref": "#/$defs/IntegerExamples" }
+            "examples": { "$ref": "#/$defs/IntegerExamples" },
+            "groupChar": { "$ref": "#/$defs/GroupChar" },
+            "withText": { "type": "boolean" }
           }
         }
       ]
     },
-    "BaseNumberColumn": {
+    "NumberColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
@@ -221,12 +225,15 @@
             "exclusiveMaximum": { "$ref": "#/$defs/NumberExclusiveMaximum" },
             "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" },
             "missingValues": { "$ref": "#/$defs/NumberMissingValues" },
-            "examples": { "$ref": "#/$defs/NumberExamples" }
+            "examples": { "$ref": "#/$defs/NumberExamples" },
+            "decimalChar": { "$ref": "#/$defs/DecimalChar" },
+            "groupChar": { "$ref": "#/$defs/GroupChar" },
+            "withText": { "type": "boolean" }
           }
         }
       ]
     },
-    "BaseBooleanColumn": {
+    "BooleanColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         {
@@ -241,7 +248,7 @@
         }
       ]
     },
-    "BaseObjectColumn": {
+    "ObjectColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" },
@@ -252,7 +259,7 @@
         }
       ]
     },
-    "BaseArrayColumn": {
+    "ArrayColumn": {
       "allOf": [
         { "$ref": "#/$defs/BaseColumn" },
         { "$ref": "https://json-schema.org/draft/2020-12/schema" },
@@ -263,20 +270,9 @@
         }
       ]
     },
-    "StringColumn": {
-      "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
-        {
-          "properties": {
-            "minLength": { "$ref": "#/$defs/MinLength" },
-            "maxLength": { "$ref": "#/$defs/MaxLength" }
-          }
-        }
-      ]
-    },
     "ListColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "list" },
@@ -288,7 +284,7 @@
     },
     "Base64Column": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "base64" }
@@ -298,7 +294,7 @@
     },
     "HexColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "hex" }
@@ -308,7 +304,7 @@
     },
     "EmailColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "email" }
@@ -318,7 +314,7 @@
     },
     "UuidColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "uuid" }
@@ -328,7 +324,7 @@
     },
     "UrlColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "url" }
@@ -338,7 +334,7 @@
     },
     "DatetimeColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "date-time" },
@@ -349,7 +345,7 @@
     },
     "DateColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "date" },
@@ -360,7 +356,7 @@
     },
     "TimeColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "time" },
@@ -371,7 +367,7 @@
     },
     "DurationColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "duration" }
@@ -381,7 +377,7 @@
     },
     "WktColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "wkt" }
@@ -391,7 +387,7 @@
     },
     "WkbColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseStringColumn" },
+        { "$ref": "#/$defs/StringColumn" },
         {
           "properties": {
             "format": { "const": "wkb" }
@@ -399,22 +395,10 @@
         }
       ]
     },
-    "IntegerColumn": {
-      "additionalProperties": false,
-      "allOf": [
-        { "$ref": "#/$defs/BaseIntegerColumn" },
-        {
-          "properties": {
-            "groupChar": { "$ref": "#/$defs/GroupChar" },
-            "withText": { "type": "boolean" }
-          }
-        }
-      ]
-    },
     "YearColumn": {
       "additionalProperties": false,
       "allOf": [
-        { "$ref": "#/$defs/BaseIntegerColumn" },
+        { "$ref": "#/$defs/IntegerColumn" },
         {
           "properties": {
             "format": { "const": "year" }
@@ -422,32 +406,9 @@
         }
       ]
     },
-    "NumberColumn": {
-      "additionalProperties": false,
-      "allOf": [
-        { "$ref": "#/$defs/BaseNumberColumn" },
-        {
-          "properties": {
-            "decimalChar": { "$ref": "#/$defs/DecimalChar" },
-            "groupChar": { "$ref": "#/$defs/GroupChar" },
-            "withText": { "type": "boolean" }
-          }
-        }
-      ]
-    },
-    "BooleanColumn": {
-      "additionalProperties": false,
-      "allOf": [{ "$ref": "#/$defs/BaseBooleanColumn" }]
-    },
-    "ArrayColumn": {
-      "allOf": [{ "$ref": "#/$defs/BaseArrayColumn" }]
-    },
-    "ObjectColumn": {
-      "allOf": [{ "$ref": "#/$defs/BaseObjectColumn" }]
-    },
     "GeojsonColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseObjectColumn" },
+        { "$ref": "#/$defs/ObjectColumn" },
         {
           "properties": {
             "format": { "const": "geojson" }
@@ -457,7 +418,7 @@
     },
     "TopojsonColumn": {
       "allOf": [
-        { "$ref": "#/$defs/BaseObjectColumn" },
+        { "$ref": "#/$defs/ObjectColumn" },
         {
           "properties": {
             "format": { "const": "topojson" }

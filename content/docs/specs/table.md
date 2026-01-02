@@ -933,6 +933,8 @@ Supported properties:
 - [`maxLength`](#maxlength)
 - [`categories`](#categories)
 - [`missingValues`](#missingvalues)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
 
 #### Year
 
