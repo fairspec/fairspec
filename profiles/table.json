@@ -16,7 +16,7 @@
     },
     "MetaSchema": {
       "type": "string",
-      "pattern": "fairspec.table.json$"
+      "pattern": "table.json$"
     },
     "Required": {
       "type": "array",
