@@ -352,6 +352,7 @@
     },
     "Creator": {
       "type": "object",
+      "required": ["name"],
       "properties": {
         "name": { "type": "string" },
         "nameType": { "$ref": "#/$defs/CreatorNameType" },
@@ -360,8 +361,7 @@
         "nameIdentifiers": { "$ref": "#/$defs/CreatorNameIdentifiers" },
         "affiliation": { "$ref": "#/$defs/CreatorAffiliations" },
         "lang": { "type": "string" }
-      },
-      "required": ["name"]
+      }
     },
     "CreatorNameType": {
       "enum": ["Organizational", "Personal"]
@@ -455,12 +455,12 @@
     },
     "Contributor": {
       "type": "object",
-      "allOf": [{ "$ref": "#/$defs/Person" }],
+      "required": ["name", "contributorType"],
+      "allOf": [{ "$ref": "#/$defs/Creator" }],
       "unevaluatedProperties": false,
       "properties": {
         "contributorType": { "$ref": "#/$defs/ContributorType" }
-      },
-      "required": ["name", "contributorType"]
+      }
     },
     "ContributorType": {
       "enum": [
