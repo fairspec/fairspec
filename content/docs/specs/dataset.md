@@ -171,7 +171,7 @@ For a JSON array of objects:
 
 ### `format`
 
-The format definition of the file. It `MUST` be a [Format](#format). For multiple files the `format` property defines the format for all the files.
+The format definition of the file. It `MUST` be a [Format](#format). For multipart files the `format` property defines the format for all the files.
 
 For example, for a file with CSV format:
 
@@ -184,17 +184,16 @@ For example, for a file with CSV format:
 }
 ```
 
-### `encoding`
+### `textual`
 
-This property specifies the character encoding used in the file if the file is textual. The file `MUST` be decodable to a text with the provided encoding. It `MUST` be one of the following values:
-
-- `utf-8`
+A boolean indicating whether the file is text-based. When `true`, the file `MUST` be `utf-8` encoded.
 
 For example:
 
 ```json
 {
-  "encoding": "utf-8"
+  "data": "document.md",
+  "textual": true
 }
 ```
 
@@ -320,7 +319,7 @@ Format specifies the features of all the data files in the resource. The schema 
 
 #### CSV
 
-A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`.
+A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`. It `MUST` be `utf-8` encoded.
 
 Metadata example:
 
@@ -353,7 +352,7 @@ Supported properties:
 
 #### TSV
 
-A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`.
+A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`. It `MUST` be `utf-8` encoded.
 
 Metadata example:
 

@@ -47,7 +47,7 @@
         "name": { "$ref": "#/$defs/Name" },
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
-        "encoding": { "$ref": "#/$defs/Encoding" },
+        "textual": { "$ref": "#/$defs/Textual" },
         "integrity": { "$ref": "#/$defs/Integrity" },
         "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" },
@@ -131,8 +131,8 @@
       "type": "string",
       "pattern": "^https?://"
     },
-    "Encoding": {
-      "enum": ["utf-8"]
+    "Textual": {
+      "type": "boolean"
     },
     "Format": {
       "allOf": [
