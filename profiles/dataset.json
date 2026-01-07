@@ -47,6 +47,7 @@
         "name": { "$ref": "#/$defs/Name" },
         "data": { "$ref": "#/$defs/Data" },
         "format": { "$ref": "#/$defs/Format" },
+        "encoding": { "$ref": "#/$defs/Encoding" },
         "integrity": { "$ref": "#/$defs/Integrity" },
         "jsonSchema": { "$ref": "#/$defs/JsonSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" },
@@ -131,7 +132,7 @@
       "pattern": "^https?://"
     },
     "Encoding": {
-      "enum": ["utf-8", "ascii"]
+      "enum": ["utf-8"]
     },
     "Format": {
       "allOf": [
@@ -178,7 +179,6 @@
       "required": ["name"],
       "properties": {
         "name": { "const": "csv" },
-        "encoding": { "$ref": "#/$defs/Encoding" },
         "delimiter": { "$ref": "#/$defs/Delimiter" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "quoteChar": { "$ref": "#/$defs/QuoteChar" },
@@ -195,7 +195,6 @@
       "required": ["name"],
       "properties": {
         "name": { "const": "tsv" },
-        "encoding": { "$ref": "#/$defs/Encoding" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "nullSequence": { "$ref": "#/$defs/NullSequence" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -625,7 +624,7 @@
         "relatedMetadataScheme": { "type": "string" },
         "schemeUri": { "type": "string", "format": "uri" },
         "schemeType": { "type": "string" },
-        "resourceTypeGeneral": { "$ref": "#/$defs/ResourceTypeGeneral" }
+        "resourceTypeGeneral": { "$ref": "#/$defs/ContentTypeGeneral" }
       },
       "required": ["relationType"]
     },
@@ -868,7 +867,7 @@
         "relatedItemIdentifier": {
           "$ref": "#/$defs/RelatedItemIdentifier"
         },
-        "relatedItemType": { "$ref": "#/$defs/ResourceTypeGeneral" },
+        "relatedItemType": { "$ref": "#/$defs/ContentTypeGeneral" },
         "creators": { "$ref": "#/$defs/Creators" },
         "contributors": { "$ref": "#/$defs/Contributors" },
         "titles": { "$ref": "#/$defs/Titles" },

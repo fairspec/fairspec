@@ -184,6 +184,20 @@ For example, for a file with CSV format:
 }
 ```
 
+### `encoding`
+
+This property specifies the character encoding used in the file if the file is textual. The file `MUST` be decodable to a text with the provided encoding. It `MUST` be one of the following values:
+
+- `utf-8`
+
+For example:
+
+```json
+{
+  "encoding": "utf-8"
+}
+```
+
 ### `integrity`
 
 The integrity check of the file. It `MUST` be a JSON object with the following properties:
@@ -327,7 +341,6 @@ Charlie,35,Tokyo
 ```
 
 Supported properties:
-- [`encoding`](#encoding)
 - [`delimiter`](#delimiter)
 - [`lineTerminator`](#lineterminator)
 - [`quoteChar`](#quotechar)
@@ -361,7 +374,6 @@ Charlie	35	Tokyo
 ```
 
 Supported properties:
-- [`encoding`](#encoding)
 - [`lineTerminator`](#lineterminator)
 - [`nullSequence`](#nullsequence)
 - [`headerRows`](#headerrows)
@@ -577,24 +589,6 @@ For example for a CSV file:
 {
   "format": {
     "name": "csv"
-  }
-}
-```
-
-#### `encoding`
-
-> [!NOTE]
-> Supported formats: **csv**, **tsv**
-
-It `MUST` be one of the following values: `utf-8`, `ascii`. This property specifies the character encoding used in the file.
-
-For example:
-
-```json
-{
-  "format": {
-    "name": "csv",
-    "encoding": "utf-8"
   }
 }
 ```
