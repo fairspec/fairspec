@@ -43,6 +43,33 @@ For example for version X.Y.Z of the schema:
 }
 ```
 
+### `title`
+
+An optional human-readable title for the table schema. It `MUST` be a string.
+
+For example:
+
+```json
+{
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json",
+  "title": "Experimental Measurements Dataset"
+}
+```
+
+### `description`
+
+An optional detailed description explaining the purpose and contents of the table schema. It `MUST` be a string.
+
+For example:
+
+```json
+{
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json",
+  "title": "Experimental Measurements Dataset",
+  "description": "Temperature and pressure measurements collected during chemical reaction experiments performed in laboratory conditions."
+}
+```
+
 ### `required`
 
 An optional list of column names that `MUST` be present in the table. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
@@ -1107,7 +1134,7 @@ bob@company.org
 charlie@domain.net
 ```
 
-#### `title`
+#### `title` {#column-title}
 
 > [!NOTE]
 > Supported columns: **all column types**
@@ -1135,7 +1162,7 @@ temp_c
 98.6
 ```
 
-#### `description`
+#### `description` {#column-description}
 
 > [!NOTE]
 > Supported columns: **all column types**
