@@ -443,7 +443,6 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`examples`](#examples)
-- [`enum`](#enum)
 - [`missingValues`](#missingvalues)
 - [`trueValues`](#truevalues)
 - [`falseValues`](#falsevalues)
@@ -662,46 +661,9 @@ Supported properties:
 - [`categories`](#categories)
 - [`missingValues`](#missingvalues)
 
-#### UUID
-
-A column for UUID identifiers. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"uuid"`.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-id
-550e8400-e29b-41d4-a716-446655440000
-6ba7b810-9dad-11d1-80b4-00c04fd430c8
-f47ac10b-58cc-4372-a567-0e02b2c3d479
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`examples`](#examples)
-- [`enum`](#enum)
-- [`pattern`](#pattern)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
-
 #### URL
 
-A column for URLs/URIs. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
+A column for URLs with HTTP/HTTPS protocol. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
 
 Metadata example:
 
@@ -1068,7 +1030,7 @@ age
 #### `format`
 
 > [!NOTE]
-> Supported columns: **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
+> Supported columns: **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
@@ -1209,7 +1171,7 @@ temperature
 #### `enum`
 
 > [!NOTE]
-> Supported columns: **String**, **Integer**, **Number**, **Boolean**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **Integer**, **Number**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional array of allowed values for the column. The values `MUST` match the column's type.
 
@@ -1251,7 +1213,7 @@ cancelled
 #### `pattern`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -1279,7 +1241,7 @@ DEF-9012
 #### `minLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1307,7 +1269,7 @@ charlie
 #### `maxLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1475,7 +1437,7 @@ price
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 

@@ -78,7 +78,6 @@
             "hex",
             "base64",
             "email",
-            "uuid",
             "url",
             "date-time",
             "date",
@@ -109,10 +108,6 @@
         {
           "if": { "properties": { "format": { "const": "email" } } },
           "then": { "$ref": "#/$defs/EmailColumnProperty" }
-        },
-        {
-          "if": { "properties": { "format": { "const": "uuid" } } },
-          "then": { "$ref": "#/$defs/UuidColumnProperty" }
         },
         {
           "if": { "properties": { "format": { "const": "url" } } },
@@ -256,7 +251,6 @@
       "allOf": [{ "$ref": "#/$defs/BaseColumnProperty" }],
       "properties": {
         "type": { "const": "boolean" },
-        "enum": { "$ref": "#/$defs/BooleanEnum" },
         "trueValues": { "$ref": "#/$defs/TrueValues" },
         "falseValues": { "$ref": "#/$defs/FalseValues" },
         "missingValues": { "$ref": "#/$defs/BooleanMissingValues" },
@@ -309,12 +303,6 @@
       "allOf": [{ "$ref": "#/$defs/StringColumnProperty" }],
       "properties": {
         "format": { "const": "email" }
-      }
-    },
-    "UuidColumnProperty": {
-      "allOf": [{ "$ref": "#/$defs/StringColumnProperty" }],
-      "properties": {
-        "format": { "const": "uuid" }
       }
     },
     "UrlColumnProperty": {
@@ -456,6 +444,10 @@
         "time"
       ]
     },
+    "StringEnum": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "IntegerEnum": {
       "type": "array",
       "items": { "type": "integer" }
@@ -463,14 +455,6 @@
     "NumberEnum": {
       "type": "array",
       "items": { "type": "number" }
-    },
-    "BooleanEnum": {
-      "type": "array",
-      "items": { "type": "boolean" }
-    },
-    "StringEnum": {
-      "type": "array",
-      "items": { "type": "string" }
     },
     "PrimaryKey": {
       "type": "array",
