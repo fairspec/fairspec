@@ -270,7 +270,7 @@ For example, with a composite foreign key:
 
 ### `missingValues`
 
-An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value (string, integer, number, or boolean) or an object with `value` and optional `label` properties for documentation purposes.
+An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and optional `label` properties for documentation purposes. The missing values type `MUST` be string, integer or number.
 
 For example, with simple values:
 
@@ -1551,7 +1551,11 @@ severity
 > [!NOTE]
 > Supported columns: **all column types**
 
-An optional column-specific list of values that represent missing or null data for this column. The type of missing values depends on the column type.
+An optional column-specific list of values that represent missing or null data for this column. The type of missing values `MUST` be:
+
+- a string or an integer for integer columns
+- a string or a number for number columns
+- a string for all other columns
 
 Metadata example:
 
