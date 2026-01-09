@@ -145,19 +145,10 @@
       ]
     },
     "IntegerColumnPropertyGroup": {
-      "properties": {
-        "format": {
-          "enum": ["year"]
-        }
-      },
       "allOf": [
         {
           "if": { "not": { "required": ["format"] } },
           "then": { "$ref": "#/$defs/IntegerColumnProperty" }
-        },
-        {
-          "if": { "properties": { "format": { "const": "year" } } },
-          "then": { "$ref": "#/$defs/YearColumnProperty" }
         }
       ]
     },
@@ -369,12 +360,6 @@
       "allOf": [{ "$ref": "#/$defs/StringColumnProperty" }],
       "properties": {
         "format": { "const": "wkb" }
-      }
-    },
-    "YearColumnProperty": {
-      "allOf": [{ "$ref": "#/$defs/IntegerColumnProperty" }],
-      "properties": {
-        "format": { "const": "year" }
       }
     },
     "GeojsonColumnProperty": {

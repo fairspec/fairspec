@@ -963,47 +963,6 @@ Supported properties:
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
-#### Year
-
-A column for year values. It `MUST` have [`type`](#type) set to `"integer"` and [`format`](#format) set to `"year"`.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "publication_year": {
-      "type": "integer",
-      "format": "year"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-publication_year
-2023
-2024
-1999
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`examples`](#examples)
-- [`enum`](#enum)
-- [`minimum`](#minimum)
-- [`maximum`](#maximum)
-- [`exclusiveMinimum`](#exclusiveminimum)
-- [`exclusiveMaximum`](#exclusivemaximum)
-- [`multipleOf`](#multipleof)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
-- [`groupChar`](#groupchar)
-- [`withText`](#withtext)
-
 #### GeoJSON
 
 A column for GeoJSON geometry objects. It `MUST` have [`type`](#type) set to `"object"` and [`format`](#format) set to `"geojson"`.
@@ -1109,7 +1068,7 @@ age
 #### `format`
 
 > [!NOTE]
-> Supported columns: **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**, **GeoJSON**, **TopoJSON**
+> Supported columns: **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
@@ -1250,7 +1209,7 @@ temperature
 #### `enum`
 
 > [!NOTE]
-> Supported columns: **String**, **Integer**, **Number**, **Boolean**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**
+> Supported columns: **String**, **Integer**, **Number**, **Boolean**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional array of allowed values for the column. The values `MUST` match the column's type.
 
@@ -1376,7 +1335,7 @@ charlie
 #### `minimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1404,7 +1363,7 @@ temperature
 #### `maximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1432,7 +1391,7 @@ temperature
 #### `exclusiveMinimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1460,7 +1419,7 @@ probability
 #### `exclusiveMaximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1488,7 +1447,7 @@ probability
 #### `multipleOf`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
@@ -1516,7 +1475,7 @@ price
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **Year**
+> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **UUID**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
@@ -1671,7 +1630,7 @@ price
 #### `groupChar`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
@@ -1699,7 +1658,7 @@ population
 #### `withText`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Year**
+> Supported columns: **Integer**, **Number**
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
