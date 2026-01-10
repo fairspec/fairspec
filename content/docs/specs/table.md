@@ -298,17 +298,17 @@ A column definition that specifies the data type, constraints, and metadata for 
 
 ### Column Types
 
-#### String
+#### Boolean
 
-A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
+A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "name": {
-      "type": "string"
+    "is_active": {
+      "type": "boolean"
     }
   }
 }
@@ -316,23 +316,21 @@ Metadata example:
 
 Data example:
 ```csv
-name
-Alice
-Bob
-Charlie
+is_active
+true
+false
+true
 ```
 
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`categories`](#categories)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
+- [`trueValues`](#truevalues)
+- [`falseValues`](#falsevalues)
 
 #### Integer
 
@@ -362,15 +360,15 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
 - [`exclusiveMaximum`](#exclusivemaximum)
 - [`multipleOf`](#multipleof)
 - [`categories`](#categories)
-- [`missingValues`](#missingvalues)
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
@@ -402,29 +400,30 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
 - [`exclusiveMaximum`](#exclusivemaximum)
 - [`multipleOf`](#multipleof)
-- [`missingValues`](#missingvalues)
+- [`categories`](#categories)
 - [`decimalChar`](#decimalchar)
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
-#### Boolean
+#### String
 
-A column for true/false values. It `MUST` have [`type`](#type) set to `"boolean"` and `MUST NOT` have a [`format`](#format) property.
+A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "is_active": {
-      "type": "boolean"
+    "name": {
+      "type": "string"
     }
   }
 }
@@ -432,84 +431,23 @@ Metadata example:
 
 Data example:
 ```csv
-is_active
-true
-false
-true
+name
+Alice
+Bob
+Charlie
 ```
 
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
+- [`enum`](#enum)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
-- [`trueValues`](#truevalues)
-- [`falseValues`](#falsevalues)
-
-#### Array
-
-A column for array/list values. It `MUST` have [`type`](#type) set to `"array"` and `MUST NOT` have a [`format`](#format) property.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "coordinates": {
-      "type": "array"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-coordinates
-"[1.5, 2.3]"
-"[10, 20, 30]"
-"[-5.2, 8.9, 12.1]"
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`<jsonSchema>`](#jsonSchema)
-
-#### Object
-
-A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "metadata": {
-      "type": "object"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-metadata
-"{""author"": ""John"", ""version"": 1}"
-"{""author"": ""Jane"", ""version"": 2}"
-"{""author"": ""Bob"", ""version"": 1}"
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`<jsonSchema>`](#jsonSchema)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+- [`categories`](#categories)
 
 #### List
 
@@ -519,15 +457,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
-- [`delimiter`](#delimiter)
-- [`itemType`](#itemtype)
+- [`pattern`](#pattern)
 
 Metadata example:
 
@@ -558,13 +493,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 Metadata example:
 
@@ -595,13 +529,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 Metadata example:
 
@@ -653,13 +586,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 #### URL
 
@@ -690,13 +622,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 #### Datetime
 
@@ -727,13 +658,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 - [`temporalFormat`](#temporalformat)
 
 #### Date
@@ -765,13 +695,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 - [`temporalFormat`](#temporalformat)
 
 #### Time
@@ -803,13 +732,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 - [`temporalFormat`](#temporalformat)
 
 #### Duration
@@ -841,13 +769,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 #### WKT
 
@@ -878,13 +805,12 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
-- [`missingValues`](#missingvalues)
+- [`pattern`](#pattern)
 
 #### WKB
 
@@ -915,15 +841,78 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
-- [`examples`](#examples)
 - [`enum`](#enum)
-- [`pattern`](#pattern)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
-- [`categories`](#categories)
+- [`pattern`](#pattern)
+
+#### Array
+
+A column for array/list values. It `MUST` have [`type`](#type) set to `"array"` and `MUST NOT` have a [`format`](#format) property.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "coordinates": {
+      "type": "array"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+coordinates
+"[1.5, 2.3]"
+"[10, 20, 30]"
+"[-5.2, 8.9, 12.1]"
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`examples`](#examples)
 - [`missingValues`](#missingvalues)
-- [`groupChar`](#groupchar)
-- [`withText`](#withtext)
+- [`<jsonSchema>`](#jsonSchema)
+
+#### Object
+
+A column for object/dictionary values. It `MUST` have [`type`](#type) set to `"object"` and `MUST NOT` have a [`format`](#format) property.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "metadata": {
+      "type": "object"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+metadata
+"{""author"": ""John"", ""version"": 1}"
+"{""author"": ""Jane"", ""version"": 2}"
+"{""author"": ""Bob"", ""version"": 1}"
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`<jsonSchema>`](#jsonSchema)
 
 #### GeoJSON
 
@@ -954,9 +943,9 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
+- [`enum`](#enum)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
-- [`<jsonSchema>`](#jsonSchema)
 
 #### TopoJSON
 
@@ -987,9 +976,9 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 - [`rdfType`](#rdftype)
+- [`enum`](#enum)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
-- [`<jsonSchema>`](#jsonSchema)
 
 ### Column Properties
 
@@ -1140,38 +1129,10 @@ DE
 FR
 ```
 
-#### `examples`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional array of example values for the column. The values `MUST` match the column's type and can be used for documentation, testing, or generating sample data.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "temperature": {
-      "type": "number",
-      "examples": [20.5, 25.3, 18.7]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-temperature
-20.5
-25.3
-18.7
-```
-
 #### `enum`
 
 > [!NOTE]
-> Supported columns: **String**, **Integer**, **Number**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **all column types**
 
 An optional array of allowed values for the column. The values `MUST` match the column's type.
 
@@ -1210,21 +1171,21 @@ completed
 cancelled
 ```
 
-#### `pattern`
+#### `examples`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **all column types**
 
-An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
+An optional array of example values for the column. The values `MUST` match the column's type and can be used for documentation, testing, or generating sample data.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "product_code": {
-      "type": "string",
-      "pattern": "^[A-Z]{3}-[0-9]{4}$"
+    "temperature": {
+      "type": "number",
+      "examples": [20.5, 25.3, 18.7]
     }
   }
 }
@@ -1232,27 +1193,34 @@ Metadata example:
 
 Data example:
 ```csv
-product_code
-ABC-1234
-XYZ-5678
-DEF-9012
+temperature
+20.5
+25.3
+18.7
 ```
 
-#### `minLength`
+#### `missingValues`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **all column types**
 
-An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
+An optional column-specific list of values that represent missing or null data for this column. The type of missing values `MUST` be:
+
+- a string or an integer for integer columns
+- a string or a number for number columns
+- a string for all other columns
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "username": {
-      "type": "string",
-      "minLength": 3
+    "measurement": {
+      "type": "number",
+      "missingValues": [
+        { "value": -999, "label": "Sensor malfunction" },
+        { "value": "NA", "label": "Not measured" }
+      ]
     }
   }
 }
@@ -1260,27 +1228,28 @@ Metadata example:
 
 Data example:
 ```csv
-username
-alice
-bob123
-charlie
+measurement
+25.3
+-999
+NA
+42.1
 ```
 
-#### `maxLength`
+#### `trueValues`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **Boolean**
 
-An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
+An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "username": {
-      "type": "string",
-      "maxLength": 20
+    "is_active": {
+      "type": "boolean",
+      "trueValues": ["yes", "true", "1", "Y"]
     }
   }
 }
@@ -1288,10 +1257,40 @@ Metadata example:
 
 Data example:
 ```csv
-username
-alice
-bob
-charlie
+is_active
+yes
+true
+1
+Y
+```
+
+#### `falseValues`
+
+> [!NOTE]
+> Supported columns: **Boolean**
+
+An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "is_active": {
+      "type": "boolean",
+      "falseValues": ["no", "false", "0", "N"]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+is_active
+no
+false
+0
+N
 ```
 
 #### `minimum`
@@ -1434,133 +1433,6 @@ price
 99.99
 ```
 
-#### `categories`
-
-> [!NOTE]
-> Supported columns: **String**, **Integer**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
-
-An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "severity": {
-      "type": "integer",
-      "categories": [
-        { "value": 1, "label": "Low" },
-        { "value": 2, "label": "Medium" },
-        { "value": 3, "label": "High" }
-      ]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-severity
-1
-2
-3
-1
-```
-
-#### `missingValues`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional column-specific list of values that represent missing or null data for this column. The type of missing values `MUST` be:
-
-- a string or an integer for integer columns
-- a string or a number for number columns
-- a string for all other columns
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "measurement": {
-      "type": "number",
-      "missingValues": [
-        { "value": -999, "label": "Sensor malfunction" },
-        { "value": "NA", "label": "Not measured" }
-      ]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-measurement
-25.3
--999
-NA
-42.1
-```
-
-#### `trueValues`
-
-> [!NOTE]
-> Supported columns: **Boolean**
-
-An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "is_active": {
-      "type": "boolean",
-      "trueValues": ["yes", "true", "1", "Y"]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-is_active
-yes
-true
-1
-Y
-```
-
-#### `falseValues`
-
-> [!NOTE]
-> Supported columns: **Boolean**
-
-An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "is_active": {
-      "type": "boolean",
-      "falseValues": ["no", "false", "0", "N"]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-is_active
-no
-false
-0
-N
-```
-
 #### `decimalChar`
 
 > [!NOTE]
@@ -1645,22 +1517,21 @@ $19.99
 £12.34
 ```
 
-#### `temporalFormat`
+#### `minLength`
 
 > [!NOTE]
-> Supported columns: **Datetime**, **Date**, **Time**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
-An optional string specifying the datetime format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
+An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "collection_date": {
+    "username": {
       "type": "string",
-      "format": "date",
-      "temporalFormat": "%m/%d/%Y"
+      "minLength": 3
     }
   }
 }
@@ -1668,10 +1539,133 @@ Metadata example:
 
 Data example:
 ```csv
-collection_date
-01/15/2024
-03/22/2024
-12/31/2023
+username
+alice
+bob123
+charlie
+```
+
+#### `maxLength`
+
+> [!NOTE]
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+
+An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "username": {
+      "type": "string",
+      "maxLength": 20
+    }
+  }
+}
+```
+
+Data example:
+```csv
+username
+alice
+bob
+charlie
+```
+
+#### `pattern`
+
+> [!NOTE]
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+
+An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "product_code": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}-[0-9]{4}$"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+product_code
+ABC-1234
+XYZ-5678
+DEF-9012
+```
+
+#### `categories`
+
+> [!NOTE]
+> Supported columns: **Integer**, **Number**, **String**
+
+An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "severity": {
+      "type": "integer",
+      "categories": [
+        { "value": 1, "label": "Low" },
+        { "value": 2, "label": "Medium" },
+        { "value": 3, "label": "High" }
+      ]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+severity
+1
+2
+3
+1
+```
+
+#### `categoriesOrdered`
+
+> [!NOTE]
+> Supported columns: **Integer**, **Number**, **String**
+
+An optional boolean indicating that the categorical values in the column are ordered.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "severity": {
+      "type": "integer",
+      "categoriesOrdered": true,
+      "categories": [
+        { "value": 1, "label": "Low" },
+        { "value": 2, "label": "Medium" },
+        { "value": 3, "label": "High" }
+      ]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+severity
+1
+2
+3
+1
 ```
 
 #### `delimiter`
@@ -1732,10 +1726,39 @@ measurements
 "3.14,2.71,1.41"
 ```
 
+#### `temporalFormat`
+
+> [!NOTE]
+> Supported columns: **Datetime**, **Date**, **Time**
+
+An optional string specifying the datetime format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "collection_date": {
+      "type": "string",
+      "format": "date",
+      "temporalFormat": "%m/%d/%Y"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+collection_date
+01/15/2024
+03/22/2024
+12/31/2023
+```
+
 #### `<jsonSchema>`
 
 > [!NOTE]
-> Supported columns: **Array**, **Object**, **GeoJSON**, **TopoJSON**
+> Supported columns: **Array**, **Object**
 
 For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
 
