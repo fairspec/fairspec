@@ -270,7 +270,7 @@ For example, with a composite foreign key:
 
 ### `missingValues`
 
-An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be string, integer or number.
+An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The values type `MUST` be `"string"` or `"integer"`.
 
 For example, with simple values:
 
@@ -379,9 +379,10 @@ Supported properties:
 - [`exclusiveMinimum`](#exclusiveminimum)
 - [`exclusiveMaximum`](#exclusivemaximum)
 - [`multipleOf`](#multipleof)
-- [`categories`](#categories)
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
+- [`categories`](#categories)
+- [`categoriesOrdered`](#categoriesordered)
 
 #### Number
 
@@ -419,7 +420,6 @@ Supported properties:
 - [`exclusiveMinimum`](#exclusiveminimum)
 - [`exclusiveMaximum`](#exclusivemaximum)
 - [`multipleOf`](#multipleof)
-- [`categories`](#categories)
 - [`decimalChar`](#decimalchar)
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
@@ -459,6 +459,7 @@ Supported properties:
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
 - [`categories`](#categories)
+- [`categoriesOrdered`](#categoriesordered)
 
 #### List
 
@@ -1217,9 +1218,8 @@ temperature
 
 An optional column-level list of values that represent missing or null data for this column. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be:
 
-- a string or an integer for integer-compatible columns
-- a string or a number for number-compatible columns
-- a string for all other columns
+- `"string"` or `"integer"` for boolean, integer, and number columns
+- `"string"` for all other columns
 
 If table-level missing values are provided, the effective missing values `MUST` include all the column-level values and all the compatible table-level values.
 
@@ -1617,7 +1617,7 @@ DEF-9012
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **String**
+> Supported columns: **Integer**, **String**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
 
@@ -1650,7 +1650,7 @@ severity
 #### `categoriesOrdered`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **String**
+> Supported columns: **Integer**, **String**
 
 An optional boolean indicating that the categorical values in the column are ordered.
 

@@ -206,7 +206,7 @@
         "type": { "const": "boolean" },
         "enum": { "$ref": "#/$defs/BooleanEnum" },
         "examples": { "$ref": "#/$defs/BooleanExamples" },
-        "missingValues": { "$ref": "#/$defs/StringMissingValues" },
+        "missingValues": { "$ref": "#/$defs/MissingValues" },
         "trueValues": { "$ref": "#/$defs/TrueValues" },
         "falseValues": { "$ref": "#/$defs/FalseValues" }
       }
@@ -235,7 +235,7 @@
         "type": { "const": "number" },
         "enum": { "$ref": "#/$defs/NumberEnum" },
         "examples": { "$ref": "#/$defs/NumberExamples" },
-        "missingValues": { "$ref": "#/$defs/NumberMissingValues" },
+        "missingValues": { "$ref": "#/$defs/MissingValues" },
         "minimum": { "$ref": "#/$defs/NumberMinimum" },
         "maximum": { "$ref": "#/$defs/NumberMaximum" },
         "exclusiveMinimum": { "$ref": "#/$defs/NumberExclusiveMinimum" },
@@ -243,9 +243,7 @@
         "multipleOf": { "$ref": "#/$defs/NumberMultipleOf" },
         "decimalChar": { "$ref": "#/$defs/DecimalChar" },
         "groupChar": { "$ref": "#/$defs/GroupChar" },
-        "withText": { "type": "boolean" },
-        "categories": { "$ref": "#/$defs/NumberCategories" },
-        "categoriesOrdered": { "type": "boolean" }
+        "withText": { "type": "boolean" }
       }
     },
     "BaseStringColumnProperty": {
@@ -503,11 +501,11 @@
       "type": "array",
       "items": {
         "oneOf": [
-          { "type": ["string", "number"] },
+          { "type": ["string", "integer"] },
           {
             "type": "object",
             "properties": {
-              "value": { "type": ["string", "integer", "number"] },
+              "value": { "type": ["string", "integer"] },
               "label": { "type": "string" }
             }
           }
@@ -523,36 +521,6 @@
             "type": "object",
             "properties": {
               "value": { "type": "string" },
-              "label": { "type": "string" }
-            }
-          }
-        ]
-      }
-    },
-    "IntegerMissingValues": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          { "type": ["string", "integer"] },
-          {
-            "type": "object",
-            "properties": {
-              "value": { "type": ["string", "integer"] },
-              "label": { "type": "string" }
-            }
-          }
-        ]
-      }
-    },
-    "NumberMissingValues": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          { "type": ["string", "number"] },
-          {
-            "type": "object",
-            "properties": {
-              "value": { "type": ["string", "number"] },
               "label": { "type": "string" }
             }
           }
@@ -616,21 +584,6 @@
             "type": "object",
             "properties": {
               "value": { "type": "integer" },
-              "label": { "type": "string" }
-            }
-          }
-        ]
-      }
-    },
-    "NumberCategories": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          { "type": "number" },
-          {
-            "type": "object",
-            "properties": {
-              "value": { "type": "number" },
               "label": { "type": "string" }
             }
           }
