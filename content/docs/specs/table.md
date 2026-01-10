@@ -270,7 +270,7 @@ For example, with a composite foreign key:
 
 ### `missingValues`
 
-An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and optional `label` properties for documentation purposes. The missing values type `MUST` be string, integer or number.
+An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be string, integer or number.
 
 For example, with simple values:
 
@@ -287,6 +287,17 @@ For example, with labeled values:
   "missingValues": [
     { "value": "NA", "label": "Not Available" },
     { "value": "NR", "label": "Not Recorded" },
+    { "value": -999, "label": "Sensor Error" }
+  ]
+}
+```
+
+For example, with mixed values:
+
+```json
+{
+  "missingValues": [
+    'NA',
     { "value": -999, "label": "Sensor Error" }
   ]
 }
@@ -1199,16 +1210,18 @@ temperature
 18.7
 ```
 
-#### `missingValues`
+#### `missingValues` {#coumn-missingvalues}
 
 > [!NOTE]
 > Supported columns: **all column types**
 
-An optional column-specific list of values that represent missing or null data for this column. The type of missing values `MUST` be:
+An optional column-level list of values that represent missing or null data for this column. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be:
 
-- a string or an integer for integer columns
-- a string or a number for number columns
+- a string or an integer for integer-compatible columns
+- a string or a number for number-compatible columns
 - a string for all other columns
+
+If table-level missing values are provided, the effective missing values `MUST` include all the column-level values and all the compatible table-level values.
 
 Metadata example:
 
