@@ -5,7 +5,7 @@
     "TableSchema": {
       "type": "object",
       "properties": {
-        "$schema": { "$ref": "#/$defs/MetaSchema" },
+        "$schema": { "$ref": "#/$defs/Profile" },
         "title": { "$ref": "#/$defs/Title" },
         "description": { "$ref": "#/$defs/Description" },
         "required": { "$ref": "#/$defs/Required" },
@@ -16,7 +16,7 @@
         "foreignKeys": { "$ref": "#/$defs/ForeignKeys" }
       }
     },
-    "MetaSchema": {
+    "Profile": {
       "type": "string",
       "pattern": "table.json$"
     },

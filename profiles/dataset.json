@@ -6,7 +6,7 @@
       "type": "object",
       "required": ["$schema"],
       "properties": {
-        "$schema": { "$ref": "#/$defs/MetaSchema" },
+        "$schema": { "$ref": "#/$defs/Profile" },
         "resources": { "$ref": "#/$defs/Resources" },
         "doi": { "$ref": "#/$defs/Doi" },
         "prefix": { "$ref": "#/$defs/DoiPrefix" },
@@ -32,7 +32,7 @@
         "relatedItems": { "$ref": "#/$defs/RelatedItems" }
       }
     },
-    "MetaSchema": {
+    "Profile": {
       "type": "string",
       "pattern": "dataset.json$"
     },
