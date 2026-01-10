@@ -59,7 +59,7 @@ For example for a single resource:
 }
 ```
 
-For multiple resources with more properties:
+For multiple resources:
 
 ```json
 {
@@ -74,11 +74,9 @@ For multiple resources with more properties:
         "type": "sha256",
         "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "tableSchema": "https://example.com/table-schema.json"
     },
     {
       "data": "https://example.com/file2.json",
-      "jsonSchema": "https://example.com/document-schema.json"
     }
   ]
 }
@@ -225,7 +223,7 @@ For example for a file with SHA-256 hash:
 }
 ```
 
-### `jsonSchema`
+### `dataSchema`
 
 It `MUST` be a [Path](#path) to a JSON Schema or an object with the JSON Schema. The JSON Schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
 
@@ -233,7 +231,7 @@ For example as an external path:
 
 ```json
 {
-  "jsonSchema": "https://example.com/schema.json"
+  "dataSchema": "https://example.com/schema.json"
 }
 ```
 
@@ -241,7 +239,7 @@ For example as an object:
 
 ```json
 {
-  "jsonSchema": {
+  "dataSchema": {
     "type": "object",
     "properties": {
       "name": {
