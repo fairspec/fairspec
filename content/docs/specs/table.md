@@ -343,6 +343,60 @@ Supported properties:
 - [`trueValues`](#truevalues)
 - [`falseValues`](#falsevalues)
 
+#### Categorical
+
+A column for categorical values. It `MUST` have [`type`](#type) set to `"integer"` or `"string"` and [`format`](#format) set to `"categorical"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "severity": {
+      "type": "integer",
+      "categories": [
+        { "value": 1, "label": "Low" },
+        { "value": 2, "label": "Medium" },
+        { "value": 3, "label": "High" }
+      ]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+severity
+1
+2
+3
+1
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`categories`](#categories)
+- [`withOrder`](#categoriesordered)
+
+Supported properties if type is `"integer"`:
+- [`minimum`](#minimum)
+- [`maximum`](#maximum)
+- [`exclusiveMinimum`](#exclusiveminimum)
+- [`exclusiveMaximum`](#exclusivemaximum)
+- [`multipleOf`](#multipleof)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
+
+Supported properties if type is `"string"`:
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+
 #### Integer
 
 A column for whole number values. It `MUST` have [`type`](#type) set to `"integer"` and `MUST NOT` have a [`format`](#format) property.
@@ -381,8 +435,6 @@ Supported properties:
 - [`multipleOf`](#multipleof)
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
-- [`categories`](#categories)
-- [`categoriesOrdered`](#categoriesordered)
 
 #### Number
 
@@ -458,23 +510,10 @@ Supported properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
-- [`categories`](#categories)
-- [`categoriesOrdered`](#categoriesordered)
 
 #### List
 
 A column for delimited list values stored as strings. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"list"`.
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`pattern`](#pattern)
 
 Metadata example:
 
@@ -497,10 +536,6 @@ tags
 "new,sale,featured"
 ```
 
-#### Base64
-
-A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
-
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
@@ -511,6 +546,10 @@ Supported properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
+
+#### Base64
+
+A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
 
 Metadata example:
 
@@ -533,10 +572,6 @@ R0lGODlhAQABAIAAAAAAAP///yH5
 aGVsbG8gd29ybGQ=
 ```
 
-#### Hex
-
-A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
-
 Supported properties:
 - [`title`](#title)
 - [`description`](#description)
@@ -547,6 +582,10 @@ Supported properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
+
+#### Hex
+
+A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
 
 Metadata example:
 
@@ -568,6 +607,17 @@ FF5733
 00BFFF
 32CD32
 ```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
 
 #### Email
 
@@ -1617,9 +1667,9 @@ DEF-9012
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **Integer**, **String**
+> Supported columns: **Categorical**
 
-An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties.
+An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties. The values `MUST` have the same type as the containing property i.e. `"string"` or `"integer"`.
 
 Metadata example:
 
@@ -1647,12 +1697,12 @@ severity
 1
 ```
 
-#### `categoriesOrdered`
+#### `withOrder`
 
 > [!NOTE]
-> Supported columns: **Integer**, **String**
+> Supported columns: **Categorical**
 
-An optional boolean indicating that the categorical values in the column are ordered.
+An optional boolean indicating that the categorical values in the column have natural order.
 
 Metadata example:
 

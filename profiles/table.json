@@ -45,16 +45,16 @@
       },
       "allOf": [
         {
+          "if": { "properties": { "type": { "const": "boolean" } } },
+          "then": { "$ref": "#/$defs/BooleanColumnPropertyGroup" }
+        },
+        {
           "if": { "properties": { "type": { "const": "integer" } } },
           "then": { "$ref": "#/$defs/IntegerColumnPropertyGroup" }
         },
         {
           "if": { "properties": { "type": { "const": "number" } } },
           "then": { "$ref": "#/$defs/NumberColumnPropertyGroup" }
-        },
-        {
-          "if": { "properties": { "type": { "const": "boolean" } } },
-          "then": { "$ref": "#/$defs/BooleanColumnPropertyGroup" }
         },
         {
           "if": { "properties": { "type": { "const": "string" } } },
@@ -67,6 +67,34 @@
         {
           "if": { "properties": { "type": { "const": "object" } } },
           "then": { "$ref": "#/$defs/ObjectColumnPropertyGroup" }
+        }
+      ]
+    },
+    "BooleanColumnPropertyGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/BooleanColumnProperty" }
+        }
+      ]
+    },
+    "IntegerColumnPropertyGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/IntegerColumnProperty" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "categorical" } } },
+          "then": { "$ref": "#/$defs/IntegerCategoricalColumnProperty" }
+        }
+      ]
+    },
+    "NumberColumnPropertyGroup": {
+      "allOf": [
+        {
+          "if": { "not": { "required": ["format"] } },
+          "then": { "$ref": "#/$defs/NumberColumnProperty" }
         }
       ]
     },
@@ -92,6 +120,10 @@
         {
           "if": { "not": { "required": ["format"] } },
           "then": { "$ref": "#/$defs/StringColumnProperty" }
+        },
+        {
+          "if": { "properties": { "format": { "const": "categorical" } } },
+          "then": { "$ref": "#/$defs/StringCategoricalColumnProperty" }
         },
         {
           "if": { "properties": { "format": { "const": "list" } } },
@@ -136,30 +168,6 @@
         {
           "if": { "properties": { "format": { "const": "wkb" } } },
           "then": { "$ref": "#/$defs/WkbColumnProperty" }
-        }
-      ]
-    },
-    "IntegerColumnPropertyGroup": {
-      "allOf": [
-        {
-          "if": { "not": { "required": ["format"] } },
-          "then": { "$ref": "#/$defs/IntegerColumnProperty" }
-        }
-      ]
-    },
-    "NumberColumnPropertyGroup": {
-      "allOf": [
-        {
-          "if": { "not": { "required": ["format"] } },
-          "then": { "$ref": "#/$defs/NumberColumnProperty" }
-        }
-      ]
-    },
-    "BooleanColumnPropertyGroup": {
-      "allOf": [
-        {
-          "if": { "not": { "required": ["format"] } },
-          "then": { "$ref": "#/$defs/BooleanColumnProperty" }
         }
       ]
     },
@@ -211,7 +219,7 @@
         "falseValues": { "$ref": "#/$defs/FalseValues" }
       }
     },
-    "IntegerColumnProperty": {
+    "BaseIntegerColumnProperty": {
       "allOf": [{ "$ref": "#/$defs/BaseColumnProperty" }],
       "properties": {
         "type": { "const": "integer" },
@@ -227,6 +235,17 @@
         "withText": { "type": "boolean" },
         "categories": { "$ref": "#/$defs/IntegerCategories" },
         "categoriesOrdered": { "type": "boolean" }
+      }
+    },
+    "IntegerColumnProperty": {
+      "allOf": [{ "$ref": "#/$defs/BaseIntegerColumnProperty" }]
+    },
+    "IntegerCategoricalColumnProperty": {
+      "allOf": [{ "$ref": "#/$defs/BaseIntegerColumnProperty" }],
+      "properties": {
+        "format": { "const": "categorical" },
+        "categories": { "$ref": "#/$defs/IntegerCategories" },
+        "withOrder": { "type": "boolean" }
       }
     },
     "NumberColumnProperty": {
@@ -263,6 +282,14 @@
       "properties": {
         "categories": { "$ref": "#/$defs/StringCategories" },
         "categoriesOrdered": { "type": "boolean" }
+      }
+    },
+    "StringCategoricalColumnProperty": {
+      "allOf": [{ "$ref": "#/$defs/BaseStringColumnProperty" }],
+      "properties": {
+        "format": { "const": "categorical" },
+        "categories": { "$ref": "#/$defs/StringCategories" },
+        "withOrder": { "type": "boolean" }
       }
     },
     "ListColumnProperty": {
