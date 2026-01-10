@@ -405,6 +405,8 @@ Data example:
 Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
 - [`columnNames`](#columnnames)
 - [`jsonPointer`](#jsonpointer)
 - [`rowType`](#rowtype)
@@ -433,6 +435,8 @@ Data example:
 Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
+- [`commentRows`](#commentrows)
+- [`commentChar`](#commentchar)
 - [`columnNames`](#columnnames)
 - [`rowType`](#rowtype)
 
@@ -776,7 +780,7 @@ This would produce headers: "fruit_id", "fruit_name", "fruit_price"
 #### `commentRows`
 
 > [!NOTE]
-> Supported formats: **csv**, **tsv**, **xlsx**, **ods**
+> Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
 It `MUST` be an array of positive integers starting from `1`. This property specifies what rows have to be omitted from the data.
 
@@ -804,7 +808,7 @@ With `"commentRows": [2]`, the second row would be skipped.
 #### `commentChar`
 
 > [!NOTE]
-> Supported formats: **csv**, **tsv**, **xlsx**, **ods**
+> Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
 It `MUST` be a string of one character length with default value `#`. This property specifies what rows have to be omitted from the data based on the row's first characters.
 
