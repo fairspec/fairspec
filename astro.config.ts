@@ -23,7 +23,7 @@ export default defineConfig({
       description: packageJson.description,
       customCss: ["/styles/general.css"],
       components: {
-        SocialIcons: "./components/Builtin/SocialIcons.astro",
+        SocialIcons: "./components/builtin/SocialIcons.astro",
       },
       logo: {
         src: "/assets/fairspec-logo.svg",
