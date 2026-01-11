@@ -175,9 +175,9 @@
     },
     "CsvFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "csv" },
+        "type": { "const": "csv" },
         "delimiter": { "$ref": "#/$defs/Delimiter" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "quoteChar": { "$ref": "#/$defs/QuoteChar" },
@@ -191,9 +191,9 @@
     },
     "TsvFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "tsv" },
+        "type": { "const": "tsv" },
         "lineTerminator": { "$ref": "#/$defs/LineTerminator" },
         "nullSequence": { "$ref": "#/$defs/NullSequence" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -205,9 +205,9 @@
     },
     "JsonFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "json" },
+        "type": { "const": "json" },
         "jsonPointer": { "$ref": "#/$defs/JsonPointer" },
         "rowType": { "$ref": "#/$defs/RowType" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -219,9 +219,9 @@
     },
     "JsonlFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "jsonl" },
+        "type": { "const": "jsonl" },
         "rowType": { "$ref": "#/$defs/RowType" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
         "headerJoin": { "$ref": "#/$defs/HeaderJoin" },
@@ -232,9 +232,9 @@
     },
     "XlsxFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "xlxs" },
+        "type": { "const": "xlxs" },
         "sheetName": { "$ref": "#/$defs/SheetName" },
         "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -246,9 +246,9 @@
     },
     "OdsFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "ods" },
+        "type": { "const": "ods" },
         "sheetName": { "$ref": "#/$defs/SheetName" },
         "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
@@ -260,24 +260,24 @@
     },
     "SqliteFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "sqlite" },
+        "type": { "const": "sqlite" },
         "tableName": { "$ref": "#/$defs/TableName" }
       }
     },
     "ParquetFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "parquet" }
+        "type": { "const": "parquet" }
       }
     },
     "ArrowFormat": {
       "type": "object",
-      "required": ["name"],
+      "required": ["type"],
       "properties": {
-        "name": { "const": "arrow" }
+        "type": { "const": "arrow" }
       }
     },
     "Delimiter": {

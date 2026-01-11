@@ -12,7 +12,7 @@ sidebar:
   <tr>
     <th>Schema</th>
     <td>
-      <a href="https://fairspec.org/profiles/{version}/fairspec.dataset.json">https://fairspec.org/profiles/{version}/fairspec.dataset.json</a>
+      <a href="https://fairspec.org/profiles/{version}/dataset.json">https://fairspec.org/profiles/{version}/dataset.json</a>
     </td>
   </tr>
 </table>
@@ -315,20 +315,20 @@ For example for a resource with geolocation:
 
 ## Format
 
-Format specifies the features of all the data files in the resource. The schema is routed based on the [`name`](#name) property to determine which specific format applies.
+Format specifies the features of all the data files in the resource. The schema is routed based on the [`type`](#type) property to determine which specific format applies.
 
 ### Format Types
 
 #### CSV
 
-A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`. It `MUST` be `utf-8` encoded.
+A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "csv"
+    "type": "csv"
   }
 }
 ```
@@ -354,14 +354,14 @@ Supported properties:
 
 #### TSV
 
-A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`. It `MUST` be `utf-8` encoded.
+A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "tsv"
+    "type": "tsv"
   }
 }
 ```
@@ -385,14 +385,14 @@ Supported properties:
 
 #### JSON
 
-A format for JSON array files. It `MUST` have [`name`](#name) set to `"json"`.
+A format for JSON array files. It `MUST` have [`type`](#type) set to `"json"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "json"
+    "type": "json"
   }
 }
 ```
@@ -417,14 +417,14 @@ Supported properties:
 
 #### JSONL
 
-A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`name`](#name) set to `"jsonl"`.
+A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`type`](#type) set to `"jsonl"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "jsonl"
+    "type": "jsonl"
   }
 }
 ```
@@ -446,14 +446,14 @@ Supported properties:
 
 #### XLSX
 
-A format for Microsoft Excel files. It `MUST` have [`name`](#name) set to `"xlsx"`.
+A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "xlsx"
+    "type": "xlsx"
   }
 }
 ```
@@ -475,14 +475,14 @@ Supported properties:
 
 #### ODS
 
-A format for OpenDocument Spreadsheet files. It `MUST` have [`name`](#name) set to `"ods"`.
+A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "ods"
+    "type": "ods"
   }
 }
 ```
@@ -504,14 +504,14 @@ Supported properties:
 
 #### SQLite
 
-A format for SQLite database files. It `MUST` have [`name`](#name) set to `"sqlite"`.
+A format for SQLite database files. It `MUST` have [`type`](#type) set to `"sqlite"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "sqlite"
+    "type": "sqlite"
   }
 }
 ```
@@ -527,14 +527,14 @@ Supported properties:
 
 #### Parquet
 
-A format for Apache Parquet files. It `MUST` have [`name`](#name) set to `"parquet"`.
+A format for Apache Parquet files. It `MUST` have [`type`](#type) set to `"parquet"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "parquet"
+    "type": "parquet"
   }
 }
 ```
@@ -549,14 +549,14 @@ There are no supported properties.
 
 #### Arrow
 
-A format for Apache Arrow files. It `MUST` have [`name`](#name) set to `"arrow"`.
+A format for Apache Arrow files. It `MUST` have [`type`](#type) set to `"arrow"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "arrow"
+    "type": "arrow"
   }
 }
 ```
@@ -571,12 +571,12 @@ There are no supported properties.
 
 ### Format Properties
 
-#### `name` [required] {#format-name}
+#### `type` [required]
 
 > [!NOTE]
 > Supported formats: **all format types**
 
-The name of the format. It `MUST` be one of the following values:
+The type of the format. It `MUST` be one of the following values:
 
 - `csv`
 - `tsv`
@@ -593,7 +593,7 @@ For example for a CSV file:
 ```json
 {
   "format": {
-    "name": "csv"
+    "type": "csv"
   }
 }
 ```
@@ -610,7 +610,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "delimiter": ";"
   }
 }
@@ -635,7 +635,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "lineTerminator": "\r\n"
   }
 }
@@ -653,7 +653,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "quoteChar": "'"
   }
 }
@@ -678,7 +678,7 @@ For example with a single sequence:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "nullSequence": "NA"
   }
 }
@@ -689,7 +689,7 @@ For example with multiple sequences:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "nullSequence": ["NA", "N/A", "null", ""]
   }
 }
@@ -715,7 +715,7 @@ For example with a single header row:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "headerRows": [1]
   }
 }
@@ -726,7 +726,7 @@ For example with multi-line headers:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "headerRows": [1, 2]
   }
 }
@@ -747,7 +747,7 @@ For example with no headers:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "headerRows": false
   }
 }
@@ -765,7 +765,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "headerRows": [0, 1],
     "headerJoin": "_"
   }
@@ -793,7 +793,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "commentRows": [1, 5, 10]
   }
 }
@@ -821,7 +821,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "commentChar": "#"
   }
 }
@@ -850,7 +850,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "csv",
+    "type": "csv",
     "headerRows": false,
     "columnNames": ["id", "name", "price"]
   }
@@ -875,7 +875,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "json",
+    "type": "json",
     "jsonPointer": "/data/items"
   }
 }
@@ -906,7 +906,7 @@ For example with array of objects:
 ```json
 {
   "format": {
-    "name": "json",
+    "type": "json",
     "rowType": "object"
   }
 }
@@ -925,7 +925,7 @@ For example with array of arrays:
 ```json
 {
   "format": {
-    "name": "json",
+    "type": "json",
     "rowType": "array",
     "columnNames": ["id", "name"]
   }
@@ -952,7 +952,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "xlsx",
+    "type": "xlsx",
     "sheetName": "Data Sheet"
   }
 }
@@ -970,7 +970,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "xlsx",
+    "type": "xlsx",
     "sheetNumber": 2
   }
 }
@@ -990,7 +990,7 @@ For example:
 ```json
 {
   "format": {
-    "name": "sqlite",
+    "type": "sqlite",
     "tableName": "measurements"
   }
 }

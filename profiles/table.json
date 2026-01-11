@@ -217,7 +217,7 @@
         "enum": { "$ref": "#/$defs/IntegerEnum" },
         "const": { "$ref": "#/$defs/IntegerConst" },
         "examples": { "$ref": "#/$defs/IntegerExamples" },
-        "missingValues": { "$ref": "#/$defs/IntegerMissingValues" },
+        "missingValues": { "$ref": "#/$defs/MissingValues" },
         "minimum": { "$ref": "#/$defs/IntegerMinimum" },
         "maximum": { "$ref": "#/$defs/IntegerMaximum" },
         "exclusiveMinimum": { "$ref": "#/$defs/IntegerExclusiveMinimum" },

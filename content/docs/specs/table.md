@@ -12,7 +12,7 @@ sidebar:
   <tr>
     <th>Schema</th>
     <td>
-      <a href="https://fairspec.org/profiles/{version}/fairspec.table.json">https://fairspec.org/profiles/{version}/fairspec.table.json</a>
+      <a href="https://fairspec.org/profiles/{version}/table.json">https://fairspec.org/profiles/{version}/table.json</a>
     </td>
   </tr>
 </table>

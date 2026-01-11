@@ -12,7 +12,7 @@ sidebar:
   <tr>
     <th>Schema</th>
     <td>
-      <a href="https://fairspec.org/schemas/{version}/fairspec.catalog.json">https://fairspec.org/schemas/{version}/fairspec.catalog.json</a>
+      <a href="https://fairspec.org/schemas/{version}/catalog.json">https://fairspec.org/schemas/{version}/catalog.json</a>
     </td>
   </tr>
 </table>
