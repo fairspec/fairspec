@@ -136,39 +136,39 @@
     "Format": {
       "allOf": [
         {
-          "if": { "properties": { "name": { "const": "csv" } } },
+          "if": { "properties": { "type": { "const": "csv" } } },
           "then": { "$ref": "#/$defs/CsvFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "tsv" } } },
+          "if": { "properties": { "type": { "const": "tsv" } } },
           "then": { "$ref": "#/$defs/TsvFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "json" } } },
+          "if": { "properties": { "type": { "const": "json" } } },
           "then": { "$ref": "#/$defs/JsonFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "jsonl" } } },
+          "if": { "properties": { "type": { "const": "jsonl" } } },
           "then": { "$ref": "#/$defs/JsonlFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "xlsx" } } },
+          "if": { "properties": { "type": { "const": "xlsx" } } },
           "then": { "$ref": "#/$defs/XlsxFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "ods" } } },
+          "if": { "properties": { "type": { "const": "ods" } } },
           "then": { "$ref": "#/$defs/OdsFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "sqlite" } } },
+          "if": { "properties": { "type": { "const": "sqlite" } } },
           "then": { "$ref": "#/$defs/SqliteFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "parquet" } } },
+          "if": { "properties": { "type": { "const": "parquet" } } },
           "then": { "$ref": "#/$defs/ParquetFormat" }
         },
         {
-          "if": { "properties": { "name": { "const": "arrow" } } },
+          "if": { "properties": { "type": { "const": "arrow" } } },
           "then": { "$ref": "#/$defs/ArrowFormat" }
         }
       ]
