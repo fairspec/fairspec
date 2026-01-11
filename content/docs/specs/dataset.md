@@ -342,6 +342,8 @@ Charlie,35,Tokyo
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`delimiter`](#delimiter)
 - [`lineTerminator`](#lineterminator)
 - [`quoteChar`](#quotechar)
@@ -375,6 +377,8 @@ Charlie	35	Tokyo
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`lineTerminator`](#lineterminator)
 - [`nullSequence`](#nullsequence)
 - [`headerRows`](#headerrows)
@@ -407,6 +411,8 @@ Data example:
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -437,6 +443,8 @@ Data example:
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -465,6 +473,8 @@ Data example:
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -494,6 +504,8 @@ Data example:
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -523,6 +535,8 @@ Data example:
 ```
 
 Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 - [`tableName`](#tablename)
 
 #### Parquet
@@ -545,7 +559,9 @@ Data example:
 <binary data>
 ```
 
-There are no supported properties.
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 
 #### Arrow
 
@@ -567,16 +583,43 @@ Data example:
 <binary data>
 ```
 
-There are no supported properties.
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+
+#### Custom
+
+A format for custom data. It `MUST` have [`type`](#type) omitted.
+
+Metadata example:
+
+```json
+{
+  "format": {
+    "title": "Custom format",
+    "description": "Custom format description"
+  }
+}
+```
+
+Data example:
+
+```
+<binary data>
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
 
 ### Format Properties
 
-#### `type` [required]
+#### `type`
 
 > [!NOTE]
 > Supported formats: **all format types**
 
-The type of the format. It `MUST` be one of the following values:
+The type of the format. It `MUST` be one of the following values (if omitted, the format type is custom):
 
 - `csv`
 - `tsv`
@@ -594,6 +637,41 @@ For example for a CSV file:
 {
   "format": {
     "type": "csv"
+  }
+}
+```
+
+#### `title`
+
+> [!NOTE]
+> Supported formats: **all format types**
+
+An optional human-readable title for the format.
+
+For example:
+
+```json
+{
+  "format": {
+    "title": "My custom format"
+  }
+}
+```
+
+#### `description`
+
+> [!NOTE]
+> Supported formats: **all format types**
+
+An optional detailed description of the format.
+
+For example:
+
+```json
+{
+  "format": {
+    "title": "My custom format",
+    "description": "You can open this file with OpenOffice"
   }
 }
 ```

@@ -4,7 +4,6 @@
   "$defs": {
     "Dataset": {
       "type": "object",
-      "required": ["$schema"],
       "properties": {
         "$schema": { "$ref": "#/$defs/Profile" },
         "resources": { "$ref": "#/$defs/Resources" },
@@ -41,7 +40,6 @@
     },
     "Resource": {
       "type": "object",
-      "required": ["data"],
       "properties": {
         "name": { "$ref": "#/$defs/Name" },
         "data": { "$ref": "#/$defs/Data" },
@@ -170,11 +168,22 @@
         {
           "if": { "properties": { "type": { "const": "arrow" } } },
           "then": { "$ref": "#/$defs/ArrowFormat" }
+        },
+        {
+          "if": { "not": { "required": ["type"] } },
+          "then": { "$ref": "#/$defs/CustomFormat" }
         }
       ]
     },
-    "CsvFormat": {
+    "BaseFormat": {
       "type": "object",
+      "properties": {
+        "title": { "$ref": "#/$defs/FormatTitle" },
+        "description": { "$ref": "#/$defs/FormatDescription" }
+      }
+    },
+    "CsvFormat": {
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "csv" },
@@ -190,7 +199,7 @@
       }
     },
     "TsvFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "tsv" },
@@ -204,7 +213,7 @@
       }
     },
     "JsonFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "json" },
@@ -218,7 +227,7 @@
       }
     },
     "JsonlFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "jsonl" },
@@ -231,7 +240,7 @@
       }
     },
     "XlsxFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "xlxs" },
@@ -245,7 +254,7 @@
       }
     },
     "OdsFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "ods" },
@@ -259,7 +268,7 @@
       }
     },
     "SqliteFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "sqlite" },
@@ -267,18 +276,27 @@
       }
     },
     "ParquetFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "parquet" }
       }
     },
     "ArrowFormat": {
-      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }],
       "required": ["type"],
       "properties": {
         "type": { "const": "arrow" }
       }
+    },
+    "CustomFormat": {
+      "allOf": [{ "$ref": "#/$defs/BaseFormat" }]
+    },
+    "FormatTitle": {
+      "type": "string"
+    },
+    "FormatDescription": {
+      "type": "string"
     },
     "Delimiter": {
       "type": "string",
