@@ -33,8 +33,7 @@
       }
     },
     "Profile": {
-      "type": "string",
-      "pattern": "dataset.json$"
+      "$ref": "#/$defs/ExternalPath"
     },
     "Resources": {
       "type": "array",

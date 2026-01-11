@@ -31,15 +31,19 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 A top-level descriptor object describing an individual dataset. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `$schema` [required] {#profile}
+### `$schema` {#profile}
 
-URI to one of the officially published Fairspec Dataset profiles. It `MUST` ends with the `fairspec.dataset.json` prefix.
+> [!NOTE]
+> The default value is `https://fairspec.org/profiles/latest/dataset.json`
+
+[External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile. A data publisher `SHOULD` provide this property when sharing a stanalone descriptor publicly.
+
 
 For example for version X.Y.Z of the schema:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.dataset.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/dataset.json"
 }
 ```
 
@@ -109,7 +113,7 @@ A resource within a dataset. It `MUST` have the following properties (all option
 
 An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Table](../table).
 
-### `data` [required] {#data}
+### `data` {#data}
 
 Data or content of the resource. It `MUST` be in one of the following:
 
@@ -993,7 +997,7 @@ For example:
 ```
 ## Common
 
-Common properties shared by multiple entities in the dataset descriptor.
+Common properties shared by multiple entities in the descriptor.
 
 ### Path
 

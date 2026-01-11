@@ -31,15 +31,18 @@ A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an objec
 
 A top-level descriptor object defining a schema of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
 
-### `$schema` [required] {#profile}
+### `$schema` {#profile}
 
-URI to one of the officially published Fairspec Table profiles. It `MUST` ends with the `fairspec.table.json` prefix.
+> [!NOTE]
+> The default value is `https://fairspec.org/profiles/latest/table.json`
+
+[External Path](#external-path) to one of the officially published Fairspec Table profiles. A data publisher `SHOULD` provide this property when sharing a standalone descriptor publicly.
 
 For example for version X.Y.Z of the schema:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/table.json"
 }
 ```
 
@@ -338,6 +341,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`trueValues`](#truevalues)
@@ -378,6 +382,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`categories`](#categories)
@@ -426,6 +431,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
@@ -465,6 +471,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
@@ -505,6 +512,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -541,6 +549,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -577,6 +586,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -613,6 +623,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -649,6 +660,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -685,6 +697,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -721,6 +734,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -758,6 +772,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -795,6 +810,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -832,6 +848,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -868,6 +885,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -904,6 +922,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -939,6 +958,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
@@ -972,6 +992,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
@@ -1006,6 +1027,7 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
@@ -1039,24 +1061,61 @@ Supported properties:
 - [`description`](#description)
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
+- [`const`](#const)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+
+#### Unknown
+
+A column for values of unknown type. It `MUST` have [`type`](#type) omitted or set to `"null"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "column": {
+      "title": "Column",
+      "description": "Column description",
+    }
+  }
+}
+```
+
+Data example:
+
+```csv
+column
+a
+1
+false
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
 ### Column Properties
 
-#### `type` [required]
+#### `type`
 
 > [!NOTE]
 > Supported columns: **all column types**
 
-The data type of the column. It `MUST` be one of the following values:
+The data type of the column. It `MUST` be one of the following values (if omitted, the column type is unknown):
 
-- `string` - Text values
+- `boolean` - True/false values
 - `integer` - Whole numbers
 - `number` - Numeric values including decimals
-- `boolean` - True/false values
+- `string` - Text values
 - `array` - Array/list values
 - `object` - Object/dictionary values
+- `null` - Unknown type
 
 Metadata example:
 
@@ -1231,6 +1290,46 @@ pending
 active
 completed
 cancelled
+```
+
+#### `const`
+
+> [!NOTE]
+> Supported columns: **all column types**
+
+An optional constant value for the column. The value `MUST` match the column's type.
+
+For example, with string values:
+
+```json
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "pending"
+    }
+  }
+}
+```
+
+For example, with integer values:
+
+```json
+{
+  "properties": {
+    "priority": {
+      "type": "integer",
+      "const": 1
+    }
+  }
+}
+```
+
+Data example:
+```csv
+status
+pending
+pending
 ```
 
 #### `examples`
@@ -1873,6 +1972,21 @@ metadata
 "{""author"": ""Alice"", ""version"": 1}"
 "{""author"": ""Bob"", ""version"": 2}"
 "{""author"": ""Charlie""}"
+```
+## Common
+
+Common properties shared by multiple entities in the descriptor.
+
+### External Path
+
+It `MUST` be a string representing an HTTP or HTTPS URL to a remote file.
+
+For example:
+
+```json
+{
+  "data": "https://example.com/datasets/measurements.csv"
+}
 ```
 
 ## Extension
