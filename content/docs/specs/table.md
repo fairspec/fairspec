@@ -704,9 +704,9 @@ Supported properties:
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
 
-#### Datetime
+#### DateTime
 
-A column for ISO 8601 datetime values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
+A column for ISO 8601 date with time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
 
 Metadata example:
 
@@ -1140,7 +1140,7 @@ age
 #### `format`
 
 > [!NOTE]
-> Supported columns: **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
+> Supported columns: **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
@@ -1682,7 +1682,7 @@ $19.99
 #### `minLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1710,7 +1710,7 @@ charlie
 #### `maxLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1738,7 +1738,7 @@ charlie
 #### `pattern`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **Datetime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -1864,7 +1864,7 @@ gamma;delta;epsilon
 > [!NOTE]
 > Supported columns: **List**
 
-An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `datetime`, `date`, `time`.
+An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `date-time`, `date`, `time`.
 
 Metadata example:
 
@@ -1891,9 +1891,9 @@ measurements
 #### `temporalFormat`
 
 > [!NOTE]
-> Supported columns: **Datetime**, **Date**, **Time**
+> Supported columns: **DateTime**, **Date**, **Time**
 
-An optional string specifying the datetime format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
+An optional string specifying the temporal format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
 
 Metadata example:
 
