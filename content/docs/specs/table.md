@@ -34,9 +34,9 @@ A top-level descriptor object defining a schema of tabular data resources. It `M
 ### `$schema` {#profile}
 
 > [!NOTE]
-> The default value is `https://fairspec.org/profiles/latest/table.json`
+> The default value is `https://fairspec.org/profiles/latest/table.json`. A data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Table profiles. A data publisher `SHOULD` provide this property when sharing a standalone descriptor publicly.
+[External Path](#external-path) to one of the officially published Fairspec Table profiles.
 
 For example for version X.Y.Z of the schema:
 

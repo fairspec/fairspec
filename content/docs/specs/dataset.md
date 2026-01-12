@@ -25,6 +25,9 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
+> [!NOTE]
+> If applicable, a data publisher `SHOULD` name the descriptor `dataset.json` and place it in the root of a dataset directory when sharing the dataset publicly.
+
 A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Dataset](#dataset) structure outlined below.
 
 ## Dataset
@@ -34,9 +37,9 @@ A top-level descriptor object describing an individual dataset. It `MUST` have t
 ### `$schema` {#profile}
 
 > [!NOTE]
-> The default value is `https://fairspec.org/profiles/latest/dataset.json`
+> The default value is `https://fairspec.org/profiles/latest/dataset.json`. A data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile. A data publisher `SHOULD` provide this property when sharing a stanalone descriptor publicly.
+[External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile.
 
 
 For example for version X.Y.Z of the schema:
