@@ -342,6 +342,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`trueValues`](#truevalues)
@@ -383,6 +384,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`categories`](#categories)
@@ -432,6 +434,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
@@ -472,6 +475,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minimum`](#minimum)
@@ -513,6 +517,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -550,11 +555,16 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
+- [`delimiter`](#delimiter)
+- [`itemType`](#itemtype)
+- [`minItems`](#minitems)
+- [`maxItems`](#maxitems)
 
 #### Base64
 
@@ -587,6 +597,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -624,6 +635,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -661,6 +673,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -698,6 +711,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -773,6 +787,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -811,6 +826,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -849,6 +865,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -886,6 +903,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -923,6 +941,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -959,6 +978,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
@@ -993,6 +1013,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`<jsonSchema>`](#jsonSchema)
@@ -1028,6 +1049,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
@@ -1062,6 +1084,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
@@ -1097,6 +1120,7 @@ Supported properties:
 - [`rdfType`](#rdftype)
 - [`enum`](#enum)
 - [`const`](#const)
+- [`default`](#default)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
@@ -1330,6 +1354,34 @@ Data example:
 status
 pending
 pending
+```
+
+#### `default`
+
+> [!NOTE]
+> Supported columns: **all column types**
+
+An optional default value for the column. The value `MUST` match the column's type. This property is for documentation purpose and it is not used to fill missing values.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "default": "pending"
+      "missingValues": ["N/A"]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+status
+done
+N/A
 ```
 
 #### `examples`
@@ -1888,6 +1940,64 @@ measurements
 "3.14,2.71,1.41"
 ```
 
+#### `minItems`
+
+> [!NOTE]
+> Supported columns: **List**
+
+An optional minimum number of items for the column. It `MUST` be a non-negative integer.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "tags": {
+      "type": "string",
+      "format": "list",
+      "minItems": 1
+    }
+  }
+}
+```
+
+Data example:
+```csv
+tags
+"red,blue,green"
+"small,compact"
+"new,sale,featured"
+```
+
+#### `maxItems`
+
+> [!NOTE]
+> Supported columns: **List**
+
+An optional maximum number of items for the column. It `MUST` be a non-negative integer.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "tags": {
+      "type": "string",
+      "format": "list",
+      "maxItems": 3
+    }
+  }
+}
+```
+
+Data example:
+```csv
+tags
+"red,blue,green"
+"small,compact"
+"new,sale,featured"
+```
+
 #### `temporalFormat`
 
 > [!NOTE]
@@ -1920,7 +2030,7 @@ collection_date
 #### `<jsonSchema>`
 
 > [!NOTE]
-> Supported columns: **Array**, **Object**
+> Supported columns: **Array**, **Object**, **GeoJSON**, **TopoJSON**
 
 For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
 
