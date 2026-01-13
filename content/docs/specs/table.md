@@ -399,7 +399,7 @@ Supported properties:
 - [`categories`](#categories)
 - [`withOrder`](#categoriesordered)
 
-Supported properties if type is `"integer"`:
+In addition, supported properties if type is `"integer"`:
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -408,7 +408,7 @@ Supported properties if type is `"integer"`:
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
-Supported properties if type is `"string"`:
+In addition, supported properties if type is `"string"`:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -621,18 +621,18 @@ Supported properties:
 - [`minItems`](#minitems)
 - [`maxItems`](#maxitems)
 
-#### Base64
+#### URL
 
-A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
+A column for URLs with HTTP/HTTPS protocol. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
 
 Metadata example:
 
 ```json
 {
   "properties": {
-    "thumbnail": {
+    "homepage": {
       "type": "string",
-      "format": "base64"
+      "format": "url"
     }
   }
 }
@@ -640,48 +640,10 @@ Metadata example:
 
 Data example:
 ```csv
-thumbnail
-iVBORw0KGgoAAAANSUhEUgAAAAUA
-R0lGODlhAQABAIAAAAAAAP///yH5
-aGVsbG8gd29ybGQ=
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`pattern`](#pattern)
-
-#### Hex
-
-A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "color": {
-      "type": "string",
-      "format": "hex"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-color
-FF5733
-00BFFF
-32CD32
+homepage
+https://example.com
+https://example.org/page
+https://domain.net/path/to/resource
 ```
 
 Supported properties:
@@ -734,82 +696,6 @@ Supported properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
-
-#### URL
-
-A column for URLs with HTTP/HTTPS protocol. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"url"`.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "homepage": {
-      "type": "string",
-      "format": "url"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-homepage
-https://example.com
-https://example.org/page
-https://domain.net/path/to/resource
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`pattern`](#pattern)
-
-#### DateTime
-
-A column for ISO 8601 date with time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-created_at
-2023-12-01T14:30:00Z
-2024-01-15T09:45:30+00:00
-2024-03-20T18:00:00-05:00
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
-- [`minLength`](#minlength)
-- [`maxLength`](#maxlength)
-- [`pattern`](#pattern)
-- [`temporalFormat`](#temporalformat)
 
 #### Date
 
@@ -882,6 +768,44 @@ Supported properties:
 - [`enum`](#enum)
 - [`const`](#const)
 - [`default`](#default)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+- [`temporalFormat`](#temporalformat)
+
+#### DateTime
+
+A column for ISO 8601 date with time values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"date-time"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+created_at
+2023-12-01T14:30:00Z
+2024-01-15T09:45:30+00:00
+2024-03-20T18:00:00-05:00
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`const`](#const)
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 - [`minLength`](#minlength)
@@ -988,6 +912,82 @@ geometry
 0101000000000000000000000000000000000024400000000000003E40
 0102000000030000000000000000003E400000000000002440
 0103000000010000000500000000000000000024400000000000003E40
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`const`](#const)
+- [`default`](#default)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+
+#### Hex
+
+A column for hexadecimal encoded data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"hex"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "color": {
+      "type": "string",
+      "format": "hex"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+color
+FF5733
+00BFFF
+32CD32
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`const`](#const)
+- [`default`](#default)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+
+#### Base64
+
+A column for Base64 encoded binary data. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"base64"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "thumbnail": {
+      "type": "string",
+      "format": "base64"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+thumbnail
+iVBORw0KGgoAAAANSUhEUgAAAAUA
+R0lGODlhAQABAIAAAAAAAP///yH5
+aGVsbG8gd29ybGQ=
 ```
 
 Supported properties:
