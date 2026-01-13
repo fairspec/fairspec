@@ -279,6 +279,9 @@ For example, with a composite foreign key:
 
 ### `missingValues`
 
+> [!NOTE]
+> Table Schema level missing values works in addition to [Format](../dataset#format) level missing values or null sequences. For example, CSV Format treats no values between commas (`,,`) as `null` so there is no need to provide `''` as a Table Schema missing value in this case.
+
 An optional list of values that represent missing or null data across all columns in the table. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The values type `MUST` be `"string"` or `"integer"`.
 
 For example, with simple values:
@@ -1418,7 +1421,7 @@ temperature
 18.7
 ```
 
-#### `missingValues` {#coumn-missingvalues}
+#### `missingValues` {#column-missingvalues}
 
 > [!NOTE]
 > Supported columns: **all column types**

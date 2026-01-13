@@ -324,7 +324,7 @@ Format specifies the features of all the data files in the resource. The schema 
 
 #### CSV
 
-A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded.
+A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded. No values between commas (`,,`) `MUST` be treated as `null` values.
 
 Metadata example:
 
@@ -359,7 +359,7 @@ Supported properties:
 
 #### TSV
 
-A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded.
+A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded. No values between tabs (`\t\t`) `MUST` be treated as `null` values.
 
 Metadata example:
 
@@ -457,7 +457,7 @@ Supported properties:
 
 #### XLSX
 
-A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`.
+A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`. Empty cells `MUST` be treated as `null` values.
 
 Metadata example:
 
@@ -488,7 +488,7 @@ Supported properties:
 
 #### ODS
 
-A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`.
+A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`. Empty cells `MUST` be treated as `null` values.
 
 Metadata example:
 
