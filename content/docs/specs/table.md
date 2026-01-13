@@ -17,7 +17,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Table is a simple JSON based format that defines a table schema to describe a class of tabular data resources.
+Fairspec Table is a simple JSON based format that defines Table Schema to describe a class of tabular data resources. Table Schema structuraly compatible with JSON Schema but it doesn't support all the JSON Schema features. It adapts some features for tabular context, and extend JSON Schema with additional tabular features.
 
 ## Language
 
@@ -75,9 +75,12 @@ For example:
 
 ### `required`
 
-An optional list of column names that `MUST` be present in the table. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
+> [!WARNING]
+> This property is semantically different compared to JSON Schema. Table Schema requires all the column's cells not to have null or missing values if the column is declared as `required`.
 
-For example, to require specific columns:
+An optional list of column names that `MUST` have non null values in each row. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
+
+For example, to require specific columns no to have missing values:
 
 ```json
 {
@@ -100,6 +103,9 @@ For example, to require specific columns:
 ```
 
 ### `properties`
+
+> [!WARNING]
+> This property is semantically different compared to JSON Schema. Table Schema requires all the columns declared as `properties` to be present in the table.
 
 An object defining the schema for table columns. Each key represents a column name, and its value `MUST` be a valid [Column](#column) definition.
 
