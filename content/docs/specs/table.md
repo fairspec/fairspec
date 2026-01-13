@@ -496,6 +496,52 @@ Supported properties:
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
+#### Decimal
+
+A column for decimal values. It `MUST` have [`type`](#type) set to `"string"` and [`format`](#format) set to `"decimal"`.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "price": {
+      "type": "string",
+      "format": "decimal"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+price
+19.99
+5.50
+123.45
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`rdfType`](#rdftype)
+- [`enum`](#enum)
+- [`const`](#const)
+- [`default`](#default)
+- [`examples`](#examples)
+- [`missingValues`](#missingvalues)
+- [`minLength`](#minlength)
+- [`maxLength`](#maxlength)
+- [`pattern`](#pattern)
+- [`minimum`](#minimum)
+- [`maximum`](#maximum)
+- [`exclusiveMinimum`](#exclusiveminimum)
+- [`exclusiveMaximum`](#exclusivemaximum)
+- [`multipleOf`](#multipleof)
+- [`decimalChar`](#decimalchar)
+- [`groupChar`](#groupchar)
+- [`withText`](#withtext)
+
 #### String
 
 A column for text values. It `MUST` have [`type`](#type) set to `"string"` and `MUST NOT` have a [`format`](#format) property.
@@ -1519,7 +1565,7 @@ N
 #### `minimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1547,7 +1593,7 @@ temperature
 #### `maximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1575,7 +1621,7 @@ temperature
 #### `exclusiveMinimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1603,7 +1649,7 @@ probability
 #### `exclusiveMaximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1631,7 +1677,7 @@ probability
 #### `multipleOf`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
@@ -1659,7 +1705,7 @@ price
 #### `decimalChar`
 
 > [!NOTE]
-> Supported columns: **Number**
+> Supported columns: **Number**, **Decimal**
 
 An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
 
@@ -1687,7 +1733,7 @@ price
 #### `groupChar`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
@@ -1715,7 +1761,7 @@ population
 #### `withText`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**
+> Supported columns: **Integer**, **Number**, **Decimal**
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
@@ -1743,7 +1789,7 @@ $19.99
 #### `minLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1771,7 +1817,7 @@ charlie
 #### `maxLength`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1799,7 +1845,7 @@ charlie
 #### `pattern`
 
 > [!NOTE]
-> Supported columns: **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
