@@ -37,9 +37,9 @@ A top-level descriptor object describing an individual dataset. It `MUST` have t
 ### `$schema` {#profile}
 
 > [!NOTE]
-> The default value is `https://fairspec.org/profiles/latest/dataset.json`. A data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
+> Data publishers `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile.
+[External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile with default value `https://fairspec.org/profiles/latest/dataset.json`.
 
 
 For example for version X.Y.Z of the schema:
@@ -324,7 +324,7 @@ Format specifies the features of all the data files in the resource. The schema 
 
 #### CSV
 
-A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded. No values between commas (`,,`) `MUST` be treated as `null` values.
+A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
 
 Metadata example:
 
@@ -359,7 +359,7 @@ Supported properties:
 
 #### TSV
 
-A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded. No values between tabs (`\t\t`) `MUST` be treated as `null` values.
+A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
 
 Metadata example:
 
@@ -457,7 +457,7 @@ Supported properties:
 
 #### XLSX
 
-A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`. Empty cells `MUST` be treated as `null` values.
+A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`. Empty cells are `null` values.
 
 Metadata example:
 
@@ -488,7 +488,7 @@ Supported properties:
 
 #### ODS
 
-A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`. Empty cells `MUST` be treated as `null` values.
+A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`. Empty cells are `null` values.
 
 Metadata example:
 
@@ -709,7 +709,7 @@ id;name;price
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
 
-It `MUST` be a string. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
+It `MUST` be a string with default value `\r\n`. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
 
 For example:
 
@@ -789,7 +789,7 @@ id,name,notes
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
-It `MUST` be `false` or an array of positive integers starting from `1`. This property specifies the row numbers for the header. It `SHOULD` to be used for multiline-header files.
+It `MUST` be `false` or an array of positive integers starting from `1` with default value `[1]`. This property specifies the row numbers for the header. It `SHOULD` to be used for no header files or multiline-header files.
 
 For example with a single header row:
 
@@ -895,7 +895,7 @@ With `"commentRows": [2]`, the second row would be skipped.
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
-It `MUST` be a string of one character length with default value `#`. This property specifies what rows have to be omitted from the data based on the row's first characters.
+It `MUST` be a string of one character length. This property specifies what rows have to be omitted from the data based on the row's first characters.
 
 For example:
 
@@ -980,7 +980,7 @@ For a JSON file like:
 > [!NOTE]
 > Supported formats: **json**, **jsonl**
 
-It `MUST` be one of the following values: `array`, `object`. This property specifies whether the data items are arrays or objects.
+It `MUST` be one of the following values: `array`, `object` with default value `object`. This property specifies whether the data items are arrays or objects.
 
 For example with array of objects:
 
@@ -1021,24 +1021,6 @@ For data like:
 ]
 ```
 
-#### `sheetName`
-
-> [!NOTE]
-> Supported formats: **xlsx**, **ods**
-
-It `MUST` be a string. This property specifies a sheet name of a table in the spreadsheet file.
-
-For example:
-
-```json
-{
-  "format": {
-    "type": "xlsx",
-    "sheetName": "Data Sheet"
-  }
-}
-```
-
 #### `sheetNumber`
 
 > [!NOTE]
@@ -1058,6 +1040,24 @@ For example:
 ```
 
 This reads the second sheet from the spreadsheet.
+
+#### `sheetName`
+
+> [!NOTE]
+> Supported formats: **xlsx**, **ods**
+
+It `MUST` be a string. This property specifies a sheet name of a table in the spreadsheet file.
+
+For example:
+
+```json
+{
+  "format": {
+    "type": "xlsx",
+    "sheetName": "Data Sheet"
+  }
+}
+```
 
 #### `tableName`
 

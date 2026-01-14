@@ -34,9 +34,9 @@ A top-level descriptor object defining a schema of tabular data resources. It `M
 ### `$schema` {#profile}
 
 > [!NOTE]
-> The default value is `https://fairspec.org/profiles/latest/table.json`. A data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
+> Data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Table profiles.
+[External Path](#external-path) to one of the officially published Fairspec Table profiles with default value `https://fairspec.org/profiles/latest/table.json`.
 
 For example for version X.Y.Z of the schema:
 
@@ -1707,7 +1707,7 @@ price
 > [!NOTE]
 > Supported columns: **Number**, **Decimal**
 
-An optional single character used as the decimal separator in the data. It `MUST` be a string of length 1. Default is `.` (period).
+An optional single character used as the decimal separator in the data with default value `.` (period).
 
 Metadata example:
 
@@ -1942,7 +1942,7 @@ severity
 > [!NOTE]
 > Supported columns: **List**
 
-An optional single character used to delimit items in a list column. It `MUST` be a string of length 1. Default is `,` (comma).
+An optional single character used to delimit items in a list column with default value `,` (comma).
 
 Metadata example:
 
