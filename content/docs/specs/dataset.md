@@ -709,7 +709,7 @@ id;name;price
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
 
-It `MUST` be a string with default value `\r\n`. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
+It `MUST` be a string with default value `\n`. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
 
 For example:
 
