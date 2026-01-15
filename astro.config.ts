@@ -9,7 +9,7 @@ import starlightGitHubAlerts from "starlight-github-alerts"
 import starlightScrollToTop from "starlight-scroll-to-top"
 
 export default defineConfig({
-  site: origin,
+  site: "https://fairspec.org",
   srcDir: ".",
   outDir: "build",
   integrations: [

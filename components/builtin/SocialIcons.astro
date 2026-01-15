@@ -1,13 +1,9 @@
 ---
 import Default from "@astrojs/starlight/components/SocialIcons.astro"
 import packageJson from "../../package.json" with { type: "json" }
-
-const { origin, hostname, pathname } = new URL(packageJson.homepage)
-const basedir = import.meta.env.PROD ? pathname : ""
-
 ---
 
-<a href={`${basedir}/changelog`} style="text-decoration: none">
+<a href="/changelog" style="text-decoration: none">
   <strong>v{packageJson.version} (current)</strong>
 </a>
 

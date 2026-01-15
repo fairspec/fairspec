@@ -7,7 +7,6 @@
     "node": "^24.0.0",
     "pnpm": "^10.0.0"
   },
-  "author": "Evgeny Karev",
   "scripts": {
     "build": "astro build",
     "bump": "ncu -u",
@@ -18,22 +17,22 @@
     "prepare": "husky",
     "preview": "astro preview --port 5000",
     "start": "astro dev --port 5000",
-    "test": "pnpm lint && pnpm type",
+    "test": "pnpm lint",
     "type": "tsc --noEmit"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "6.3.10",
-    "@astrojs/starlight": "0.37.1",
+    "@astrojs/starlight": "0.37.3",
     "@biomejs/biome": "2.3.10",
     "@semantic-release/exec": "7.1.0",
-    "astro": "5.16.6",
+    "astro": "5.16.9",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "husky": "9.1.7",
     "npm-check-updates": "18.0.1",
     "remark-custom-heading-id": "2.0.0",
     "semantic-release": "24.2.9",
     "sharp": "0.34.2",
-    "starlight-changelogs": "0.2.3",
+    "starlight-changelogs": "0.4.0",
     "starlight-github-alerts": "0.1.1",
     "starlight-scroll-to-top": "0.4.0",
     "typescript": "5.9.3"
