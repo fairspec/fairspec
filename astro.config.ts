@@ -7,20 +7,16 @@ import starlightChangelogs, {
 } from "starlight-changelogs"
 import starlightGitHubAlerts from "starlight-github-alerts"
 import starlightScrollToTop from "starlight-scroll-to-top"
-import packageJson from "./package.json" with { type: "json" }
-
-const { origin, hostname, pathname } = new URL(packageJson.homepage)
-const basedir = import.meta.env.PROD ? pathname : ""
 
 export default defineConfig({
   site: origin,
-  base: basedir,
   srcDir: ".",
   outDir: "build",
   integrations: [
     starlight({
-      title: packageJson.title,
-      description: packageJson.description,
+      title: "Fairspec",
+      description:
+        "Fairspec is a data exchange format compatible with DataCite for metadata and JSONSchema for structured data",
       customCss: ["/styles/general.css"],
       components: {
         SocialIcons: "./components/builtin/SocialIcons.astro",
@@ -33,12 +29,12 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: packageJson.repository,
+          href: "https://github.com/fairspec/fairspec",
         },
       ],
       favicon: "fairspec-logo.png",
       editLink: {
-        baseUrl: `${packageJson.repository}/edit/main`,
+        baseUrl: "https://github.com/fairspec/fairspec/edit/main",
       },
       lastUpdated: true,
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 4 },
@@ -71,7 +67,7 @@ export default defineConfig({
           tag: "script",
           attrs: {
             src: "https://plausible.io/js/script.js",
-            "data-domain": hostname,
+            "data-domain": "fairspec.org",
             defer: true,
           },
         },
