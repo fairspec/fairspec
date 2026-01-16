@@ -3,6 +3,6 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["**/build/*"],
   "compilerOptions": {
-    "resolveJsonModule": true
+    "skipLibCheck": true
   }
 }

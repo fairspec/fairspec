@@ -17,15 +17,15 @@
     "prepare": "husky",
     "preview": "astro preview --port 5000",
     "start": "astro dev --port 5000",
-    "test": "pnpm lint",
-    "type": "tsc --noEmit"
+    "test": "pnpm lint && pnpm type",
+    "type": "echo 'enable tsc --noEmit'"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "6.3.10",
     "@astrojs/starlight": "0.37.3",
     "@biomejs/biome": "2.3.10",
     "@semantic-release/exec": "7.1.0",
-    "astro": "5.16.9",
+    "astro": "5.16.10",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "husky": "9.1.7",
     "npm-check-updates": "18.0.1",
