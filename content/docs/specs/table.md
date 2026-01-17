@@ -1707,7 +1707,7 @@ price
 > [!NOTE]
 > Supported columns: **Number**, **Decimal**
 
-An optional single character used as the decimal separator in the data with default value `.` (period).
+An optional single character used as the decimal separator in the data.
 
 Metadata example:
 
@@ -1942,7 +1942,7 @@ severity
 > [!NOTE]
 > Supported columns: **List**
 
-An optional single character used to delimit items in a list column with default value `,` (comma).
+An optional single character used to delimit items in a list column.
 
 Metadata example:
 

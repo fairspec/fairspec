@@ -692,7 +692,7 @@ For example:
 > [!NOTE]
 > Supported formats: **csv**
 
-It `MUST` be a string of one character length with default value `,` (comma). This property specifies the character sequence which separates fields in the data file.
+It `MUST` be a string of one character length. This property specifies the character sequence which separates fields in the data file.
 
 For example:
 
@@ -717,7 +717,7 @@ id;name;price
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
 
-It `MUST` be a string with default value `\n`. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
+It `MUST` be a string. This property specifies the character sequence which terminates rows in the file. Common values are `\n` (Unix), `\r\n` (Windows), `\r` (old Mac).
 
 For example:
 
@@ -735,7 +735,7 @@ For example:
 > [!NOTE]
 > Supported formats: **csv**
 
-It `MUST` be a string of one character length with default value `"` (double quote). This property specifies a character to use for quoting in case the delimiter needs to be used inside a data cell.
+It `MUST` be a string of one character length. This property specifies a character to use for quoting in case the delimiter needs to be used inside a data cell.
 
 For example:
 
@@ -797,7 +797,7 @@ id,name,notes
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
-It `MUST` be `false` or an array of positive integers starting from `1` with default value `[1]`. This property specifies the row numbers for the header. It `SHOULD` to be used for no header files or multiline-header files.
+It `MUST` be `false` or an array of positive integers starting from `1`. This property specifies the row numbers for the header.
 
 For example with a single header row:
 
@@ -847,7 +847,7 @@ For example with no headers:
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
-It `MUST` be a string with default value `" "` (space). This property specifies how multiline-header files have to join the resulting header rows.
+It `MUST` be a string. This property specifies how multiline-header files have to join the resulting header rows.
 
 For example:
 
@@ -988,7 +988,7 @@ For a JSON file like:
 > [!NOTE]
 > Supported formats: **json**, **jsonl**
 
-It `MUST` be one of the following values: `array`, `object` with default value `object`. This property specifies whether the data items are arrays or objects.
+It `MUST` be one of the following values: `array`, `object`. This property specifies whether the data items are arrays or objects.
 
 For example with array of objects:
 
@@ -1034,7 +1034,7 @@ For data like:
 > [!NOTE]
 > Supported formats: **xlsx**, **ods**
 
-It `MUST` be an integer with default value `1`. This property specifies a sheet number of a table in the spreadsheet file.
+It `MUST` be an integer. This property specifies a sheet number of a table in the spreadsheet file. If not provided, a first sheet is used.
 
 For example:
 
@@ -1072,7 +1072,7 @@ For example:
 > [!NOTE]
 > Supported formats: **sqlite**
 
-It `MUST` be a string. This property specifies a name of the table in the database.
+It `MUST` be a string. This property specifies a name of the table in the database. If not provided, a first table is used (sorted by name in ascending order).
 
 For example:
 
