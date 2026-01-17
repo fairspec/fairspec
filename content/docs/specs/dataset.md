@@ -326,20 +326,20 @@ For example for a resource with geolocation:
 
 ## Format
 
-Format specifies the features of all the data files in the resource. The schema is routed based on the [`type`](#type) property to determine which specific format applies.
+Format specifies the features of all the data files in the resource. The schema is routed based on the [`name`](#name) property to determine which specific format applies.
 
-### Format Types
+### Format Names
 
 #### CSV
 
-A format for comma-separated values files. It `MUST` have [`type`](#type) set to `"csv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
+A format for comma-separated values files. It `MUST` have [`name`](#name) set to `"csv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "csv"
+    "name": "csv"
   }
 }
 ```
@@ -367,14 +367,14 @@ Supported properties:
 
 #### TSV
 
-A format for tab-separated values files. It `MUST` have [`type`](#type) set to `"tsv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
+A format for tab-separated values files. It `MUST` have [`name`](#name) set to `"tsv"`. It `MUST` be `utf-8` encoded. Empty cells (`,,`) are `null` values.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "tsv"
+    "name": "tsv"
   }
 }
 ```
@@ -400,14 +400,14 @@ Supported properties:
 
 #### JSON
 
-A format for JSON array files. It `MUST` have [`type`](#type) set to `"json"`.
+A format for JSON array files. It `MUST` have [`name`](#name) set to `"json"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "json"
+    "name": "json"
   }
 }
 ```
@@ -434,14 +434,14 @@ Supported properties:
 
 #### JSONL
 
-A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`type`](#type) set to `"jsonl"`.
+A format for JSON Lines files (newline-delimited JSON). It `MUST` have [`name`](#name) set to `"jsonl"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "jsonl"
+    "name": "jsonl"
   }
 }
 ```
@@ -465,14 +465,14 @@ Supported properties:
 
 #### XLSX
 
-A format for Microsoft Excel files. It `MUST` have [`type`](#type) set to `"xlsx"`. Empty cells are `null` values.
+A format for Microsoft Excel files. It `MUST` have [`name`](#name) set to `"xlsx"`. Empty cells are `null` values.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "xlsx"
+    "name": "xlsx"
   }
 }
 ```
@@ -496,14 +496,14 @@ Supported properties:
 
 #### ODS
 
-A format for OpenDocument Spreadsheet files. It `MUST` have [`type`](#type) set to `"ods"`. Empty cells are `null` values.
+A format for OpenDocument Spreadsheet files. It `MUST` have [`name`](#name) set to `"ods"`. Empty cells are `null` values.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "ods"
+    "name": "ods"
   }
 }
 ```
@@ -525,41 +525,16 @@ Supported properties:
 - [`sheetName`](#sheetname)
 - [`sheetNumber`](#sheetnumber)
 
-#### SQLite
-
-A format for SQLite database files. It `MUST` have [`type`](#type) set to `"sqlite"`.
-
-Metadata example:
-
-```json
-{
-  "format": {
-    "type": "sqlite"
-  }
-}
-```
-
-Data example:
-
-```
-<binary data>
-```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`tableName`](#tablename)
-
 #### Parquet
 
-A format for Apache Parquet files. It `MUST` have [`type`](#type) set to `"parquet"`.
+A format for Apache Parquet files. It `MUST` have [`name`](#name) set to `"parquet"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "parquet"
+    "name": "parquet"
   }
 }
 ```
@@ -576,14 +551,14 @@ Supported properties:
 
 #### Arrow
 
-A format for Apache Arrow files. It `MUST` have [`type`](#type) set to `"arrow"`.
+A format for Apache Arrow files. It `MUST` have [`name`](#name) set to `"arrow"`.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "type": "arrow"
+    "name": "arrow"
   }
 }
 ```
@@ -598,9 +573,34 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 
+#### SQLite
+
+A format for SQLite database files. It `MUST` have [`name`](#name) set to `"sqlite"`.
+
+Metadata example:
+
+```json
+{
+  "format": {
+    "name": "sqlite"
+  }
+}
+```
+
+Data example:
+
+```
+<binary data>
+```
+
+Supported properties:
+- [`title`](#title)
+- [`description`](#description)
+- [`tableName`](#tablename)
+
 #### Custom
 
-A format for custom data. It `MUST` have [`type`](#type) omitted.
+A format for custom data. It `MUST` have [`name`](#type) omitted.
 
 Metadata example:
 
@@ -625,7 +625,7 @@ Supported properties:
 
 ### Format Properties
 
-#### `type`
+#### `name`
 
 > [!NOTE]
 > Supported formats: **all format types**
