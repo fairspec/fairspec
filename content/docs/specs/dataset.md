@@ -362,7 +362,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 
 #### TSV
@@ -395,7 +395,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 
 #### JSON
@@ -427,7 +427,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 - [`jsonPointer`](#jsonpointer)
 - [`rowType`](#rowtype)
@@ -459,7 +459,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 - [`rowType`](#rowtype)
 
@@ -489,7 +489,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 - [`sheetName`](#sheetname)
 - [`sheetNumber`](#sheetnumber)
@@ -520,7 +520,7 @@ Supported properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
-- [`commentChar`](#commentchar)
+- [`commentPrefix`](#commentprefix)
 - [`columnNames`](#columnnames)
 - [`sheetName`](#sheetname)
 - [`sheetNumber`](#sheetnumber)
@@ -898,12 +898,12 @@ id,name
 
 With `"commentRows": [2]`, the second row would be skipped.
 
-#### `commentChar`
+#### `commentPrefix`
 
 > [!NOTE]
 > Supported formats: **csv**, **tsv**, **json**, **jsonl**, **xlsx**, **ods**
 
-It `MUST` be a string of one character length. This property specifies what rows have to be omitted from the data based on the row's first characters.
+It `MUST` be a string. This property specifies what rows have to be omitted from the data based on the row's prefix.
 
 For example:
 
@@ -911,7 +911,7 @@ For example:
 {
   "format": {
     "type": "csv",
-    "commentChar": "#"
+    "commentPrefix
   }
 }
 ```
