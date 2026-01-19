@@ -10,9 +10,9 @@ sidebar:
     <td>Evgeny Karev</td>
   </tr>
   <tr>
-    <th>Schema</th>
+    <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/{version}/table.json">https://fairspec.org/profiles/{version}/table.json</a>
+      <a href="https://fairspec.org/profiles/latest/table.json">https://fairspec.org/profiles/latest/table.json</a>
     </td>
   </tr>
 </table>
@@ -75,12 +75,9 @@ For example:
 
 ### `required`
 
-> [!WARNING]
-> This property is semantically different compared to JSON Schema. Table Schema requires all the column's cells not to have null or missing values if the column is declared as `required`.
+An optional list of column names that are required to present. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
 
-An optional list of column names that `MUST` have non null values in each row. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
-
-For example, to require specific columns no to have missing values:
+For example, to require specific columns:
 
 ```json
 {
@@ -103,9 +100,6 @@ For example, to require specific columns no to have missing values:
 ```
 
 ### `properties`
-
-> [!WARNING]
-> This property is semantically different compared to JSON Schema. Table Schema requires all the columns declared as `properties` to be present in the table.
 
 An object defining the schema for table columns. Each key represents a column name, and its value `MUST` be a valid [Column](#column) definition.
 
@@ -1186,15 +1180,25 @@ Supported properties:
 > [!NOTE]
 > Supported columns: **all column types**
 
-The data type of the column. It `MUST` be one of the following values (if omitted, the column type is unknown):
+The data type of the column. It `MUST` be one of the following values:
 
 - `boolean` - True/false values
 - `integer` - Whole numbers
-- `number` - Numeric values including decimals
+- `number` - Numeric values
 - `string` - Text values
 - `array` - Array/list values
 - `object` - Object/dictionary values
-- `null` - Unknown type
+
+If a column allows missing values the type can include `null` (order insensitive):
+
+- `["boolean", "null"]` - True/false values or missing values
+- `["integer", "null"]` - Whole numbers or missing values
+- `["number", "null"]` - Numeric values or missing values
+- `["string", "null"]` - Text values or missing values
+- `["array", "null"]` - Array/list values or missing values
+- `["object", "null"]` - Object/dictionary values or missing values
+
+Any other value of the type property indicates that the column type is [Unknown](#unknown).
 
 Metadata example:
 
@@ -1203,7 +1207,10 @@ Metadata example:
   "properties": {
     "age": {
       "type": "integer"
-    }
+    },
+    "title": {
+      "type": ["string", "null"]
+    },
   }
 }
 ```

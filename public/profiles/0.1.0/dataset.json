@@ -51,7 +51,7 @@
       ]
     },
     "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{fairspec-table-ref}" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/0.1.0/table.json" }]
     },
     "PathData": {
       "oneOf": [
