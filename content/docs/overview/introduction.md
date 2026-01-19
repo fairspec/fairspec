@@ -5,7 +5,7 @@ sidebar:
 ---
 
 > [!TIP]
-> Fairspec facilitates **findability, accessibility, interoperability, and reusability** of data making it perfect for [FAIR Data Exchange](https://en.wikipedia.org/wiki/FAIR_data).
+> The [FAIR principles](https://en.wikipedia.org/wiki/FAIR_data) provide guidelines to improve the **Findability, Accessibility, Interoperability, and Reusability** of digital assets.
 
 **Fairspec** is a lightweight data exchange format designed to make scientific and research data FAIR (findable, accessible, interoperable, and reusable). Built on widely-adopted open standards, Fairspec provides a simple yet powerful way to describe, share, and discover datasets.
 

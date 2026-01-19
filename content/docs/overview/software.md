@@ -2,6 +2,7 @@
 title: Software
 sidebar:
   order: 2
+  hidden: true
 ---
 
 > [!NOTE]
