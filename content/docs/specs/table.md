@@ -10,9 +10,9 @@ sidebar:
     <td>Evgeny Karev</td>
   </tr>
   <tr>
-    <th>Schema</th>
+    <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/{version}/table.json">https://fairspec.org/profiles/{version}/table.json</a>
+      <a href="https://fairspec.org/profiles/latest/table.json">https://fairspec.org/profiles/latest/table.json</a>
     </td>
   </tr>
 </table>
