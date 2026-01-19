@@ -9,6 +9,7 @@ const $ = execa({ stdout: ["inherit", "pipe"], preferLocal: true })
 
 await tasuku("Copying profiles", async () => {
   await $`rm -rf public/profiles/latest`
+  await $`rm -rf public/profiles/${version}`
   await $`cp -r profiles public/profiles/latest`
   await $`cp -r profiles public/profiles/${version}`
 })
