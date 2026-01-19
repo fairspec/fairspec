@@ -5,5 +5,86 @@ sidebar:
   order: 1
 ---
 
-> [!NOTE]
-> This section is under development.
+Fairspec Dataset has a simple yet powerful extension mechanism based on JSONSchema. Extensions allow you to create domain-specific profiles that add custom properties and validation rules while maintaining compatibility with the base specification.
+
+## How Extensions Work
+
+An extension is a JSONSchema that:
+
+1. References the base Fairspec Dataset schema in an `allOf` property
+2. Adds domain-specific properties and constraints
+3. Can be referenced via the `$schema` property in dataset descriptors
+
+Using JSONSchema features, extensions can:
+
+- Add new custom properties for domain-specific metadata
+- Require specific properties or values
+- Define expected resource types and their schemas
+- Enforce validation rules unique to your domain
+- Combine multiple profiles into higher-level extensions
+
+Extensions are ideal for:
+
+- Scientific domains with specialized metadata (spectroscopy, genomics, imaging)
+- Organizations with internal data standards
+- Research communities with shared conventions
+- Compliance with domain-specific requirements
+
+See the [Dataset Specification](../../specs/dataset#extension) for complete technical details.
+
+## Example: Spectroscopy Extension
+
+A dataset using a custom spectroscopy profile:
+
+```json
+{
+  "$schema": "https://fairspec.org/schemas/1.0.0/spectroscopy.dataset.json",
+  "title": "Infrared Spectroscopy Data",
+  "resources": [
+    {
+      "data": "spectrum.csv",
+      "spectralRange": {
+        "min": 400,
+        "max": 4000,
+        "unit": "cm-1"
+      }
+    }
+  ]
+}
+```
+
+The extension schema that enables this:
+
+```json
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "title": "Spectroscopy Fairspec Extension",
+  "allOf": [
+    { "$ref": "https://fairspec.org/schemas/1.0.0/dataset.json" },
+    { "$ref": "#/$defs/spectroscopyMixin" }
+  ],
+  "$defs": {
+    "spectroscopyMixin": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "spectralRange": {
+                "type": "object",
+                "required": ["min", "max", "unit"],
+                "properties": {
+                  "min": { "type": "number" },
+                  "max": { "type": "number" },
+                  "unit": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
