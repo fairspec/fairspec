@@ -10,9 +10,8 @@ export const collections = {
       {
         base: "changelog",
         provider: "github",
-        // TODO: update when published
-        owner: "datisthq",
-        repo: "dpkit",
+        owner: "fairspec",
+        repo: "fairspec",
       },
     ]),
   }),
