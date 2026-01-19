@@ -13,6 +13,7 @@
     "clean": "rm -rf **/node_modules",
     "format": "biome check --write",
     "lint": "biome check",
+    "install:ci": "pnpm install --ignore-scripts",
     "generate": "node @generate.ts",
     "prepare": "husky",
     "preview": "astro preview --port 5000",
