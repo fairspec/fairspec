@@ -83,18 +83,19 @@
       "properties": {
         "format": {
           "enum": [
-            "list",
+            "categorical",
             "decimal",
-            "hex",
-            "base64",
-            "email",
+            "list",
             "url",
-            "date-time",
+            "email",
             "date",
             "time",
+            "date-time",
             "duration",
             "wkt",
-            "wkb"
+            "wkb",
+            "hex",
+            "base64"
           ]
         }
       },
@@ -552,13 +553,13 @@
       "enum": ["number", ["number", "null"], ["null", "number"]]
     },
     "StringType": {
-      "const": "string"
+      "const": ["string", ["string", "null"], ["null", "string"]]
     },
     "ArrayType": {
-      "const": "array"
+      "const": ["array", ["array", "null"], ["null", "array"]]
     },
     "ObjectType": {
-      "const": "object"
+      "const": ["object", ["object", "null"], ["null", "object"]]
     },
     "MissingValues": {
       "type": "array",
