@@ -5,17 +5,17 @@ sidebar:
   order: 1
 ---
 
-Fairspec Dataset has a simple yet powerful extension mechanism based on JSONSchema. Extensions allow you to create domain-specific profiles that add custom properties and validation rules while maintaining compatibility with the base specification.
+Fairspec Dataset has a simple yet powerful extension mechanism based on JSON Schema. Extensions allow you to create domain-specific profiles that add custom properties and validation rules while maintaining compatibility with the base specification.
 
 ## How Extensions Work
 
-An extension is a JSONSchema that:
+An extension is a JSON Schema that:
 
 1. References the base Fairspec Dataset schema in an `allOf` property
 2. Adds domain-specific properties and constraints
 3. Can be referenced via the `$schema` property in dataset descriptors
 
-Using JSONSchema features, extensions can:
+Using JSON Schema features, extensions can:
 
 - Add new custom properties for domain-specific metadata
 - Require specific properties or values

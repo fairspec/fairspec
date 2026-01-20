@@ -17,7 +17,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Dataset is a simple JSON based format that allows to describe a single dataset and its resources. It is compatible with DataCite for metadata and JSONSchema for structured data.
+Fairspec Dataset is a simple JSON based format that allows to describe a single dataset and its resources. It is compatible with DataCite for metadata and JSON Schema for structured data.
 
 ## Language
 
@@ -240,7 +240,7 @@ For example for a file with SHA-256 hash:
 
 ### `dataSchema`
 
-It `MUST` be a [Path](#path) to a JSON Schema or an object with the JSON Schema. The JSON Schema `MUST` be compatible with the [JSONSchema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to a JSON Schema or an object with the JSON Schema. The JSON Schema `MUST` be compatible with the [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
 
 For example as an external path:
 
@@ -1152,11 +1152,11 @@ For example:
 > [!TIP]
 > Additional properties are allowed.
 
-Fairspec Dataset has a simple yet powerful extension mechanism based on the JSONSchema standard. An extension is a domain-specific Fairspec Dataset flavour that enriches the standard with additional metadata properties and validation rules.
+Fairspec Dataset has a simple yet powerful extension mechanism based on the JSON Schema standard. An extension is a domain-specific Fairspec Dataset flavour that enriches the standard with additional metadata properties and validation rules.
 
 ### Creation
 
-A custom JSONSchema can be provided as a `$schema` property in the dataset descriptor. The profile instructs to validate the descriptor using JSON Schema rules defined by the extension. The extension's schema `MUST` include base Fairspec Dataset schema in the root `allOf` property.
+A custom JSON Schema can be provided as a `$schema` property in the dataset descriptor. The profile instructs to validate the descriptor using JSON Schema rules defined by the extension. The extension's schema `MUST` include base Fairspec Dataset schema in the root `allOf` property.
 
 Using JSON Schema features with custom profiles allows you to:
 
