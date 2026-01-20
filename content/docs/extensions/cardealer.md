@@ -6,4 +6,5 @@ sidebar:
 
 Fairspec Cardealer is a data exchange format that helps car dealerships share their car listings. It is developed on top of the Fairspec standard.
 
-[Fairspec Cardealer](https://fairspec.github.io/cardealerdp/)
+> [!TIP]
+> Visit the [Fairspec Cardealer](https://fairspec.github.io/fairspec-cardealer/) website for more information.
