@@ -72,7 +72,7 @@
     "Dialect": {
       "oneOf": [
         { "$ref": "#/$defs/Path" },
-        { "$ref": "https://fairspec.org/profiles/latest/dialect.json" }
+        { "$ref": "https://fairspec.org/profiles/0.2.0/dialect.json" }
       ]
     },
     "Integrity": {
@@ -91,7 +91,7 @@
       ]
     },
     "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/latest/schema.json" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/0.2.0/schema.json" }]
     },
     "Datacite": {
       "type": "object",
