@@ -1,7 +1,8 @@
 ---
-title: Fairspec Table
+title: Fairspec Schema
 sidebar:
-  label: Table
+  label: Schema
+  order: 3
 ---
 
 <table>
@@ -12,12 +13,12 @@ sidebar:
   <tr>
     <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/latest/table.json">https://fairspec.org/profiles/latest/table.json</a>
+      <a href="https://fairspec.org/profiles/latest/schema.json">https://fairspec.org/profiles/latest/schema.json</a>
     </td>
   </tr>
 </table>
 
-Fairspec Table is a simple JSON based format that defines Table Schema to describe a class of tabular data resources. Table Schema structuraly compatible with JSON Schema but it doesn't support all the JSON Schema features. It adapts some features for tabular context, and extend JSON Schema with additional tabular features.
+Fairspec Schema is a simple JSON based format that defines Schema to describe a class of tabular data resources. Table Schema structuraly compatible with JSON Schema but it doesn't support all the JSON Schema features. It adapts some features for tabular context, and extend JSON Schema with additional tabular features.
 
 ## Language
 
@@ -25,24 +26,24 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
-A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Table Schema](#table-schema) structure outlined below.
+A Fairspec Schema is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Table Schema](#table-schema) structure outlined below.
 
 ## Table Schema
 
-A top-level descriptor object defining a schema of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
+A top-level descriptor object defining a schema of tabular data resources. It `MIGHT` have the following properties (all optional unless otherwise stated):
 
 ### `$schema` {#profile}
 
 > [!NOTE]
 > Data publisher `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Table profiles with default value `https://fairspec.org/profiles/latest/table.json`.
+[External Path](#external-path) to one of the officially published Fairspec Schema profiles with default value `https://fairspec.org/profiles/latest/schema.json`.
 
-For example for version X.Y.Z of the schema:
+For example for version X.Y.Z of the profile:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/table.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/schema.json"
 }
 ```
 
@@ -54,7 +55,6 @@ For example:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json",
   "title": "Experimental Measurements Dataset"
 }
 ```
@@ -67,7 +67,6 @@ For example:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/fairspec.table.json",
   "title": "Experimental Measurements Dataset",
   "description": "Temperature and pressure measurements collected during chemical reaction experiments performed in laboratory conditions."
 }
@@ -2166,7 +2165,7 @@ For example:
 > [!WARNING]
 > Additional properties are NOT allowed.
 
-Fairspec Table does not support extension.
+Fairspec Schema does not support extension.
 
 ## Comparison
 

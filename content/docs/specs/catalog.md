@@ -2,6 +2,7 @@
 title: Fairspec Catalog
 sidebar:
   label: Catalog
+  order: 1
 ---
 
 <table>

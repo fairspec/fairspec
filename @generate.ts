@@ -5,7 +5,7 @@ import packageJson from "./package.json" with { type: "json" }
 
 process.chdir(import.meta.dirname)
 const version = packageJson.version
-const $ = execa({ stdout: ["inherit", "pipe"], preferLocal: true })
+const $ = execa({ stdout: ["inherit"], preferLocal: true })
 
 await tasuku("Copying profiles", async () => {
   await $`rm -rf public/profiles/latest`
@@ -17,15 +17,27 @@ await tasuku("Copying profiles", async () => {
 await tasuku("Updating references in current", async () => {
   await replaceInFile({
     files: `public/profiles/${version}/dataset.json`,
-    from: /{fairspec-table-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/table.json`,
+    from: /{fairspec-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/${version}/dialect.json`,
+  })
+
+  await replaceInFile({
+    files: `public/profiles/${version}/dataset.json`,
+    from: /{fairspec-schema-ref}/g,
+    to: `https://fairspec.org/profiles/${version}/schema.json`,
   })
 })
 
 await tasuku("Updating references in latest", async () => {
   await replaceInFile({
     files: `public/profiles/latest/dataset.json`,
-    from: /{fairspec-table-ref}/g,
-    to: `https://fairspec.org/profiles/latest/table.json`,
+    from: /{fairspec-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/latest/dialect.json`,
+  })
+
+  await replaceInFile({
+    files: `public/profiles/latest/dataset.json`,
+    from: /{fairspec-schema-ref}/g,
+    to: `https://fairspec.org/profiles/latest/schema.json`,
   })
 })
