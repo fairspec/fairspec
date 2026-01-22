@@ -26,9 +26,9 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
-A Fairspec Schema is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Table Schema](#table-schema) structure outlined below.
+A Fairspec Schema is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Schema](#schema) structure outlined below.
 
-## Table Schema
+## Schema
 
 A top-level descriptor object defining a schema of tabular data resources. It `MIGHT` have the following properties (all optional unless otherwise stated):
 
