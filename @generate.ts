@@ -17,27 +17,27 @@ await tasuku("Copying profiles", async () => {
 await tasuku("Updating references in current", async () => {
   await replaceInFile({
     files: `public/profiles/${version}/dataset.json`,
-    from: /{fairspec-file-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/file.json`,
+    from: /{fairspec-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/${version}/dialect.json`,
   })
 
   await replaceInFile({
     files: `public/profiles/${version}/dataset.json`,
-    from: /{fairspec-table-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/table.json`,
+    from: /{fairspec-schema-ref}/g,
+    to: `https://fairspec.org/profiles/${version}/schema.json`,
   })
 })
 
 await tasuku("Updating references in latest", async () => {
   await replaceInFile({
     files: `public/profiles/latest/dataset.json`,
-    from: /{fairspec-file-ref}/g,
-    to: `https://fairspec.org/profiles/latest/file.json`,
+    from: /{fairspec-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/latest/dialect.json`,
   })
 
   await replaceInFile({
     files: `public/profiles/latest/dataset.json`,
-    from: /{fairspec-table-ref}/g,
-    to: `https://fairspec.org/profiles/latest/table.json`,
+    from: /{fairspec-schema-ref}/g,
+    to: `https://fairspec.org/profiles/latest/schema.json`,
   })
 })

@@ -70,7 +70,10 @@
       "type": "boolean"
     },
     "Dialect": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{fairspec-file-ref}" }]
+      "oneOf": [
+        { "$ref": "#/$defs/Path" },
+        { "$ref": "{fairspec-dialect-ref}" }
+      ]
     },
     "Integrity": {
       "type": "string",
@@ -88,7 +91,7 @@
       ]
     },
     "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{fairspec-table-ref}" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{fairspec-schema-ref}" }]
     },
     "Datacite": {
       "type": "object",
