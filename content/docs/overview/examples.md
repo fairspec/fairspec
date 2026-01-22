@@ -84,9 +84,120 @@ A Fairspec Dataset describes a collection of related data resources with rich me
 }
 ```
 
-## Schema Example
+## Dialect Example
 
-Fairspec Schema defines the structure and constraints for tabular data. Here's the schema for the temperature measurements above:
+Fairspec Dialect defines how file formats should be interpreted:
+
+```json
+{
+  "format": "csv",
+  "delimiter": ";",
+  "headerRows": [1],
+  "commentPrefix": "#"
+}
+```
+
+This dialect specifies a CSV file using semicolons as delimiters, with headers in the first row and lines starting with `#` treated as comments.
+
+## Data Schema Example
+
+Fairspec Data Schema defines the structure and validation rules for JSON data. Here's an example schema for a research instrument configuration:
+
+```json
+{
+  "$schema": "https://fairspec.org/profiles/1.0.0/data-schema.json",
+  "type": "object",
+  "title": "Spectrometer Configuration",
+  "description": "Configuration schema for UV-Vis spectrometer settings",
+  "required": ["instrument_id", "wavelength_range", "scan_parameters"],
+  "properties": {
+    "instrument_id": {
+      "type": "string",
+      "description": "Unique identifier for the instrument",
+      "pattern": "^SPEC-[0-9]{4}$"
+    },
+    "wavelength_range": {
+      "type": "object",
+      "description": "Wavelength scan range in nanometers",
+      "required": ["min", "max"],
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 190,
+          "maximum": 1100
+        },
+        "max": {
+          "type": "number",
+          "minimum": 190,
+          "maximum": 1100
+        }
+      }
+    },
+    "scan_parameters": {
+      "type": "object",
+      "required": ["scan_speed", "data_interval"],
+      "properties": {
+        "scan_speed": {
+          "type": "string",
+          "enum": ["slow", "medium", "fast", "very_fast"]
+        },
+        "data_interval": {
+          "type": "number",
+          "description": "Data collection interval in nm",
+          "minimum": 0.1,
+          "maximum": 5.0
+        },
+        "baseline_correction": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "calibration_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of last calibration"
+    },
+    "operator": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+
+This schema validates JSON configuration files like:
+
+```json
+{
+  "instrument_id": "SPEC-0042",
+  "wavelength_range": {
+    "min": 200,
+    "max": 800
+  },
+  "scan_parameters": {
+    "scan_speed": "medium",
+    "data_interval": 1.0,
+    "baseline_correction": true
+  },
+  "calibration_date": "2024-03-01",
+  "operator": {
+    "name": "Alice Johnson",
+    "id": "USER-123"
+  }
+}
+```
+
+## Table Schema Example
+
+Fairspec Table Schema defines the structure and constraints for tabular data. Here's the schema for the temperature measurements above:
 
 ```json
 {
@@ -152,21 +263,6 @@ Fairspec Schema defines the structure and constraints for tabular data. Here's t
   "missingValues": ["NA", "N/A", ""]
 }
 ```
-
-## Dialect Example
-
-Fairspec Dialect defines how file formats should be interpreted:
-
-```json
-{
-  "format": "csv",
-  "delimiter": ";",
-  "headerRows": [1],
-  "commentPrefix": "#"
-}
-```
-
-This dialect specifies a CSV file using semicolons as delimiters, with headers in the first row and lines starting with `#` treated as comments.
 
 ## Complete Example: Research Laboratory Dataset
 

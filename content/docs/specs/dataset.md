@@ -173,26 +173,13 @@ For a JSON array of objects:
 
 ### `name`
 
-An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Schema](../schema).
+An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Schema](../table-schema).
 
 For example:
 
 ```json
 {
   "name": "measurements"
-}
-```
-
-### `textual`
-
-A boolean indicating whether the file is text-based. When `true`, the file `MUST` be `utf-8` encoded.
-
-For example:
-
-```json
-{
-  "data": "document.md",
-  "textual": true
 }
 ```
 
@@ -208,6 +195,19 @@ For example, for a file with CSV format:
     "format": "csv",
     "delimiter": ";"
   }
+}
+```
+
+### `textual`
+
+A boolean indicating whether the file is text-based. When `true`, the file `MUST` be `utf-8` encoded.
+
+For example:
+
+```json
+{
+  "data": "document.md",
+  "textual": true
 }
 ```
 
@@ -241,7 +241,7 @@ For example for a file with SHA-256 hash:
 
 ### `dataSchema`
 
-It `MUST` be a [Path](#path) to a JSON Schema or an object with the JSON Schema. The JSON Schema `MUST` be compatible with the [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12) specification. If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to or an object with [Fairspec Data Schema](../data-schema). If present, [Data](#data) `MUST` be a JSON document that is compatible with the provided schema.
 
 For example as an external path:
 
@@ -272,7 +272,7 @@ For example as an object:
 
 ### `tableSchema`
 
-It `MUST` be a [Path](#path) to a Fairspec Schema or an object with the Fairspec Schema. The Fairspec Schema `MUST` be compatible with the [Fairspec Schema](../schema) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to or an object with [Fairspec Table Schema](../table-schema). If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
 
 For example as an external path:
 
@@ -412,7 +412,7 @@ For example, a Spectroscopy Fairspec extension that requires spectral metadata:
 
 ```json
 {
-  "$schema": "https://fairspec.org/schemas/1.0.0/spectroscopy.dataset.json",
+  "$schema": "https://spectroscopy.org/profiles/1.0.0/dataset.json",
   "resources": [
     {
       "data": "spectrum.csv",
@@ -431,9 +431,9 @@ The extension profile would include the base Fairspec Dataset schema and add dom
 ```json
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
-  "title": "Spectroscopy Faispec",
+  "title": "Faispec Spectroscopy Profile",
   "allOf": [
-    { "$ref": "https://fairspec.org/schemas/1.0.0/fairspec.dataset.json" },
+    { "$ref": "https://fairspec.org/profiles/1.0.0/dataset.json" },
     { "$ref": "#/$defs/spectroscopyMixin" }
   ],
   "$defs": {

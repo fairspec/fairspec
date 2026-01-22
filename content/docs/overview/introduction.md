@@ -17,9 +17,11 @@ Fairspec consists of four complementary JSON-based specifications:
 
 **Fairspec Dataset** - Describes individual datasets and their resources using DataCite-compatible metadata. Supports multiple data formats (CSV, JSON, Parquet, XLSX, and more) with rich metadata including integrity checks, format specifications, and schema definitions.
 
-**Fairspec Schema** - A table schema specification structurally compatible with JSON Schema but adapted for tabular data. Defines column types, constraints, relationships, and validation rules with support for primary keys, foreign keys, and complex data types.
-
 **Fairspec Dialect** - Defines file format dialects and their properties. Specifies how different file formats (CSV, TSV, JSON, JSONL, XLSX, ODS, Parquet, Arrow, SQLite) should be interpreted, including delimiters, headers, encoding, and format-specific settings.
+
+**Fairspec Data Schema** - A simple JSON-based format that defines data schemas to describe structured data resources. Fully compatible with JSON Schema Draft 2020-12, it provides a way to validate and document the structure of JSON data.
+
+**Fairspec Table Schema** - A table schema specification structurally compatible with JSON Schema but adapted for tabular data. Defines column types, constraints, relationships, and validation rules with support for primary keys, foreign keys, and complex data types.
 
 ## Features
 
