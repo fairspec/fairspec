@@ -2,7 +2,7 @@
 title: Fairspec Dialect
 sidebar:
   label: Dialect
-  order: 4
+  order: 3
 ---
 
 <table>

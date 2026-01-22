@@ -70,10 +70,7 @@
       "type": "boolean"
     },
     "Dialect": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "$ref": "{fairspec-dialect-ref}" }
-      ]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{dialect-ref}" }]
     },
     "Integrity": {
       "type": "string",
@@ -85,13 +82,10 @@
       }
     },
     "DataSchema": {
-      "oneOf": [
-        { "$ref": "#/$defs/Path" },
-        { "$ref": "https://json-schema.org/draft/2020-12/schema" }
-      ]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{data-schema-ref}" }]
     },
     "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{fairspec-schema-ref}" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{table-schema-ref}" }]
     },
     "Datacite": {
       "type": "object",
