@@ -64,6 +64,7 @@
     "BaseDialect": {
       "type": "object",
       "properties": {
+        "$schema": { "$ref": "#/$defs/Profile" },
         "title": { "$ref": "#/$defs/Title" },
         "description": { "$ref": "#/$defs/Description" }
       }
@@ -180,6 +181,13 @@
       "properties": {
         "name": { "$ref": "#/$defs/name" }
       }
+    },
+    "Profile": {
+      "$ref": "#/$defs/ExternalPath"
+    },
+    "ExternalPath": {
+      "type": "string",
+      "pattern": "^https?://"
     },
     "Name": {
       "type": "string"
