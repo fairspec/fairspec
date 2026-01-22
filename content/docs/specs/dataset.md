@@ -173,7 +173,7 @@ For a JSON array of objects:
 
 ### `name`
 
-An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Table](../table).
+An optional name for the resource. It `MUST` be a string consisting of alphanumeric characters and underscores. If provided, it can be used to reference resource within a dataset context. For example, a name of the resource is used in [Foreign Keys](../table#foreign-keys) specified in [Fairspec Schema](../schema).
 
 For example:
 
@@ -198,7 +198,7 @@ For example:
 
 ### `dialect`
 
-It `MUST` be a [Path](#path) to a Dialect or an object with the Dialect. The Dialect `MUST` be compatible with the [Fairspec File](../file) specification. If present, [Data](#data) `MUST` be a file that is compatible with the provided dialect.
+It `MUST` be a [Path](#path) to a Dialect or an object with the Dialect. The Dialect `MUST` be compatible with the [Fairspec File](../file) specification. If present, [Data](#data) `MUST` be compatible with the provided dialect.
 
 For example, for a file with CSV format:
 
@@ -272,7 +272,7 @@ For example as an object:
 
 ### `tableSchema`
 
-It `MUST` be a [Path](#path) to a Table Schema or an object with the Table Schema. The Table Schema `MUST` be compatible with the [Fairspec Table](../table) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
+It `MUST` be a [Path](#path) to a Fairspec Schema or an object with the Fairspec Schema. The Fairspec Schema `MUST` be compatible with the [Fairspec Schema](../schema) specification. If present, [Data](#data) `MUST` be a table that is compatible with the provided schema.
 
 For example as an external path:
 

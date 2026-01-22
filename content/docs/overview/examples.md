@@ -6,6 +6,18 @@ sidebar:
 
 This guide demonstrates how to create Fairspec descriptors for real-world use cases. We'll walk through examples of catalogs, datasets, and table schemas.
 
+## Catalog Example
+
+A Fairspec Catalog is a JSON Lines file listing multiple datasets with their update timestamps:
+
+```jsonl
+{"loc": "https://climate.example.org/datasets/temperature-2024.json", "upd": "2024-03-15T10:30:00Z"}
+{"loc": "https://climate.example.org/datasets/precipitation-2024.json", "upd": "2024-03-10T14:20:00Z"}
+{"loc": "https://climate.example.org/datasets/wind-patterns-2024.json", "upd": "2024-03-05T09:15:00Z"}
+{"loc": "https://climate.example.org/datasets/solar-radiation-2024.json", "upd": "2024-02-28T16:45:00Z"}
+{"loc": "https://climate.example.org/datasets/atmospheric-pressure-2024.json", "upd": "2024-02-20T11:00:00Z"}
+```
+
 ## Dataset Example
 
 A Fairspec Dataset describes a collection of related data resources with rich metadata. Here's an example of a climate research dataset:
@@ -72,13 +84,13 @@ A Fairspec Dataset describes a collection of related data resources with rich me
 }
 ```
 
-## Table Schema Example
+## Schema Example
 
-A Fairspec Table Schema defines the structure and constraints for tabular data. Here's the schema for the temperature measurements above:
+Fairspec Schema defines the structure and constraints for tabular data. Here's the schema for the temperature measurements above:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/1.0.0/table.json",
+  "$schema": "https://fairspec.org/profiles/1.0.0/schema.json",
   "title": "Temperature Measurement Schema",
   "description": "Schema for daily temperature readings from weather stations",
   "required": ["station_id", "date", "temperature"],
@@ -141,17 +153,20 @@ A Fairspec Table Schema defines the structure and constraints for tabular data. 
 }
 ```
 
-## Catalog Example
+## Dialect Example
 
-A Fairspec Catalog is a JSON Lines file listing multiple datasets with their update timestamps:
+Fairspec Dialect defines how file formats should be interpreted:
 
-```jsonl
-{"loc": "https://climate.example.org/datasets/temperature-2024.json", "upd": "2024-03-15T10:30:00Z"}
-{"loc": "https://climate.example.org/datasets/precipitation-2024.json", "upd": "2024-03-10T14:20:00Z"}
-{"loc": "https://climate.example.org/datasets/wind-patterns-2024.json", "upd": "2024-03-05T09:15:00Z"}
-{"loc": "https://climate.example.org/datasets/solar-radiation-2024.json", "upd": "2024-02-28T16:45:00Z"}
-{"loc": "https://climate.example.org/datasets/atmospheric-pressure-2024.json", "upd": "2024-02-20T11:00:00Z"}
+```json
+{
+  "format": "csv",
+  "delimiter": ";",
+  "headerRows": [1],
+  "commentPrefix": "#"
+}
 ```
+
+This dialect specifies a CSV file using semicolons as delimiters, with headers in the first row and lines starting with `#` treated as comments.
 
 ## Complete Example: Research Laboratory Dataset
 
@@ -271,7 +286,7 @@ materials-lab-2024/
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/1.0.0/table.json",
+  "$schema": "https://fairspec.org/profiles/1.0.0/schema.json",
   "title": "Polymer Synthesis Experiment Schema",
   "required": ["experiment_id", "sample_id", "date", "temperature", "pressure"],
   "properties": {
@@ -413,13 +428,13 @@ Fairspec supports various data formats. Here's a dataset combining different fil
 }
 ```
 
-## Advanced Table Schema Example
+## Advanced Schema Example
 
 This example demonstrates advanced features like complex types and validation:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/1.0.0/table.json",
+  "$schema": "https://fairspec.org/profiles/1.0.0/schema.json",
   "title": "Advanced Feature Schema",
   "properties": {
     "id": {

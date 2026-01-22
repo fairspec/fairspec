@@ -1,7 +1,7 @@
 ---
-title: Fairspec File
+title: Fairspec Dialect
 sidebar:
-  label: File
+  label: Dialect
   order: 4
 ---
 
@@ -13,12 +13,12 @@ sidebar:
   <tr>
     <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/latest/file.json">https://fairspec.org/profiles/latest/file.json</a>
+      <a href="https://fairspec.org/profiles/latest/dialect.json">https://fairspec.org/profiles/latest/dialect.json</a>
     </td>
   </tr>
 </table>
 
-Fairspec File is a simple JSON based format that defines Dialect to describe a file's format options and features. A Fairspec Dataset can include any files but if a dialect is provided it means that the file is constraint to the format and options defined in the dialect. A provided dialect communicates a file's features as well, for example, in case of Csv Dialect, the files contains tabular data.
+Fairspec Dialect is a simple JSON based format that defines Dialect to describe a file's format options and features.
 
 ## Language
 
@@ -26,7 +26,7 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
-A Fairspec File is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Dialect](#dialect) structure outlined below.
+A Fairspec Dialect is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Dialect](#dialect) structure outlined below.
 
 ## Dialect
 
@@ -37,14 +37,14 @@ A top-level descriptor object describing a file dialect. It `MIGHT` have the fol
 > [!NOTE]
 > Data publishers `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec File profiles with default value `https://fairspec.org/profiles/latest/file.json`.
+[External Path](#external-path) to one of the officially published Fairspec Dialect profiles with default value `https://fairspec.org/profiles/latest/dialect.json`.
 
 
 For example for version X.Y.Z of the profile:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/file.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/dialect.json"
 }
 ```
 
@@ -851,7 +851,7 @@ For example:
 > [!WARNING]
 > Additional properties are NOT allowed.
 
-Fairspec File does not support extension.
+Fairspec Dialect does not support extension.
 
 ## Comparison
 
