@@ -28,3 +28,39 @@ jobs:
         run: pnpm test
       - name: Build Website
         run: pnpm build
+
+  release:
+    needs: [test]
+    environment: release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    outputs:
+      created: ${{ steps.release.outputs.new_release_published }}
+      version: ${{ steps.release.outputs.new_release_version }}
+
+    permissions:
+      id-token: write
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v5
+      - name: Setup Uv
+        uses: astral-sh/setup-uv@v6
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: package.json
+      - name: Install Dependencies
+        run: pnpm install:ci
+      - name: Release Project
+        uses: cycjimmy/semantic-release-action@v5
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

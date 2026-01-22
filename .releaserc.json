@@ -18,13 +18,6 @@
         "assets": ["public/profiles/**/*.json", "package.json"]
       }
     ],
-    [
-      "@semantic-release/exec",
-      {
-        "prepareCmd": "pnpm build",
-        "publishCmd": "pnpm publish"
-      }
-    ],
     ["@semantic-release/github"]
   ]
 }
