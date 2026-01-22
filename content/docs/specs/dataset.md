@@ -431,7 +431,7 @@ The extension profile would include the base Fairspec Dataset schema and add dom
 ```json
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
-  "title": "Spectroscopy Faispec",
+  "title": "Faispec Spectroscopy Profile",
   "allOf": [
     { "$ref": "https://fairspec.org/profiles/1.0.0/dataset.json" },
     { "$ref": "#/$defs/spectroscopyMixin" }
