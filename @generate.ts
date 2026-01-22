@@ -5,7 +5,7 @@ import packageJson from "./package.json" with { type: "json" }
 
 process.chdir(import.meta.dirname)
 const version = packageJson.version
-const $ = execa({ stdout: ["inherit", "pipe"], preferLocal: true })
+const $ = execa({ stdout: ["inherit"], preferLocal: true })
 
 await tasuku("Copying profiles", async () => {
   await $`rm -rf public/profiles/latest`

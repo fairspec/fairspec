@@ -2,6 +2,7 @@
 title: Fairspec Table
 sidebar:
   label: Table
+  order: 3
 ---
 
 <table>
@@ -29,7 +30,7 @@ A Fairspec Table is a [JSON](https://json.org/) resource that `MUST` be an objec
 
 ## Table Schema
 
-A top-level descriptor object defining a schema of tabular data resources. It `MUST` have the following properties (all optional unless otherwise stated):
+A top-level descriptor object defining a schema of tabular data resources. It `MIGHT` have the following properties (all optional unless otherwise stated):
 
 ### `$schema` {#profile}
 
@@ -38,7 +39,7 @@ A top-level descriptor object defining a schema of tabular data resources. It `M
 
 [External Path](#external-path) to one of the officially published Fairspec Table profiles with default value `https://fairspec.org/profiles/latest/table.json`.
 
-For example for version X.Y.Z of the schema:
+For example for version X.Y.Z of the profile:
 
 ```json
 {
