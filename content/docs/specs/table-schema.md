@@ -1963,7 +1963,7 @@ For example:
 > [!WARNING]
 > Additional properties are NOT allowed.
 
-Fairspec Schema does not support extension.
+Fairspec Table Schema does not support extension.
 
 ## Comparison
 
