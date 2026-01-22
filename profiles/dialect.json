@@ -179,7 +179,7 @@
     "CustomDialect": {
       "allOf": [{ "$ref": "#/$defs/BaseDialect" }],
       "properties": {
-        "name": { "$ref": "#/$defs/name" }
+        "name": { "$ref": "#/$defs/Name" }
       }
     },
     "Profile": {
