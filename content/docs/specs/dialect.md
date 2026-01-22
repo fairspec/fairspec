@@ -48,6 +48,59 @@ For example for version X.Y.Z of the profile:
 }
 ```
 
+### `format`
+
+The format name. It `MUST` be one of the following values (if omitted, the format type is custom):
+
+- `csv`
+- `tsv`
+- `json`
+- `jsonl`
+- `xlsx`
+- `ods`
+- `sqlite`
+- `parquet`
+- `arrow`
+
+For example for a CSV file:
+
+```json
+{
+  "dialect": {
+    "format": "csv"
+  }
+}
+```
+
+### `title`
+
+An optional human-readable title for the format.
+
+For example:
+
+```json
+{
+  "dialect": {
+    "title": "My custom format"
+  }
+}
+```
+
+### `description`
+
+An optional detailed description of the format.
+
+For example:
+
+```json
+{
+  "dialect": {
+    "title": "My custom format",
+    "description": "You can open this file with OpenOffice"
+  }
+}
+```
+
 ### Dialect Formats
 
 #### CSV
@@ -350,34 +403,7 @@ Supported properties:
 - [`title`](#title)
 - [`description`](#description)
 
-### Dialect Properties
-
-#### `format`
-
-> [!NOTE]
-> Supported formats: **all format types**
-
-The format name. It `MUST` be one of the following values (if omitted, the format type is custom):
-
-- `csv`
-- `tsv`
-- `json`
-- `jsonl`
-- `xlsx`
-- `ods`
-- `sqlite`
-- `parquet`
-- `arrow`
-
-For example for a CSV file:
-
-```json
-{
-  "dialect": {
-    "format": "csv"
-  }
-}
-```
+### Format Properties
 
 #### `name`
 
@@ -394,41 +420,6 @@ For example:
     "name": "custom",
     "title": "Custom format",
     "description": "Custom format description"
-  }
-}
-```
-
-#### `title`
-
-> [!NOTE]
-> Supported formats: **all format types**
-
-An optional human-readable title for the format.
-
-For example:
-
-```json
-{
-  "dialect": {
-    "title": "My custom format"
-  }
-}
-```
-
-#### `description`
-
-> [!NOTE]
-> Supported formats: **all format types**
-
-An optional detailed description of the format.
-
-For example:
-
-```json
-{
-  "dialect": {
-    "title": "My custom format",
-    "description": "You can open this file with OpenOffice"
   }
 }
 ```

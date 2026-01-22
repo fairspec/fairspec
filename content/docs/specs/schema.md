@@ -312,6 +312,287 @@ For example, with mixed values:
 
 A column definition that specifies the data type, constraints, and metadata for a table column. The schema is routed based on the [`type`](#type) property and optionally the [`format`](#format) property to determine which specific column type applies.
 
+#### `type`
+
+The data type of the column. It `MUST` be one of the following values:
+
+- `boolean` - True/false values
+- `integer` - Whole numbers
+- `number` - Numeric values
+- `string` - Text values
+- `array` - Array/list values
+- `object` - Object/dictionary values
+
+If a column allows missing values the type can include `null` (order insensitive):
+
+- `["boolean", "null"]` - True/false values or missing values
+- `["integer", "null"]` - Whole numbers or missing values
+- `["number", "null"]` - Numeric values or missing values
+- `["string", "null"]` - Text values or missing values
+- `["array", "null"]` - Array/list values or missing values
+- `["object", "null"]` - Object/dictionary values or missing values
+
+Any other value of the type property indicates that the column type is [Unknown](#unknown).
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "age": {
+      "type": "integer"
+    },
+    "title": {
+      "type": ["string", "null"]
+    },
+  }
+}
+```
+
+Data example:
+```csv
+age
+25
+32
+18
+```
+
+#### `title` {#column-title}
+
+An optional human-readable title for the column. It `MUST` be a string.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "temp_c": {
+      "type": "number",
+      "title": "Temperature (Celsius)"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+temp_c
+23.5
+-10.2
+98.6
+```
+
+#### `description` {#column-description}
+
+An optional detailed description of the column. It `MUST` be a string.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "pressure": {
+      "type": "number",
+      "description": "Atmospheric pressure measured in hectopascals (hPa) at the time of observation."
+    }
+  }
+}
+```
+
+Data example:
+```csv
+pressure
+1013.25
+1020.50
+995.30
+```
+
+#### `rdfType`
+
+An optional property that provides a richer, "semantic" description of the type of data in a column. The value `MUST` be the URI of a RDF Class, that is an instance or subclass of [RDF Schema Class object](https://www.w3.org/TR/rdf-schema/#ch_class).
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "country": {
+      "type": "string",
+      "rdfType": "http://schema.org/Country"
+    }
+  }
+}
+```
+
+Data example:
+```csv
+country
+US
+UK
+DE
+FR
+```
+
+#### `enum`
+
+An optional array of allowed values for the column. The values `MUST` match the column's type.
+
+For example, with string values:
+
+```json
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["pending", "active", "completed", "cancelled"]
+    }
+  }
+}
+```
+
+For example, with integer values:
+
+```json
+{
+  "properties": {
+    "priority": {
+      "type": "integer",
+      "enum": [1, 2, 3, 4, 5]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+status
+pending
+active
+completed
+cancelled
+```
+
+#### `const`
+
+An optional constant value for the column. The value `MUST` match the column's type.
+
+For example, with string values:
+
+```json
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "pending"
+    }
+  }
+}
+```
+
+For example, with integer values:
+
+```json
+{
+  "properties": {
+    "priority": {
+      "type": "integer",
+      "const": 1
+    }
+  }
+}
+```
+
+Data example:
+```csv
+status
+pending
+pending
+```
+
+#### `default`
+
+An optional default value for the column. The value `MUST` match the column's type. This property is for documentation purpose and it is not used to fill missing values.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "status": {
+      "type": "string",
+      "default": "pending"
+      "missingValues": ["N/A"]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+status
+done
+N/A
+```
+
+#### `examples`
+
+An optional array of example values for the column. The values `MUST` match the column's type and can be used for documentation, testing, or generating sample data.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "temperature": {
+      "type": "number",
+      "examples": [20.5, 25.3, 18.7]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+temperature
+20.5
+25.3
+18.7
+```
+
+#### `missingValues` {#column-missingvalues}
+
+An optional column-level list of values that represent missing or null data for this column. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be:
+
+- `"string"` or `"integer"` for boolean, integer, and number columns
+- `"string"` for all other columns
+
+If table-level missing values are provided, the effective missing values `MUST` include all the column-level values and all the compatible table-level values.
+
+Metadata example:
+
+```json
+{
+  "properties": {
+    "measurement": {
+      "type": "number",
+      "missingValues": [
+        { "value": -999, "label": "Sensor malfunction" },
+        { "value": "NA", "label": "Not measured" }
+      ]
+    }
+  }
+}
+```
+
+Data example:
+```csv
+measurement
+25.3
+-999
+NA
+42.1
+```
+
 ### Column Types
 
 #### Boolean
@@ -1172,60 +1453,12 @@ Supported properties:
 - [`examples`](#examples)
 - [`missingValues`](#missingvalues)
 
-### Column Properties
-
-#### `type`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-The data type of the column. It `MUST` be one of the following values:
-
-- `boolean` - True/false values
-- `integer` - Whole numbers
-- `number` - Numeric values
-- `string` - Text values
-- `array` - Array/list values
-- `object` - Object/dictionary values
-
-If a column allows missing values the type can include `null` (order insensitive):
-
-- `["boolean", "null"]` - True/false values or missing values
-- `["integer", "null"]` - Whole numbers or missing values
-- `["number", "null"]` - Numeric values or missing values
-- `["string", "null"]` - Text values or missing values
-- `["array", "null"]` - Array/list values or missing values
-- `["object", "null"]` - Object/dictionary values or missing values
-
-Any other value of the type property indicates that the column type is [Unknown](#unknown).
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "age": {
-      "type": "integer"
-    },
-    "title": {
-      "type": ["string", "null"]
-    },
-  }
-}
-```
-
-Data example:
-```csv
-age
-25
-32
-18
-```
+### Type Properties
 
 #### `format`
 
 > [!NOTE]
-> Supported columns: **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
+> Supported types: **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**, **GeoJSON**, **TopoJSON**
 
 An optional format qualifier that specifies a more specific subtype of the base type.
 
@@ -1250,270 +1483,10 @@ bob@company.org
 charlie@domain.net
 ```
 
-#### `title` {#column-title}
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional human-readable title for the column. It `MUST` be a string.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "temp_c": {
-      "type": "number",
-      "title": "Temperature (Celsius)"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-temp_c
-23.5
--10.2
-98.6
-```
-
-#### `description` {#column-description}
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional detailed description of the column. It `MUST` be a string.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "pressure": {
-      "type": "number",
-      "description": "Atmospheric pressure measured in hectopascals (hPa) at the time of observation."
-    }
-  }
-}
-```
-
-Data example:
-```csv
-pressure
-1013.25
-1020.50
-995.30
-```
-
-#### `rdfType`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional property that provides a richer, "semantic" description of the type of data in a column. The value `MUST` be the URI of a RDF Class, that is an instance or subclass of [RDF Schema Class object](https://www.w3.org/TR/rdf-schema/#ch_class).
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "country": {
-      "type": "string",
-      "rdfType": "http://schema.org/Country"
-    }
-  }
-}
-```
-
-Data example:
-```csv
-country
-US
-UK
-DE
-FR
-```
-
-#### `enum`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional array of allowed values for the column. The values `MUST` match the column's type.
-
-For example, with string values:
-
-```json
-{
-  "properties": {
-    "status": {
-      "type": "string",
-      "enum": ["pending", "active", "completed", "cancelled"]
-    }
-  }
-}
-```
-
-For example, with integer values:
-
-```json
-{
-  "properties": {
-    "priority": {
-      "type": "integer",
-      "enum": [1, 2, 3, 4, 5]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-status
-pending
-active
-completed
-cancelled
-```
-
-#### `const`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional constant value for the column. The value `MUST` match the column's type.
-
-For example, with string values:
-
-```json
-{
-  "properties": {
-    "status": {
-      "type": "string",
-      "const": "pending"
-    }
-  }
-}
-```
-
-For example, with integer values:
-
-```json
-{
-  "properties": {
-    "priority": {
-      "type": "integer",
-      "const": 1
-    }
-  }
-}
-```
-
-Data example:
-```csv
-status
-pending
-pending
-```
-
-#### `default`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional default value for the column. The value `MUST` match the column's type. This property is for documentation purpose and it is not used to fill missing values.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "status": {
-      "type": "string",
-      "default": "pending"
-      "missingValues": ["N/A"]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-status
-done
-N/A
-```
-
-#### `examples`
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional array of example values for the column. The values `MUST` match the column's type and can be used for documentation, testing, or generating sample data.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "temperature": {
-      "type": "number",
-      "examples": [20.5, 25.3, 18.7]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-temperature
-20.5
-25.3
-18.7
-```
-
-#### `missingValues` {#column-missingvalues}
-
-> [!NOTE]
-> Supported columns: **all column types**
-
-An optional column-level list of values that represent missing or null data for this column. Each item can be either a simple value or an object with `value` and `label` properties for documentation purposes. The missing values type `MUST` be:
-
-- `"string"` or `"integer"` for boolean, integer, and number columns
-- `"string"` for all other columns
-
-If table-level missing values are provided, the effective missing values `MUST` include all the column-level values and all the compatible table-level values.
-
-Metadata example:
-
-```json
-{
-  "properties": {
-    "measurement": {
-      "type": "number",
-      "missingValues": [
-        { "value": -999, "label": "Sensor malfunction" },
-        { "value": "NA", "label": "Not measured" }
-      ]
-    }
-  }
-}
-```
-
-Data example:
-```csv
-measurement
-25.3
--999
-NA
-42.1
-```
-
 #### `trueValues`
 
 > [!NOTE]
-> Supported columns: **Boolean**
+> Supported types: **Boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `true` when parsing data. It `MUST` be an array of strings.
 
@@ -1542,7 +1515,7 @@ Y
 #### `falseValues`
 
 > [!NOTE]
-> Supported columns: **Boolean**
+> Supported types: **Boolean**
 
 An optional array of string values that `SHOULD` be interpreted as `false` when parsing data. It `MUST` be an array of strings.
 
@@ -1571,7 +1544,7 @@ N
 #### `minimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional minimum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1599,7 +1572,7 @@ temperature
 #### `maximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional maximum value constraint (inclusive). The type `MUST` match the column type.
 
@@ -1627,7 +1600,7 @@ temperature
 #### `exclusiveMinimum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional minimum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1655,7 +1628,7 @@ probability
 #### `exclusiveMaximum`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional maximum value constraint (exclusive). The type `MUST` match the column type.
 
@@ -1683,7 +1656,7 @@ probability
 #### `multipleOf`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional constraint that values `MUST` be a multiple of this number. For integers, it `MUST` be a positive integer. For numbers, it `MUST` be a positive number.
 
@@ -1711,7 +1684,7 @@ price
 #### `decimalChar`
 
 > [!NOTE]
-> Supported columns: **Number**, **Decimal**
+> Supported types: **Number**, **Decimal**
 
 An optional single character used as the decimal separator in the data.
 
@@ -1739,7 +1712,7 @@ price
 #### `groupChar`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional single character used as the thousands separator in the data. It `MUST` be a string of length 1.
 
@@ -1767,7 +1740,7 @@ population
 #### `withText`
 
 > [!NOTE]
-> Supported columns: **Integer**, **Number**, **Decimal**
+> Supported types: **Integer**, **Number**, **Decimal**
 
 An optional boolean indicating whether numeric values may include non-numeric text that should be stripped during parsing.
 
@@ -1795,7 +1768,7 @@ $19.99
 #### `minLength`
 
 > [!NOTE]
-> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported types: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional minimum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1823,7 +1796,7 @@ charlie
 #### `maxLength`
 
 > [!NOTE]
-> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported types: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional maximum length constraint for string values. It `MUST` be a non-negative integer.
 
@@ -1851,7 +1824,7 @@ charlie
 #### `pattern`
 
 > [!NOTE]
-> Supported columns: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
+> Supported types: **Decimal**, **String**, **List**, **Base64**, **Hex**, **Email**, **URL**, **DateTime**, **Date**, **Time**, **Duration**, **WKT**, **WKB**
 
 An optional regular expression pattern that values `MUST` match. It `MUST` be a valid regex string.
 
@@ -1879,7 +1852,7 @@ DEF-9012
 #### `categories`
 
 > [!NOTE]
-> Supported columns: **Categorical**
+> Supported types: **Categorical**
 
 An optional array of categorical values with optional labels. Each item can be either a simple value or an object with `value` and `label` properties. The values `MUST` have the same type as the containing property i.e. `"string"` or `"integer"`.
 
@@ -1912,7 +1885,7 @@ severity
 #### `withOrder`
 
 > [!NOTE]
-> Supported columns: **Categorical**
+> Supported types: **Categorical**
 
 An optional boolean indicating that the categorical values in the column have natural order.
 
@@ -1946,7 +1919,7 @@ severity
 #### `delimiter`
 
 > [!NOTE]
-> Supported columns: **List**
+> Supported types: **List**
 
 An optional single character used to delimit items in a list column.
 
@@ -1975,7 +1948,7 @@ gamma;delta;epsilon
 #### `itemType`
 
 > [!NOTE]
-> Supported columns: **List**
+> Supported types: **List**
 
 An optional type for items in a list column. It `MUST` be one of: `string`, `integer`, `number`, `boolean`, `date-time`, `date`, `time`.
 
@@ -2004,7 +1977,7 @@ measurements
 #### `minItems`
 
 > [!NOTE]
-> Supported columns: **List**
+> Supported types: **List**
 
 An optional minimum number of items for the column. It `MUST` be a non-negative integer.
 
@@ -2033,7 +2006,7 @@ tags
 #### `maxItems`
 
 > [!NOTE]
-> Supported columns: **List**
+> Supported types: **List**
 
 An optional maximum number of items for the column. It `MUST` be a non-negative integer.
 
@@ -2062,7 +2035,7 @@ tags
 #### `temporalFormat`
 
 > [!NOTE]
-> Supported columns: **DateTime**, **Date**, **Time**
+> Supported types: **DateTime**, **Date**, **Time**
 
 An optional string specifying the temporal format pattern as per the [Strftime ](https://pubs.opengroup.org/onlinepubs/009696799/functions/strftime.html) specification.
 
@@ -2091,7 +2064,7 @@ collection_date
 #### `<jsonSchema>`
 
 > [!NOTE]
-> Supported columns: **Array**, **Object**, **GeoJSON**, **TopoJSON**
+> Supported types: **Array**, **Object**, **GeoJSON**, **TopoJSON**
 
 For `array` and `object` column types, all properties from [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) are supported to define the structure and validation rules.
 
