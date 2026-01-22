@@ -619,15 +619,7 @@ false
 true
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`trueValues`](#truevalues)
 - [`falseValues`](#falsevalues)
 
@@ -661,19 +653,11 @@ severity
 1
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`categories`](#categories)
 - [`withOrder`](#categoriesordered)
 
-In addition, supported properties if type is `"integer"`:
+In addition, type properties if type is `"integer"`:
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -682,7 +666,7 @@ In addition, supported properties if type is `"integer"`:
 - [`groupChar`](#groupchar)
 - [`withText`](#withtext)
 
-In addition, supported properties if type is `"string"`:
+In addition, type properties if type is `"string"`:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -711,15 +695,7 @@ age
 18
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -752,15 +728,7 @@ temperature
 98.6
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -795,15 +763,7 @@ price
 123.45
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -840,15 +800,7 @@ Bob
 Charlie
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -878,15 +830,7 @@ tags
 "new,sale,featured"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -920,15 +864,7 @@ https://example.org/page
 https://domain.net/path/to/resource
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -958,15 +894,7 @@ bob@company.org
 charlie@domain.net
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -996,15 +924,7 @@ birth_date
 2005-03-20
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1035,15 +955,7 @@ start_time
 18:00:00
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1074,14 +986,7 @@ created_at
 2024-03-20T18:00:00-05:00
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1112,15 +1017,7 @@ P1DT12H
 PT45M30S
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1150,15 +1047,7 @@ geometry
 "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1188,15 +1077,7 @@ geometry
 0103000000010000000500000000000000000024400000000000003E40
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1226,15 +1107,7 @@ FF5733
 32CD32
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1264,15 +1137,7 @@ R0lGODlhAQABAIAAAAAAAP///yH5
 aGVsbG8gd29ybGQ=
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1301,15 +1166,7 @@ coordinates
 "[-5.2, 8.9, 12.1]"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`<jsonSchema>`](#jsonSchema)
 
 #### Object
@@ -1336,15 +1193,7 @@ metadata
 "{""author"": ""Bob"", ""version"": 1}"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
 - [`<jsonSchema>`](#jsonSchema)
 
 #### GeoJSON
@@ -1372,15 +1221,8 @@ location
 "{""type"": ""Polygon"", ""coordinates"": [[[30, 10], [40, 40], [20, 40], [10, 20], [30, 10]]]}"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
+- [`<jsonSchema>`](#jsonSchema)
 
 #### TopoJSON
 
@@ -1407,19 +1249,12 @@ topology
 "{""type"": ""Topology"", ""objects"": {""polygon"": {""type"": ""Polygon"", ""arcs"": [[0]]}}}"
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
+Type properties:
+- [`<jsonSchema>`](#jsonSchema)
 
 #### Unknown
 
-A column for values of unknown type. It `MUST` have [`type`](#type) omitted or set to `"null"`.
+A column for values of unknown type. It `MUST` have [`type`](#type) not supported by the types above.
 
 Metadata example:
 
@@ -1442,16 +1277,6 @@ a
 1
 false
 ```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-- [`rdfType`](#rdftype)
-- [`enum`](#enum)
-- [`const`](#const)
-- [`default`](#default)
-- [`examples`](#examples)
-- [`missingValues`](#missingvalues)
 
 ### Type Properties
 

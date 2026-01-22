@@ -50,17 +50,7 @@ For example for version X.Y.Z of the profile:
 
 ### `format`
 
-The format name. It `MUST` be one of the following values (if omitted, the format type is custom):
-
-- `csv`
-- `tsv`
-- `json`
-- `jsonl`
-- `xlsx`
-- `ods`
-- `sqlite`
-- `parquet`
-- `arrow`
+The file format of the dialect. It `MUST` be a `string`.
 
 For example for a CSV file:
 
@@ -125,9 +115,7 @@ Bob,25,London
 Charlie,35,Tokyo
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`delimiter`](#delimiter)
 - [`lineTerminator`](#lineterminator)
 - [`quoteChar`](#quotechar)
@@ -161,9 +149,7 @@ Bob	25	London
 Charlie	35	Tokyo
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`lineTerminator`](#lineterminator)
 - [`nullSequence`](#nullsequence)
 - [`headerRows`](#headerrows)
@@ -181,7 +167,7 @@ Metadata example:
 ```json
 {
   "dialect": {
-    "format": "json"
+    "format": "json",
     "jsonPointer": "/data/items"
   }
 }
@@ -196,9 +182,7 @@ Data example:
 ]
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -229,9 +213,7 @@ Data example:
 {"name": "Charlie", "age": 35, "city": "Tokyo"}
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -260,9 +242,7 @@ Data example:
 <binary data>
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -292,9 +272,7 @@ Data example:
 <binary data>
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -323,10 +301,6 @@ Data example:
 <binary data>
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
-
 #### Arrow
 
 A format for Apache Arrow files. It `MUST` have [`format`](#format) set to `"arrow"`.
@@ -346,10 +320,6 @@ Data example:
 ```
 <binary data>
 ```
-
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
 
 #### SQLite
 
@@ -371,21 +341,19 @@ Data example:
 <binary data>
 ```
 
-Supported properties:
-- [`title`](#title)
-- [`description`](#description)
+Format properties:
 - [`tableName`](#tablename)
 
-#### Custom
+#### Unknown
 
-A format for custom data. It `MUST` have [`format`](#type) omitted.
+A format for custom data. It `MUST` have [`format`](#type) not supported by the formats above.
 
 Metadata example:
 
 ```json
 {
   "format": {
-    "name": "custom",
+    "format": "custom",
     "title": "Custom format",
     "description": "Custom format description"
   }
@@ -397,11 +365,6 @@ Data example:
 ```
 <binary data>
 ```
-
-Supported properties:
-- [`name`](#name)
-- [`title`](#title)
-- [`description`](#description)
 
 ### Format Properties
 
