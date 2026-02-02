@@ -14,7 +14,7 @@ export default defineConfig({
   outDir: "build",
   integrations: [
     starlight({
-      title: "Fairspec",
+      title: "Fairspec Standard",
       description:
         "Fairspec is a data exchange format compatible with DataCite for metadata and JSON Schema for structured data",
       customCss: ["/styles/general.css"],
