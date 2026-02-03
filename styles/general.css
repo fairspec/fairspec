@@ -22,7 +22,7 @@
   gap: 0.75rem;
 }
 
-* {
+html {
   scrollbar-color: var(--scrollbar-color) transparent;
   scrollbar-gutter: stable;
 }
@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  min-height: 48px;
 }
 
 /* Markdown heading links. */
