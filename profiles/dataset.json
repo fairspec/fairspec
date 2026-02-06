@@ -22,8 +22,8 @@
         "name": { "$ref": "#/$defs/Name" },
         "data": { "$ref": "#/$defs/Data" },
         "textual": { "$ref": "#/$defs/Textual" },
-        "dialect": { "$ref": "#/$defs/Dialect" },
         "integrity": { "$ref": "#/$defs/Integrity" },
+        "fileDialect": { "$ref": "#/$defs/FileDialect" },
         "dataSchema": { "$ref": "#/$defs/DataSchema" },
         "tableSchema": { "$ref": "#/$defs/TableSchema" }
       }
@@ -69,8 +69,8 @@
     "Textual": {
       "type": "boolean"
     },
-    "Dialect": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{dialect-ref}" }]
+    "FileDialect": {
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "{file-dialect-ref}" }]
     },
     "Integrity": {
       "type": "string",

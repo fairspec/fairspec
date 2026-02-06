@@ -1,7 +1,7 @@
 ---
-title: Fairspec Dialect
+title: Fairspec File Dialect
 sidebar:
-  label: Dialect
+  label: File Dialect
   order: 3
 ---
 
@@ -13,12 +13,12 @@ sidebar:
   <tr>
     <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/latest/dialect.json">https://fairspec.org/profiles/latest/dialect.json</a>
+      <a href="https://fairspec.org/profiles/latest/file-dialect.json">https://fairspec.org/profiles/latest/file-dialect.json</a>
     </td>
   </tr>
 </table>
 
-Fairspec Dialect is a simple JSON based format that defines Dialect to describe a file's format options and features.
+Fairspec File Dialect is a simple JSON based format that defines File Dialect to describe a file's format options and features.
 
 ## Language
 
@@ -26,9 +26,9 @@ The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `S
 
 ## Descriptor
 
-A Fairspec Dialect is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Dialect](#dialect) structure outlined below.
+A Fairspec File Dialect is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [File Dialect](#file-dialect) structure outlined below.
 
-## Dialect
+## File Dialect
 
 A top-level descriptor object describing a file dialect. It `MIGHT` have the following properties (all optional unless otherwise stated):
 
@@ -37,14 +37,14 @@ A top-level descriptor object describing a file dialect. It `MIGHT` have the fol
 > [!NOTE]
 > Data publishers `SHOULD` provide this property with an exact version when sharing a standalone descriptor publicly.
 
-[External Path](#external-path) to one of the officially published Fairspec Dialect profiles with default value `https://fairspec.org/profiles/latest/dialect.json`.
+[External Path](#external-path) to one of the officially published Fairspec File Dialect profiles with default value `https://fairspec.org/profiles/latest/file-dialect.json`.
 
 
 For example for version X.Y.Z of the profile:
 
 ```json
 {
-  "$schema": "https://fairspec.org/profiles/X.Y.Z/dialect.json"
+  "$schema": "https://fairspec.org/profiles/X.Y.Z/file-dialect.json"
 }
 ```
 
@@ -56,7 +56,7 @@ For example for a CSV file:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv"
   }
 }
@@ -70,7 +70,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "title": "My custom format"
   }
 }
@@ -84,14 +84,14 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "title": "My custom format",
     "description": "You can open this file with OpenOffice"
   }
 }
 ```
 
-### Dialect Formats
+### File Formats
 
 #### CSV
 
@@ -101,7 +101,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv"
   }
 }
@@ -134,9 +134,9 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "tsv",
-    "nullSequence": ["NA", "N/A", ""]
+    "nullSequence": "\N"
   }
 }
 ```
@@ -166,7 +166,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "json",
     "jsonPointer": "/data/items"
   }
@@ -199,7 +199,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "jsonl",
     "rowType": "object"
   }
@@ -229,7 +229,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "xlsx",
     "sheetNumber": 2
   }
@@ -259,7 +259,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "ods",
     "sheetName": "Data Sheet"
   }
@@ -289,7 +289,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "parquet"
   }
 }
@@ -309,7 +309,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "arrow"
   }
 }
@@ -329,7 +329,7 @@ Metadata example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "sqlite"
   }
 }
@@ -379,7 +379,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "name": "custom",
     "title": "Custom format",
     "description": "Custom format description"
@@ -398,7 +398,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "delimiter": ";"
   }
@@ -423,7 +423,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "lineTerminator": "\r\n"
   }
@@ -441,7 +441,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "quoteChar": "'"
   }
@@ -460,26 +460,15 @@ id,name
 > [!NOTE]
 > Supported formats: **csv**, **tsv**
 
-It `MUST` be a string or an array of strings. This property specifies the null sequence representing missing values in the data.
+It `MUST` be a string. This property specifies the null sequence representing missing values in the data.
 
-For example with a single sequence:
-
-```json
-{
-  "dialect": {
-    "format": "csv",
-    "nullSequence": "NA"
-  }
-}
-```
-
-For example with multiple sequences:
+For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
-    "nullSequence": ["NA", "N/A", "null", ""]
+    "nullSequence": "\N"
   }
 }
 ```
@@ -503,7 +492,7 @@ For example with a single header row:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "headerRows": [1]
   }
@@ -514,7 +503,7 @@ For example with multi-line headers:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "headerRows": [1, 2]
   }
@@ -535,7 +524,7 @@ For example with no headers:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "headerRows": false
   }
@@ -553,7 +542,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "headerRows": [0, 1],
     "headerJoin": "_"
@@ -581,7 +570,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "commentRows": [1, 5, 10]
   }
@@ -609,7 +598,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "commentPrefix
   }
@@ -638,7 +627,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "csv",
     "headerRows": false,
     "columnNames": ["id", "name", "price"]
@@ -663,7 +652,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "json",
     "jsonPointer": "/data/items"
   }
@@ -694,7 +683,7 @@ For example with array of objects:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "json",
     "rowType": "object"
   }
@@ -713,7 +702,7 @@ For example with array of arrays:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "json",
     "rowType": "array",
     "columnNames": ["id", "name"]
@@ -740,7 +729,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "xlsx",
     "sheetNumber": 2
   }
@@ -760,7 +749,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "xlsx",
     "sheetName": "Data Sheet"
   }
@@ -778,7 +767,7 @@ For example:
 
 ```json
 {
-  "dialect": {
+  "fileDialect": {
     "format": "sqlite",
     "tableName": "measurements"
   }
@@ -805,7 +794,7 @@ For example:
 > [!WARNING]
 > Additional properties are NOT allowed.
 
-Fairspec Dialect does not support extension.
+Fairspec File Dialect does not support extension.
 
 ## Comparison
 

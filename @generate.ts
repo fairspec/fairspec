@@ -17,8 +17,8 @@ await tasuku("Copying profiles", async () => {
 await tasuku("Updating references in current", async () => {
   await replaceInFile({
     files: `public/profiles/${version}/dataset.json`,
-    from: /{dialect-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/dialect.json`,
+    from: /{file-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/${version}/file-dialect.json`,
   })
 
   await replaceInFile({
@@ -37,8 +37,8 @@ await tasuku("Updating references in current", async () => {
 await tasuku("Updating references in latest", async () => {
   await replaceInFile({
     files: `public/profiles/latest/dataset.json`,
-    from: /{dialect-ref}/g,
-    to: `https://fairspec.org/profiles/latest/dialect.json`,
+    from: /{file-dialect-ref}/g,
+    to: `https://fairspec.org/profiles/latest/file-dialect.json`,
   })
 
   await replaceInFile({

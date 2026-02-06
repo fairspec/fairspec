@@ -84,9 +84,9 @@ A Fairspec Dataset describes a collection of related data resources with rich me
 }
 ```
 
-## Dialect Example
+## File Dialect Example
 
-Fairspec Dialect defines how file formats should be interpreted:
+Fairspec File Dialect defines how file formats should be interpreted:
 
 ```json
 {
@@ -97,7 +97,7 @@ Fairspec Dialect defines how file formats should be interpreted:
 }
 ```
 
-This dialect specifies a CSV file using semicolons as delimiters, with headers in the first row and lines starting with `#` treated as comments.
+This file dialect specifies a CSV file using semicolons as delimiters, with headers in the first row and lines starting with `#` treated as comments.
 
 ## Data Schema Example
 
