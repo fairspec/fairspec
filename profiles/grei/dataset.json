@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fairspec Grei Profile",
+  "allOf": [{ "$ref": "{dataset-ref}" }, { "$ref": "#/$defs/Dataset" }],
+  "$defs": {
+    "Dataset": {
+      "type": "object",
+      "required": [
+        "$schema",
+        "creators",
+        "titles",
+        "publisher",
+        "publicationYear",
+        "types"
+      ],
+      "anyOf": [{ "required": ["doi"] }, { "required": ["prefix", "suffix"] }]
+    }
+  }
+}
