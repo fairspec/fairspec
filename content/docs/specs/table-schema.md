@@ -72,6 +72,34 @@ For example:
 }
 ```
 
+### `properties`
+
+An object defining the schema for table columns. Each key represents a column name, and its value `MUST` be a valid [Column](#column) definition.
+
+For example, for a simple table with different column types:
+
+```json
+{
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
 ### `required`
 
 An optional list of column names that are required to present. Each item `MUST` be a string matching a key in the [`properties`](#properties) object.
@@ -98,29 +126,24 @@ For example, to require specific columns:
 }
 ```
 
-### `properties`
+### `allRequired`
 
-An object defining the schema for table columns. Each key represents a column name, and its value `MUST` be a valid [Column](#column) definition.
+An optional boolean flag indicating whether all columns defined in [`properties`](#properties) are required. When set to `true`, every column `MUST` be present in the data. It `MUST` be a boolean value.
 
-For example, for a simple table with different column types:
+For example, to require all columns:
 
 ```json
 {
+  "allRequired": true,
   "properties": {
-    "id": {
-      "type": "integer",
-      "minimum": 1
+    "experiment_id": {
+      "type": "integer"
     },
-    "name": {
-      "type": "string",
-      "maxLength": 100
+    "temperature": {
+      "type": "number"
     },
-    "email": {
-      "type": "string",
-      "format": "email"
-    },
-    "active": {
-      "type": "boolean"
+    "pressure": {
+      "type": "number"
     }
   }
 }
