@@ -44,7 +44,7 @@
         "nullSequence": "NA",
         "headerRows": [1],
         "headerJoin": "_",
-        "commentChar": "#"
+        "commentPrefix": "#"
       },
       "tableSchema": {
         "fields": [

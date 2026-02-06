@@ -18,7 +18,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec File Dialect is a simple JSON based format that defines File Dialect to describe a file's format options and features.
+Fairspec File Dialect is a simple JSON-based format that defines File Dialect to describe a file's format options and features.
 
 ## Language
 
@@ -600,7 +600,7 @@ For example:
 {
   "fileDialect": {
     "format": "csv",
-    "commentPrefix
+    "commentPrefix": "#"
   }
 }
 ```

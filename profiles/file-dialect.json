@@ -100,7 +100,7 @@
     },
     "XlsxDialect": {
       "properties": {
-        "format": { "const": "xlxs" },
+        "format": { "const": "xlsx" },
         "sheetName": { "$ref": "#/$defs/SheetName" },
         "sheetNumber": { "$ref": "#/$defs/SheetNumber" },
         "headerRows": { "$ref": "#/$defs/HeaderRows" },
