@@ -183,21 +183,6 @@ For example:
 }
 ```
 
-### `dialect`
-
-It `MUST` be a [Path](#path) to a Dialect or an object with the Dialect. The Dialect `MUST` be compatible with the [Fairspec File](../file) specification. If present, [Data](#data) `MUST` be compatible with the provided dialect.
-
-For example, for a file with CSV format:
-
-```json
-{
-  "dialect": {
-    "format": "csv",
-    "delimiter": ";"
-  }
-}
-```
-
 ### `textual`
 
 A boolean indicating whether the file is text-based. When `true`, the file `MUST` be `utf-8` encoded.
@@ -235,6 +220,21 @@ For example for a file with SHA-256 hash:
   "integrity": {
     "type": "sha256",
     "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
+```
+
+### `fileDialect`
+
+It `MUST` be a [Path](#path) to a File Dialect or an object with the File Dialect. The File Dialect `MUST` be compatible with the [Fairspec File Dialect](../file-dialect) specification. If present, [Data](#data) `MUST` be compatible with the provided dialect.
+
+For example, for a file with CSV format:
+
+```json
+{
+  "fileDialect": {
+    "format": "csv",
+    "delimiter": ";"
   }
 }
 ```

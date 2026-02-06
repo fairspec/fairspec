@@ -31,20 +31,20 @@
   "resources": [
     {
       "data": "measurements.csv",
-      "format": {
-        "name": "csv",
+      "integrity": {
+        "type": "sha256",
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "fileDialect": {
+        "format": "csv",
         "encoding": "utf-8",
         "delimiter": ",",
         "lineTerminator": "\n",
         "quoteChar": "\"",
-        "nullSequence": ["NA", "N/A", ""],
-        "headerRows": [0, 1],
+        "nullSequence": "NA",
+        "headerRows": [1],
         "headerJoin": "_",
-        "commentChar": "#"
-      },
-      "integrity": {
-        "type": "sha256",
-        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "commentPrefix": "#"
       },
       "tableSchema": {
         "fields": [
