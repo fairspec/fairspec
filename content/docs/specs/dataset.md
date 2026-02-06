@@ -18,7 +18,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Dataset is a simple JSON based format that allows to describe a single dataset and its resources. It is compatible with DataCite for metadata and JSON Schema for structured data.
+Fairspec Dataset is a simple [JSON](json.org)-based format that allows to describe a single dataset and its resources. It is compatible with the [DataCite](https://schema.datacite.org/) standard for metadata and the [JSON Schema](https://json-schema.org/) standard for structured data.
 
 ## Language
 
