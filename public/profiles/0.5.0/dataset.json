@@ -71,7 +71,7 @@
       "type": "boolean"
     },
     "FileDialect": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/latest/file-dialect.json" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/0.5.0/file-dialect.json" }]
     },
     "Integrity": {
       "type": "string",
@@ -83,10 +83,10 @@
       }
     },
     "DataSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/latest/data-schema.json" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/0.5.0/data-schema.json" }]
     },
     "TableSchema": {
-      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/latest/table-schema.json" }]
+      "oneOf": [{ "$ref": "#/$defs/Path" }, { "$ref": "https://fairspec.org/profiles/0.5.0/table-schema.json" }]
     },
     "Datacite": {
       "type": "object",
