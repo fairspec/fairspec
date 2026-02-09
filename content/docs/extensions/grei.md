@@ -39,3 +39,10 @@ A top-level descriptor object describing an individual dataset. It `MIGHT` have 
 - `publisher`
 - `publicationYear`
 - `resourceType`
+- `subjects`
+- `dates`
+- `relatedIdentifiers`
+- `version`
+- `rightsList`
+- `descriptions`
+- `fundingReferences`
