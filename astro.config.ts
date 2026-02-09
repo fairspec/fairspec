@@ -52,9 +52,11 @@ export default defineConfig({
         {
           label: "Extensions",
           items: [
-            { label: "Overview", slug: "extensions/overview" },
+            { slug: "extensions/overview" },
+            { slug: "extensions/datacite" },
+            { slug: "extensions/grei" },
             {
-              label: "Cardealer",
+              label: "CarDealer",
               link: "https://fairspec.github.io/fairspec-cardealer",
               attrs: { target: "_blank" },
             },
