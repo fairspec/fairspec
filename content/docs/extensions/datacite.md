@@ -1,0 +1,41 @@
+---
+title: Fairspec DataCite
+sidebar:
+  label: DataCite
+  order: 2
+---
+
+<table>
+  <tr>
+    <th>Authors</th>
+    <td>Evgeny Karev</td>
+  </tr>
+  <tr>
+    <th>Profile</th>
+    <td>
+      <a href="https://fairspec.org/profiles/latest/datacite/dataset.json">https://fairspec.org/profiles/latest/datacite/dataset.json</a>
+    </td>
+  </tr>
+</table>
+
+Fairspec DataCite is a [Fairspec Dataset](../dataset) extension that requires the use of the [DataCite](https://datacite.org/)'s required properties.
+
+## Language
+
+The key words `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `SHOULD NOT`, `RECOMMENDED`, `MAY`, and `OPTIONAL` in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+
+## Descriptor
+
+A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an object compatible with the [Dataset](#dataset) structure outlined below.
+
+## Dataset
+
+A top-level descriptor object describing an individual dataset. It `MAY` have the [Fairspec Dataset](../../specs/dataset) properties and `MUST` have the following properties:
+
+- `$schema` = `https://fairspec.org/profiles/<version>/datacite/dataset.json`
+- `doi`
+- `creators`
+- `titles`
+- `publisher`
+- `publicationYear`
+- `resourceType`

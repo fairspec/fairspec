@@ -49,7 +49,19 @@ export default defineConfig({
       sidebar: [
         { label: "Overview", autogenerate: { directory: "overview" } },
         { label: "Specifications", autogenerate: { directory: "specs" } },
-        { label: "Extensions", autogenerate: { directory: "extensions" } },
+        {
+          label: "Extensions",
+          items: [
+            { slug: "extensions/overview" },
+            { slug: "extensions/datacite" },
+            { slug: "extensions/grei" },
+            {
+              label: "CarDealer",
+              link: "https://fairspec.github.io/fairspec-cardealer",
+              attrs: { target: "_blank" },
+            },
+          ],
+        },
         {
           label: "Changelog",
           collapsed: true,

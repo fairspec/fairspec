@@ -14,42 +14,32 @@ await tasuku("Copying profiles", async () => {
   await $`cp -r profiles public/profiles/${version}`
 })
 
-await tasuku("Updating references in current", async () => {
-  await replaceInFile({
-    files: `public/profiles/${version}/dataset.json`,
-    from: /{file-dialect-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/file-dialect.json`,
-  })
+await tasuku("Updating references", async () => {
+  for (const tag of [packageJson.version, "latest"]) {
+    for (const ext of ["datacite", "grei"]) {
+      await replaceInFile({
+        files: `public/profiles/${tag}/${ext}/dataset.json`,
+        from: /{dataset-ref}/g,
+        to: `https://fairspec.org/profiles/${tag}/dataset.json`,
+      })
+    }
 
-  await replaceInFile({
-    files: `public/profiles/${version}/dataset.json`,
-    from: /{data-schema-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/data-schema.json`,
-  })
+    await replaceInFile({
+      files: `public/profiles/${tag}/dataset.json`,
+      from: /{file-dialect-ref}/g,
+      to: `https://fairspec.org/profiles/${tag}/file-dialect.json`,
+    })
 
-  await replaceInFile({
-    files: `public/profiles/${version}/dataset.json`,
-    from: /{table-schema-ref}/g,
-    to: `https://fairspec.org/profiles/${version}/table-schema.json`,
-  })
-})
+    await replaceInFile({
+      files: `public/profiles/${tag}/dataset.json`,
+      from: /{data-schema-ref}/g,
+      to: `https://fairspec.org/profiles/${tag}/data-schema.json`,
+    })
 
-await tasuku("Updating references in latest", async () => {
-  await replaceInFile({
-    files: `public/profiles/latest/dataset.json`,
-    from: /{file-dialect-ref}/g,
-    to: `https://fairspec.org/profiles/latest/file-dialect.json`,
-  })
-
-  await replaceInFile({
-    files: `public/profiles/latest/dataset.json`,
-    from: /{data-schema-ref}/g,
-    to: `https://fairspec.org/profiles/latest/data-schema.json`,
-  })
-
-  await replaceInFile({
-    files: `public/profiles/latest/dataset.json`,
-    from: /{table-schema-ref}/g,
-    to: `https://fairspec.org/profiles/latest/table-schema.json`,
-  })
+    await replaceInFile({
+      files: `public/profiles/${tag}/dataset.json`,
+      from: /{table-schema-ref}/g,
+      to: `https://fairspec.org/profiles/${tag}/table-schema.json`,
+    })
+  }
 })
