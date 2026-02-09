@@ -18,7 +18,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Table Schema is a simple [JSON](json.org)-based format that defines Table Schema to describe a class of tabular data resources. Table Schema structuraly compatible with the [JSON Schema](https://json-schema.org/) standard. When expedient, this specification aims to be structurally compatible with the [Data Package](https://datapackage.org/standard/table-schema/) standard.
+Fairspec Table Schema is a simple [JSON](https://json.org)-based format that defines Table Schema to describe a class of tabular data resources. Table Schema is structurally compatible with the [JSON Schema](https://json-schema.org/) standard. When expedient, this specification aims to be structurally compatible with the [Data Package](https://datapackage.org/standard/table-schema/) standard.
 
 ## Language
 
@@ -325,7 +325,7 @@ For example, with mixed values:
 ```json
 {
   "missingValues": [
-    'NA',
+    "NA",
     { "value": -999, "label": "Sensor Error" }
   ]
 }

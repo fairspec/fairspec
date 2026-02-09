@@ -13,12 +13,12 @@ sidebar:
   <tr>
     <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/latest/grei/dataset.json">https://fairspec.org/profiles/latest/grei/grei.json</a>
+      <a href="https://fairspec.org/profiles/latest/grei/dataset.json">https://fairspec.org/profiles/latest/grei/dataset.json</a>
     </td>
   </tr>
 </table>
 
-Fairspec DataCite is a [Fairspec Dataset](../dataset) extension that requires the use of the [GREI](https://datascience.nih.gov/data-ecosystem/generalist-repository-ecosystem-initiative)'s required properties.
+Fairspec GREI is a [Fairspec Dataset](../dataset) extension that requires the use of the [GREI](https://datascience.nih.gov/data-ecosystem/generalist-repository-ecosystem-initiative)'s required properties.
 
 ## Language
 
@@ -30,7 +30,7 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 ## Dataset
 
-A top-level descriptor object describing an individual dataset. It `MIGHT` have add the [Fairspec Dataset](../../specs/dataset) properties and `MUST` have have the following properties:
+A top-level descriptor object describing an individual dataset. It `MAY` have the [Fairspec Dataset](../../specs/dataset) properties and `MUST` have the following properties:
 
 - `$schema` = `https://fairspec.org/profiles/<version>/grei/dataset.json`
 - `doi`

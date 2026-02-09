@@ -13,7 +13,7 @@ sidebar:
   <tr>
     <th>Profile</th>
     <td>
-      <a href="https://fairspec.org/profiles/latest/datacite/dataset.json">https://fairspec.org/profiles/latest/datacite/datacite.json</a>
+      <a href="https://fairspec.org/profiles/latest/datacite/dataset.json">https://fairspec.org/profiles/latest/datacite/dataset.json</a>
     </td>
   </tr>
 </table>
@@ -30,7 +30,7 @@ A Fairspec Dataset is a [JSON](https://json.org/) resource that `MUST` be an obj
 
 ## Dataset
 
-A top-level descriptor object describing an individual dataset. It `MIGHT` have add the [Fairspec Dataset](../../specs/dataset) properties and `MUST` have have the following properties:
+A top-level descriptor object describing an individual dataset. It `MAY` have the [Fairspec Dataset](../../specs/dataset) properties and `MUST` have the following properties:
 
 - `$schema` = `https://fairspec.org/profiles/<version>/datacite/dataset.json`
 - `doi`

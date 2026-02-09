@@ -18,7 +18,7 @@ sidebar:
   </tr>
 </table>
 
-Fairspec Data Schema is a simple [JSON](json.org)-based format that defines Data Schema to describe a class of structured data resources. It is fully compatible with the [JSON Schema](https://json-schema.org/) standard.
+Fairspec Data Schema is a simple [JSON](https://json.org)-based format that defines Data Schema to describe a class of structured data resources. It is fully compatible with the [JSON Schema](https://json-schema.org/) standard.
 
 ## Language
 
