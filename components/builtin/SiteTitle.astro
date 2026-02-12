@@ -3,7 +3,8 @@ import { logos } from "virtual:starlight/user-images"
 import config from "virtual:starlight/user-config"
 const { siteTitleHref } = Astro.locals.starlightRoute
 const isRoot = Astro.url.pathname === "/" || Astro.url.pathname === ""
-const title = isRoot ? "Fairspec" : "Fairspec Standard"
+const isMcpServer = Astro.url.pathname.startsWith("/mcp-server")
+const title = isRoot ? "Fairspec" : isMcpServer ? "Fairspec MCP Server" : "Fairspec Standard"
 ---
 
 <a href={siteTitleHref} class="site-title sl-flex">

@@ -1,0 +1,131 @@
+---
+title: Fairspec MCP Server
+template: splash
+editUrl: false
+lastUpdated: false
+banner:
+  content: |
+    <p>
+      This project is in <strong>research preview</strong> phase. Please share your <a href="https://github.com/fairspec/fairspec/issues/new"><strong>feedback and ideas</strong></a>
+    </p>
+---
+
+import { Card, CardGrid, Tabs, TabItem } from "@astrojs/starlight/components"
+
+> [!TIP]
+> It is a very early version of the MCP server and its documentation. We are working on improvements and corresponding skills to share.
+
+Fairspec MCP Server connects AI assistants to the Fairspec data management framework, enabling automated data validation, schema inference, and querying. It can be installed in any assistant or IDE that supports the Model Context Protocol (MCP).
+
+## Tools
+
+<CardGrid>
+  <Card title="validate-data" icon="approve-check">
+    Validate data against a schema
+  </Card>
+  <Card title="infer-data-schema" icon="magnifier">
+    Infer a schema from data
+  </Card>
+  <Card title="validate-data-schema" icon="approve-check">
+    Validate a data schema descriptor
+  </Card>
+  <Card title="infer-dataset" icon="magnifier">
+    Infer a dataset descriptor from files
+  </Card>
+  <Card title="validate-dataset" icon="approve-check">
+    Validate a dataset descriptor
+  </Card>
+  <Card title="infer-file-dialect" icon="magnifier">
+    Infer the dialect of a file
+  </Card>
+  <Card title="query-table" icon="list-format">
+    Query a table using SQL
+  </Card>
+  <Card title="validate-table" icon="approve-check">
+    Validate a table descriptor
+  </Card>
+  <Card title="infer-table-schema" icon="magnifier">
+    Infer the schema of a table
+  </Card>
+  <Card title="validate-table-schema" icon="approve-check">
+    Validate a table schema descriptor
+  </Card>
+</CardGrid>
+
+## Installation
+
+Run the MCP server:
+
+```bash
+npx fairspec@latest mcp
+```
+
+Configure your editor or AI assistant to use the Fairspec MCP server:
+
+<Tabs>
+  <TabItem label="Claude Code">
+    ```bash
+    claude mcp add fairspec -- npx fairspec@latest mcp
+    ```
+  </TabItem>
+  <TabItem label="Claude Desktop">
+    Add to your `claude_desktop_config.json`:
+    ```json
+    {
+      "mcpServers": {
+        "fairspec": {
+          "command": "npx",
+          "args": ["fairspec@latest", "mcp"]
+        }
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Cursor">
+    Add to `.cursor/mcp.json` in your project:
+    ```json
+    {
+      "mcpServers": {
+        "fairspec": {
+          "command": "npx",
+          "args": ["fairspec@latest", "mcp"]
+        }
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="VS Code">
+    Add to `.vscode/mcp.json` in your project:
+    ```json
+    {
+      "servers": {
+        "fairspec": {
+          "command": "npx",
+          "args": ["fairspec@latest", "mcp"]
+        }
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Windsurf">
+    Add to `~/.codeium/windsurf/mcp_config.json`:
+    ```json
+    {
+      "mcpServers": {
+        "fairspec": {
+          "command": "npx",
+          "args": ["fairspec@latest", "mcp"]
+        }
+      }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Usage
+
+Once configured, you can ask your AI assistant to use Fairspec tools directly:
+
+- "Validate my dataset in the current directory"
+- "Infer the schema for data.csv"
+- "Query the table in users.csv for all records where age > 30"
