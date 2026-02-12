@@ -17,41 +17,6 @@ import { Card, CardGrid, Tabs, TabItem } from "@astrojs/starlight/components"
 
 Fairspec MCP Server connects AI assistants to the Fairspec data management framework, enabling automated data validation, schema inference, and querying. It can be installed in any assistant or IDE that supports the Model Context Protocol (MCP).
 
-## Tools
-
-<CardGrid>
-  <Card title="validate-data" icon="approve-check">
-    Validate data against a schema
-  </Card>
-  <Card title="infer-data-schema" icon="magnifier">
-    Infer a schema from data
-  </Card>
-  <Card title="validate-data-schema" icon="approve-check">
-    Validate a data schema descriptor
-  </Card>
-  <Card title="infer-dataset" icon="magnifier">
-    Infer a dataset descriptor from files
-  </Card>
-  <Card title="validate-dataset" icon="approve-check">
-    Validate a dataset descriptor
-  </Card>
-  <Card title="infer-file-dialect" icon="magnifier">
-    Infer the dialect of a file
-  </Card>
-  <Card title="query-table" icon="list-format">
-    Query a table using SQL
-  </Card>
-  <Card title="validate-table" icon="approve-check">
-    Validate a table descriptor
-  </Card>
-  <Card title="infer-table-schema" icon="magnifier">
-    Infer the schema of a table
-  </Card>
-  <Card title="validate-table-schema" icon="approve-check">
-    Validate a table schema descriptor
-  </Card>
-</CardGrid>
-
 ## Installation
 
 Run the MCP server:
@@ -124,8 +89,52 @@ Configure your editor or AI assistant to use the Fairspec MCP server:
 
 ## Usage
 
-Once configured, you can ask your AI assistant to use Fairspec tools directly:
+Once configured, you can ask your AI assistant to use Fairspec tools directly in natural language. The MCP server translates your requests into the appropriate tool calls and returns the results. Here are some examples of prompts you can try:
 
-- "Validate my dataset in the current directory"
-- "Infer the schema for data.csv"
-- "Query the table in users.csv for all records where age > 30"
+<CardGrid>
+  <Card title="Validate my dataset in the current directory" icon="approve-check" />
+  <Card title="Infer the schema for data.csv" icon="magnifier" />
+  <Card title="Check if my data schema is valid" icon="approve-check" />
+  <Card title="Detect the dialect of measurements.tsv" icon="magnifier" />
+  <Card title="Query users.csv for all records where age > 30" icon="list-format" />
+  <Card title="Infer a dataset descriptor from all files in the data folder" icon="magnifier" />
+  <Card title="Validate the table schema in schema.json" icon="approve-check" />
+  <Card title="Show me the first 10 rows of results.csv sorted by date" icon="list-format" />
+</CardGrid>
+
+## Tools
+
+The Fairspec MCP Server exposes 10 tools organized around core Fairspec concepts: data, data schemas, datasets, file dialects, tables, and table schemas. Each tool can be invoked by your AI assistant to perform a specific operation such as validation, inference, or querying. Below is a detailed description of each tool.
+
+<CardGrid>
+  <Card title="Validate Data" icon="approve-check">
+    Validates data against a provided data schema, checking that every value conforms to the declared types and constraints. Returns detailed error reports pinpointing exactly which values failed validation and why.
+  </Card>
+  <Card title="Infer Data Schema" icon="magnifier">
+    Analyzes a data sample and infers a data schema descriptor describing its structure, types, and constraints. Examines patterns across values to determine the most appropriate type for each field.
+  </Card>
+  <Card title="Validate Data Schema" icon="approve-check">
+    Checks that a data schema descriptor is well-formed and conforms to the Fairspec specification. Ensures that all field definitions use valid types and that constraints are properly structured.
+  </Card>
+  <Card title="Infer Dataset" icon="magnifier">
+    Scans a directory of files and produces a dataset descriptor capturing the structure, resources, and metadata. Automatically discovers tabular files, infers their schemas and dialects.
+  </Card>
+  <Card title="Validate Dataset" icon="approve-check">
+    Checks that a dataset descriptor is well-formed and that all referenced resources are consistent. Verifies that resource paths resolve correctly and that schemas match the actual data.
+  </Card>
+  <Card title="Infer File Dialect" icon="magnifier">
+    Detects the dialect of a tabular file, including delimiter, quote character, and header row presence. Samples the file content to reliably determine formatting details such as line terminators and encoding.
+  </Card>
+  <Card title="Query Table" icon="list-format">
+    Runs a SQL query against a tabular data file and returns the matching rows. Supports standard SQL syntax for filtering, sorting, aggregating, and joining data.
+  </Card>
+  <Card title="Validate Table" icon="approve-check">
+    Checks that a table descriptor is well-formed and that the referenced data matches the declared schema. Reports mismatches between expected and observed field types, missing values, and constraint violations.
+  </Card>
+  <Card title="Infer Table Schema" icon="magnifier">
+    Reads a tabular data file and infers a table schema descriptor with field names, types, and constraints. Analyzes column values to determine appropriate data types and identifies common patterns.
+  </Card>
+  <Card title="Validate Table Schema" icon="approve-check">
+    Checks that a table schema descriptor is well-formed and conforms to the Fairspec specification. Ensures that all field definitions, types, and constraints are valid and properly structured.
+  </Card>
+</CardGrid>
