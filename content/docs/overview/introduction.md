@@ -1,7 +1,8 @@
 ---
-title: Introduction
+title: Fairspec Standard
 sidebar:
   order: 1
+  label: Introduction
 ---
 
 > [!TIP]
