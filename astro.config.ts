@@ -65,12 +65,11 @@ export default defineConfig({
         },
         {
           label: "Changelog",
-          collapsed: true,
           items: makeChangelogsSidebarLinks([
             {
               type: "recent",
               base: "changelog",
-              count: 10,
+              count: 1,
             },
           ]),
         },
