@@ -19,6 +19,7 @@ export default defineConfig({
         "Fairspec is a data exchange format compatible with DataCite for metadata and JSON Schema for structured data",
       customCss: ["/styles/general.css"],
       components: {
+        SiteTitle: "./components/builtin/SiteTitle.astro",
         SocialIcons: "./components/builtin/SocialIcons.astro",
       },
       logo: {
