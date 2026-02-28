@@ -5,9 +5,10 @@ const { siteTitleHref } = Astro.locals.starlightRoute
 const isRoot = Astro.url.pathname === "/" || Astro.url.pathname === ""
 const isMcpServer = Astro.url.pathname.startsWith("/mcp-server")
 const title = isRoot ? "Fairspec" : isMcpServer ? "Fairspec MCP Server" : "Fairspec Standard"
+const href = isMcpServer ? "/mcp-server/" : siteTitleHref
 ---
 
-<a href={siteTitleHref} class="site-title sl-flex">
+<a href={href} class="site-title sl-flex">
   {
     config.logo && logos.dark && (
       <>
