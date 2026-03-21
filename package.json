@@ -16,8 +16,8 @@
     "install:ci": "pnpm install --ignore-scripts",
     "generate": "node @generate.ts",
     "prepare": "husky",
-    "preview": "astro preview --port 5000",
-    "start": "astro dev --port 5000",
+    "preview": "astro preview --port 8000",
+    "start": "astro dev --port 8000",
     "test": "pnpm lint && pnpm type",
     "type": "echo 'enable tsc --noEmit'",
     "version:ci": "pnpm version --no-git-tag-version"
