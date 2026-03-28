@@ -23,7 +23,7 @@ jobs:
           cache: pnpm
           node-version-file: package.json
       - name: Install Dependencies
-        run: pnpm install:ci
+        run: pnpm install
       - name: Test Project
         run: pnpm test
       - name: Build Website
@@ -58,7 +58,7 @@ jobs:
           cache: pnpm
           node-version-file: package.json
       - name: Install Dependencies
-        run: pnpm install:ci
+        run: pnpm install
       - name: Release Project
         uses: cycjimmy/semantic-release-action@v5
         id: release

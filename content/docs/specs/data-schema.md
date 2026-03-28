@@ -62,7 +62,7 @@ For example:
     "age": {
       "type": "integer"
     }
-  },
+  }
 }
 ```
 

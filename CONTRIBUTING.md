@@ -23,6 +23,7 @@ Open an [issue on GitHub](https://github.com/fairspec/fairspec/issues) to:
 - Share use cases that aren't well-covered
 
 When creating an issue, please:
+
 - Use a clear, descriptive title
 - Provide context and examples when relevant
 - Reference specific sections of the specification if applicable

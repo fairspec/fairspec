@@ -232,9 +232,7 @@ Fairspec Table Schema defines the structure and constraints for tabular data. He
       "description": "Relative humidity percentage",
       "minimum": 0,
       "maximum": 100,
-      "missingValues": [
-        { "value": -999, "label": "Sensor malfunction" }
-      ]
+      "missingValues": [{ "value": -999, "label": "Sensor malfunction" }]
     },
     "quality": {
       "type": "integer",
@@ -430,9 +428,7 @@ materials-lab-2024/
       "description": "Percentage yield of the polymer product",
       "minimum": 0,
       "maximum": 100,
-      "missingValues": [
-        { "value": -1, "label": "Experiment failed" }
-      ]
+      "missingValues": [{ "value": -1, "label": "Experiment failed" }]
     },
     "molecular_weight": {
       "type": "integer",
@@ -591,9 +587,7 @@ This example demonstrates advanced features like complex types and validation:
     }
   },
   "primaryKey": ["id"],
-  "uniqueKeys": [
-    ["tags"]
-  ]
+  "uniqueKeys": [["tags"]]
 }
 ```
 

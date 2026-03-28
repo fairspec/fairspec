@@ -197,11 +197,7 @@ For example, with multiple unique constraints:
 
 ```json
 {
-  "uniqueKeys": [
-    ["email"],
-    ["username"],
-    ["department", "employee_number"]
-  ],
+  "uniqueKeys": [["email"], ["username"], ["department", "employee_number"]],
   "properties": {
     "email": {
       "type": "string",
@@ -324,10 +320,7 @@ For example, with mixed values:
 
 ```json
 {
-  "missingValues": [
-    "NA",
-    { "value": -999, "label": "Sensor Error" }
-  ]
+  "missingValues": ["NA", { "value": -999, "label": "Sensor Error" }]
 }
 ```
 
@@ -367,12 +360,13 @@ Metadata example:
     },
     "title": {
       "type": ["string", "null"]
-    },
+    }
   }
 }
 ```
 
 Data example:
+
 ```csv
 age
 25
@@ -398,6 +392,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 temp_c
 23.5
@@ -423,6 +418,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 pressure
 1013.25
@@ -448,6 +444,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 country
 US
@@ -487,6 +484,7 @@ For example, with integer values:
 ```
 
 Data example:
+
 ```csv
 status
 pending
@@ -526,6 +524,7 @@ For example, with integer values:
 ```
 
 Data example:
+
 ```csv
 status
 pending
@@ -551,6 +550,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 status
 done
@@ -575,6 +575,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 temperature
 20.5
@@ -608,6 +609,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 measurement
 25.3
@@ -635,6 +637,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 is_active
 true
@@ -643,6 +646,7 @@ true
 ```
 
 Type properties:
+
 - [`trueValues`](#truevalues)
 - [`falseValues`](#falsevalues)
 
@@ -668,6 +672,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 severity
 1
@@ -677,10 +682,12 @@ severity
 ```
 
 Type properties:
+
 - [`categories`](#categories)
 - [`withOrder`](#categoriesordered)
 
 In addition, type properties if type is `"integer"`:
+
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -690,6 +697,7 @@ In addition, type properties if type is `"integer"`:
 - [`withText`](#withtext)
 
 In addition, type properties if type is `"string"`:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -711,6 +719,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 age
 25
@@ -719,6 +728,7 @@ age
 ```
 
 Type properties:
+
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -744,6 +754,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 temperature
 23.5
@@ -752,6 +763,7 @@ temperature
 ```
 
 Type properties:
+
 - [`minimum`](#minimum)
 - [`maximum`](#maximum)
 - [`exclusiveMinimum`](#exclusiveminimum)
@@ -779,6 +791,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 price
 19.99
@@ -787,6 +800,7 @@ price
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -816,6 +830,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 name
 Alice
@@ -824,6 +839,7 @@ Charlie
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -846,6 +862,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 tags
 "red,blue,green"
@@ -854,6 +871,7 @@ tags
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -880,6 +898,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 homepage
 https://example.com
@@ -888,6 +907,7 @@ https://domain.net/path/to/resource
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -910,6 +930,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 contact_email
 alice@example.com
@@ -918,6 +939,7 @@ charlie@domain.net
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -940,6 +962,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 birth_date
 2023-12-01
@@ -948,6 +971,7 @@ birth_date
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -971,6 +995,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 start_time
 14:30:00
@@ -979,6 +1004,7 @@ start_time
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1002,6 +1028,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 created_at
 2023-12-01T14:30:00Z
@@ -1010,6 +1037,7 @@ created_at
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1033,6 +1061,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 elapsed_time
 PT1H30M
@@ -1041,6 +1070,7 @@ PT45M30S
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1063,6 +1093,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 geometry
 "POINT (30 10)"
@@ -1071,6 +1102,7 @@ geometry
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1093,6 +1125,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 geometry
 0101000000000000000000000000000000000024400000000000003E40
@@ -1101,6 +1134,7 @@ geometry
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1123,6 +1157,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 color
 FF5733
@@ -1131,6 +1166,7 @@ FF5733
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1153,6 +1189,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 thumbnail
 iVBORw0KGgoAAAANSUhEUgAAAAUA
@@ -1161,6 +1198,7 @@ aGVsbG8gd29ybGQ=
 ```
 
 Type properties:
+
 - [`minLength`](#minlength)
 - [`maxLength`](#maxlength)
 - [`pattern`](#pattern)
@@ -1182,6 +1220,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 coordinates
 "[1.5, 2.3]"
@@ -1190,6 +1229,7 @@ coordinates
 ```
 
 Type properties:
+
 - [`<jsonSchema>`](#jsonSchema)
 
 #### Object
@@ -1209,6 +1249,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 metadata
 "{""author"": ""John"", ""version"": 1}"
@@ -1217,6 +1258,7 @@ metadata
 ```
 
 Type properties:
+
 - [`<jsonSchema>`](#jsonSchema)
 
 #### GeoJSON
@@ -1237,6 +1279,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 location
 "{""type"": ""Point"", ""coordinates"": [30, 10]}"
@@ -1245,6 +1288,7 @@ location
 ```
 
 Type properties:
+
 - [`<jsonSchema>`](#jsonSchema)
 
 #### TopoJSON
@@ -1265,6 +1309,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 topology
 "{""type"": ""Topology"", ""objects"": {""example"": {""type"": ""Point"", ""coordinates"": [0, 0]}}}"
@@ -1273,6 +1318,7 @@ topology
 ```
 
 Type properties:
+
 - [`<jsonSchema>`](#jsonSchema)
 
 #### Unknown
@@ -1286,7 +1332,7 @@ Metadata example:
   "properties": {
     "column": {
       "title": "Column",
-      "description": "Column description",
+      "description": "Column description"
     }
   }
 }
@@ -1324,6 +1370,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 email
 alice@example.com
@@ -1352,6 +1399,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 is_active
 yes
@@ -1381,6 +1429,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 is_active
 no
@@ -1410,6 +1459,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 temperature
 -200.5
@@ -1438,6 +1488,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 temperature
 25.5
@@ -1466,6 +1517,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 probability
 0.1
@@ -1494,6 +1546,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 probability
 0.001
@@ -1522,6 +1575,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 price
 10.00
@@ -1550,6 +1604,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 price
 19,99
@@ -1578,6 +1633,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 population
 1,234,567
@@ -1606,6 +1662,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 price
 $19.99
@@ -1634,6 +1691,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 username
 alice
@@ -1662,6 +1720,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 username
 alice
@@ -1690,6 +1749,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 product_code
 ABC-1234
@@ -1722,6 +1782,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 severity
 1
@@ -1756,6 +1817,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 severity
 1
@@ -1786,6 +1848,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 tags
 red;green;blue
@@ -1815,6 +1878,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 measurements
 "1.5,2.3,4.7"
@@ -1844,6 +1908,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 tags
 "red,blue,green"
@@ -1873,6 +1938,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 tags
 "red,blue,green"
@@ -1902,6 +1968,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 collection_date
 01/15/2024
@@ -1934,6 +2001,7 @@ For example, with an array column:
 ```
 
 Data example:
+
 ```csv
 coordinates
 "[1.5, 2.3]"
@@ -1959,12 +2027,14 @@ For example, with an object column:
 ```
 
 Data example:
+
 ```csv
 metadata
 "{""author"": ""Alice"", ""version"": 1}"
 "{""author"": ""Bob"", ""version"": 2}"
 "{""author"": ""Charlie""}"
 ```
+
 ## Common
 
 Common properties shared by multiple entities in the descriptor.

@@ -42,7 +42,6 @@ A top-level descriptor object describing an individual dataset. It `MIGHT` have 
 
 [External Path](#external-path) to one of the officially published Fairspec Dataset profiles or to a Fairspec Dataset [Extension](#extension) profile with default value `https://fairspec.org/profiles/latest/dataset.json`.
 
-
 For example for version X.Y.Z of the profile:
 
 ```json
@@ -81,10 +80,10 @@ For multiple resources:
       "integrity": {
         "type": "sha256",
         "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
+      }
     },
     {
-      "data": "https://example.com/file2.json",
+      "data": "https://example.com/file2.json"
     }
   ]
 }
@@ -136,10 +135,7 @@ For multiple external files:
 
 ```json
 {
-  "data": [
-    "https://example.com/file1.csv",
-    "https://example.com/file2.csv"
-  ]
+  "data": ["https://example.com/file1.csv", "https://example.com/file2.csv"]
 }
 ```
 

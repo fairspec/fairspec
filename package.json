@@ -1,38 +1,33 @@
 {
   "name": "fairspec",
-  "type": "module",
   "version": "0.5.0",
   "private": true,
-  "engines": {
-    "node": "^24.0.0",
-    "pnpm": "^10.0.0"
-  },
+  "type": "module",
   "scripts": {
     "build": "astro build",
     "bump": "ncu -u",
-    "clean": "rm -rf **/node_modules",
-    "format": "biome check --write",
-    "lint": "biome check",
-    "install:ci": "pnpm install --ignore-scripts",
+    "clean": "rm -rf package-lock.yaml node_modules build",
+    "format": "vp fmt",
     "generate": "node @generate.ts",
-    "prepare": "husky",
+    "lint": "vp fmt --check && vp lint",
+    "prepare": "is-ci || lefthook install",
     "preview": "astro preview --port 8000",
+    "setversion": "pnpm version --no-git-tag-version",
     "start": "astro dev --port 8000",
     "test": "pnpm lint && pnpm type",
-    "type": "echo 'Enable tsgo --noEmit'",
-    "version:ci": "pnpm version --no-git-tag-version"
+    "type": "echo 'Enable tsgo --noEmit'"
   },
   "devDependencies": {
     "@astrojs/markdown-remark": "6.3.10",
     "@astrojs/starlight": "0.37.3",
-    "@biomejs/biome": "2.3.10",
     "@plausible-analytics/tracker": "0.4.4",
     "@semantic-release/exec": "7.1.0",
     "@typescript/native-preview": "7.0.0-dev.20260320.1",
     "astro": "5.16.10",
     "conventional-changelog-conventionalcommits": "9.1.0",
     "execa": "9.6.1",
-    "husky": "9.1.7",
+    "is-ci": "4.1.0",
+    "lefthook": "2.1.1",
     "npm-check-updates": "18.0.1",
     "remark-custom-heading-id": "2.0.0",
     "replace-in-file": "8.4.0",
@@ -41,7 +36,12 @@
     "starlight-changelogs": "0.4.0",
     "starlight-github-alerts": "0.1.1",
     "starlight-scroll-to-top": "0.4.0",
-    "tasuku": "2.0.5"
+    "tasuku": "2.0.5",
+    "vite-plus": "0.1.13"
+  },
+  "engines": {
+    "node": "^24.0.0",
+    "pnpm": "^10.0.0"
   },
   "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }

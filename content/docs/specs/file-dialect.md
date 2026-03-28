@@ -39,7 +39,6 @@ A top-level descriptor object describing a file dialect. It `MIGHT` have the fol
 
 [External Path](#external-path) to one of the officially published Fairspec File Dialect profiles with default value `https://fairspec.org/profiles/latest/file-dialect.json`.
 
-
 For example for version X.Y.Z of the profile:
 
 ```json
@@ -108,6 +107,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```csv
 name,age,city
 Alice,30,New York
@@ -116,6 +116,7 @@ Charlie,35,Tokyo
 ```
 
 Format properties:
+
 - [`delimiter`](#delimiter)
 - [`lineTerminator`](#lineterminator)
 - [`quoteChar`](#quotechar)
@@ -142,6 +143,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```tsv
 name	age	city
 Alice	30	New York
@@ -150,6 +152,7 @@ Charlie	35	Tokyo
 ```
 
 Format properties:
+
 - [`lineTerminator`](#lineterminator)
 - [`nullSequence`](#nullsequence)
 - [`headerRows`](#headerrows)
@@ -174,15 +177,17 @@ Metadata example:
 ```
 
 Data example:
+
 ```json
 [
-  {"name": "Alice", "age": 30, "city": "New York"},
-  {"name": "Bob", "age": 25, "city": "London"},
-  {"name": "Charlie", "age": 35, "city": "Tokyo"}
+  { "name": "Alice", "age": 30, "city": "New York" },
+  { "name": "Bob", "age": 25, "city": "London" },
+  { "name": "Charlie", "age": 35, "city": "Tokyo" }
 ]
 ```
 
 Format properties:
+
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -207,6 +212,7 @@ Metadata example:
 ```
 
 Data example:
+
 ```jsonl
 {"name": "Alice", "age": 30, "city": "New York"}
 {"name": "Bob", "age": 25, "city": "London"}
@@ -214,6 +220,7 @@ Data example:
 ```
 
 Format properties:
+
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -243,6 +250,7 @@ Data example:
 ```
 
 Format properties:
+
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -273,6 +281,7 @@ Data example:
 ```
 
 Format properties:
+
 - [`headerRows`](#headerrows)
 - [`headerJoin`](#headerjoin)
 - [`commentRows`](#commentrows)
@@ -342,6 +351,7 @@ Data example:
 ```
 
 Format properties:
+
 - [`tableName`](#tablename)
 
 #### Unknown
@@ -373,7 +383,7 @@ Data example:
 > [!NOTE]
 > Supported formats: **custom**
 
-The name of the custom format.  It `MUST` be a string.
+The name of the custom format. It `MUST` be a string.
 
 For example:
 
@@ -406,6 +416,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 id;name;price
 1;apple;1.50
@@ -449,6 +460,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 id,name
 1,'apple,red'
@@ -474,6 +486,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 id,name,notes
 1,apple,fresh
@@ -511,6 +524,7 @@ For example with multi-line headers:
 ```
 
 For a file like:
+
 ```
 fruit
 id,name,price
@@ -551,6 +565,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 fruit
 id,name,price
@@ -578,6 +593,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 id,name
 # This is a comment row
@@ -606,6 +622,7 @@ For example:
 ```
 
 For a file like:
+
 ```
 id,name
 # This row is ignored
@@ -636,6 +653,7 @@ For example:
 ```
 
 For a file without headers:
+
 ```
 1,apple,1.50
 2,orange,2.00
@@ -660,6 +678,7 @@ For example:
 ```
 
 For a JSON file like:
+
 ```json
 {
   "metadata": { "version": "1.0" },
@@ -691,6 +710,7 @@ For example with array of objects:
 ```
 
 For data like:
+
 ```json
 [
   { "id": 1, "name": "apple" },
@@ -711,6 +731,7 @@ For example with array of arrays:
 ```
 
 For data like:
+
 ```json
 [
   [1, "apple"],
@@ -773,6 +794,7 @@ For example:
   }
 }
 ```
+
 ## Common
 
 Common properties shared by multiple entities in the descriptor.
