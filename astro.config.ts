@@ -19,6 +19,7 @@ export default defineConfig({
         "Fairspec is a data exchange format compatible with DataCite for metadata and JSON Schema for structured data",
       customCss: ["/styles/general.css"],
       components: {
+        Head: "./components/builtin/Head.astro",
         SiteTitle: "./components/builtin/SiteTitle.astro",
         SocialIcons: "./components/builtin/SocialIcons.astro",
       },
@@ -74,16 +75,7 @@ export default defineConfig({
           ]),
         },
       ],
-      head: [
-        {
-          tag: "script",
-          attrs: {
-            src: "https://plausible.io/js/script.js",
-            "data-domain": "fairspec.org",
-            defer: true,
-          },
-        },
-      ],
+      head: [],
     }),
   ],
   markdown: {

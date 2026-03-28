@@ -26,6 +26,7 @@
     "@astrojs/markdown-remark": "6.3.10",
     "@astrojs/starlight": "0.37.3",
     "@biomejs/biome": "2.3.10",
+    "@plausible-analytics/tracker": "0.4.4",
     "@semantic-release/exec": "7.1.0",
     "astro": "5.16.10",
     "conventional-changelog-conventionalcommits": "9.1.0",
